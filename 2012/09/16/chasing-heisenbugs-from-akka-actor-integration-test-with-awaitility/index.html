@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>Integration Test - AKKA Actor With Awaitility</title>
+	<meta name="description" content="" />
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/">
+	<link rel="shortcut icon" href="../../../../favicon.ico">
+	<link rel="prefetch" href="http://ingini.org">
+
+	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=1b13a5c811" />
+	<link href='http://fonts.googleapis.com/css?family=Domine:700|Open+Sans:400,600|Source+Code+Pro:500' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<link rel="canonical" href="http://ingini.org/2012/09/16/chasing-heisenbugs-from-akka-actor-integration-test-with-awaitility/" />
+    
+    <meta property="og:site_name" content="Ingini" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Integration Test - AKKA Actor With Awaitility" />
+    <meta property="og:description" content="Abstract : Ever had an impression you&#x27;re changing what you&#x27;re observing by simply observing it? If you so, you may have hit a Heisenbug ([1], [2]). Well, OK, I agree that a more precise definition of &quot;observing&quot; is needed and that..." />
+    <meta property="og:url" content="http://ingini.org/2012/09/16/chasing-heisenbugs-from-akka-actor-integration-test-with-awaitility/" />
+    <meta property="article:published_time" content="2012-09-16T12:13:00.000Z" />
+    <meta property="article:modified_time" content="2014-05-28T13:59:45.372Z" />
+    <meta property="article:tag" content="FEST-Reflect" />
+    <meta property="article:tag" content="Java" />
+    <meta property="article:tag" content="AKKA" />
+    <meta property="article:tag" content="Mockito" />
+    <meta property="article:tag" content="Spring" />
+    <meta property="article:tag" content="Awaitility" />
+    <meta property="article:tag" content="FEST" />
+    <meta property="article:tag" content="FEST-Assert" />
+    <meta property="article:tag" content="Multithreading" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Integration Test - AKKA Actor With Awaitility" />
+    <meta name="twitter:description" content="Abstract : Ever had an impression you&#x27;re changing what you&#x27;re observing by simply observing it? If you so, you may have hit a Heisenbug ([1], [2]). Well, OK, I agree that a more precise definition of &quot;observing&quot; is needed and that..." />
+    <meta name="twitter:url" content="http://ingini.org/2012/09/16/chasing-heisenbugs-from-akka-actor-integration-test-with-awaitility/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Ingini",
+    "author": {
+        "@type": "Person",
+        "name": "Ivan Hristov",
+        "image": "http://ingini.org/content/images/2014/Jun/wolf_small.jpg",
+        "url": "http://ingini.org/author/ivan-hristov",
+        "sameAs": "http://ingini.org"
+    },
+    "headline": "Integration Test - AKKA Actor With Awaitility",
+    "url": "http://ingini.org/2012/09/16/chasing-heisenbugs-from-akka-actor-integration-test-with-awaitility/",
+    "datePublished": "2012-09-16T12:13:00.000Z",
+    "dateModified": "2014-05-28T13:59:45.372Z",
+    "keywords": "FEST-Reflect, Java, AKKA, Mockito, Spring, Awaitility, FEST, FEST-Assert, Multithreading",
+    "description": "Abstract : Ever had an impression you&#x27;re changing what you&#x27;re observing by simply observing it? If you so, you may have hit a Heisenbug ([1], [2]). Well, OK, I agree that a more precise definition of &quot;observing&quot; is needed and that..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/" />
+</head>
+<body class="post-template tag-fest-reflect tag-java tag-akka tag-mockito tag-spring tag-awaitility tag-fest tag-fest-assert tag-multithreading blogcover">
+
+	<header class="title">
+		<a href="http://ingini.org"><i class="fa fa-bookmark-o fa-lg"></i><span>Ingini</span></a>
+	</header>
+
+	<nav class="mainnav post tag-fest-reflect tag-java tag-akka tag-mockito tag-spring tag-awaitility tag-fest tag-fest-assert tag-multithreading">
+		<a id="top"></a>
+<div class="navwrap">
+	<ul class="menu">
+			<li class="nav-home" role="presentation"><a href="http://ingini.org/">Home</a></li>
+	</ul>
+	<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
+</div>
+	</nav>
+
+	
+
+<div class="index">
+	<div class="wrapper">
+		<h1 class="right">Integration Test - AKKA Actor With Awaitility</h1>
+		<h2 class="left">Introduction</h2>
+	</div>
+</div>
+
+<div class="profile post tag-fest-reflect tag-java tag-akka tag-mockito tag-spring tag-awaitility tag-fest tag-fest-assert tag-multithreading">
+	<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="user">
+	<h4>Ivan Hristov</h4>
+	
+	        <ul class="socialside">
+	            <li><a href="https://twitter.com/iv_hristov" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+	            <!--<li><a href="http://facebook.com" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+	            <li><a href="https://github.com/ihr" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
+	            <!--<li><a href="htt://instagram.com/" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+	            <li><a href="http://ingini.org/rss/" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+	        </ul>
+	
+	
+	<p></p>
+	<hr>
+</div>
+
+<div id="cover" class="cover post tag-fest-reflect tag-java tag-akka tag-mockito tag-spring tag-awaitility tag-fest tag-fest-assert tag-multithreading">
+	<div class="background" ></div>
+	<header class="wrapper">
+		<h2>
+				<a href="../../../../tag/fest-reflect/index.html">FEST-Reflect</a> 
+				<a href="../../../../tag/java/index.html">Java</a> 
+				<a href="../../../../tag/akka/index.html">AKKA</a> 
+				<a href="../../../../tag/mockito/index.html">Mockito</a> 
+				<a href="../../../../tag/spring/index.html">Spring</a> 
+				<a href="../../../../tag/awaitility/index.html">Awaitility</a> 
+				<a href="../../../../tag/fest/index.html">FEST</a> 
+				<a href="../../../../tag/fest-assert/index.html">FEST-Assert</a> 
+				<a href="../../../../tag/multithreading/index.html">Multithreading</a> 
+		</h2>
+		<h1><a href="index.html#">Integration Test - AKKA Actor With Awaitility</a></h1>
+		<span>
+			Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
+				on <i class="fa fa-clock-o"></i> <time datetime="2012-09-16">September 16th, 2012</time>.
+		</span>
+	</header>
+	<i class="fa fa-chevron-down movedown"></i>
+</div>
+
+<section class="posts wrapper">
+	<article class="post post tag-fest-reflect tag-java tag-akka tag-mockito tag-spring tag-awaitility tag-fest tag-fest-assert tag-multithreading">
+		<header>
+			<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+			<h2>
+					<a href="../../../../tag/fest-reflect/index.html">FEST-Reflect</a> 
+					<a href="../../../../tag/java/index.html">Java</a> 
+					<a href="../../../../tag/akka/index.html">AKKA</a> 
+					<a href="../../../../tag/mockito/index.html">Mockito</a> 
+					<a href="../../../../tag/spring/index.html">Spring</a> 
+					<a href="../../../../tag/awaitility/index.html">Awaitility</a> 
+					<a href="../../../../tag/fest/index.html">FEST</a> 
+					<a href="../../../../tag/fest-assert/index.html">FEST-Assert</a> 
+					<a href="../../../../tag/multithreading/index.html">Multithreading</a> 
+			</h2>
+			<h1 id="posttitle"><a href="index.html#">Integration Test - AKKA Actor With Awaitility</a></h1>
+			<span>
+				Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
+				on <i class="fa fa-clock-o"></i> <time datetime="2012-09-16">September 16th, 2012</time>.
+			</span>
+		</header>
+		<section class="postbody">
+			<p><strong>Abstract</strong> : Ever had an impression you're changing what you're observing by simply observing it? If you so, you may have hit a Heisenbug (<a href="http://www.catb.org/jargon/html/H/heisenbug.html">[1]</a>, <a href="http://www.infoq.com/articles/exterminating-heisenbugs">[2]</a>). Well, OK, I agree that a more precise definition of "observing" is needed and that we can differentiate between active and passive observing. The thing is one can hardly be a fully passive observer, especially when it comes to testing multi-threaded programs. Assuming you're really working on the program and not simply looking a video tutorial in which case you will be a fully passive observer (and I would be wondering how the heck you've tumbled on my article). In short, when working on (including testing) a program we may introduce Heisenbugs through levels of indirection which are usually hard to spot. In C/C++ such a level of indirection represents uninitialized auto variables which can change every time you run you program. In Java a source of many indirection levels is the platform independence provided by the JVM. In JavaScript a source of Heisenbugs can be processing uncontrolled (browser dependent) events such as <a href="http://stackoverflow.com/questions/6932907/jquery-infinite-scroll-event-fires-multiple-times-when-scrolling-is-fast">the scroll event</a>.</p>
+
+<p><strong>Goal</strong> : Chase and fix a Heisenbug within an AKKA actor integration test using <a href="http://code.google.com/p/awaitility/">Awaitility</a> </p>
+
+**Acknowledgement**: My gratitude goes to the open source community
+<!-- more -->  
+
+<p><strong>An AKKA actor based program</strong> : I've already given an example of an AKKA actor base program <a href="http://honeysoft.wordpress.com/2012/08/05/akka-actor-dependency-injection-using-spring/">here</a> and you can find <a href="https://github.com/ihr/akka-di">the source code here</a>. So to save you and me some time, I'm going to re-use it.</p>
+
+<p><strong>Naïve test case</strong> : First we are going to build a test case which is prone to Heisenbugs and then we are going to fix it. I'm going to use <a href="http://www.junit.org/">JUnit</a>, <a href="http://static.springsource.org/spring/docs/3.0.x/reference/testing.html">Spring Test Framework</a>, <a href="http://code.google.com/p/mockito/">Mockito</a>, <a href="https://github.com/alexruiz/fest-assert-1.x">FEST-Assert</a>, and <a href="https://github.com/alexruiz/fest-reflect">FEST-Reflect</a> to build up the following integration test case (<a href="https://github.com/ihr/akka-di">access article's full source code</a>):</p>
+
+<p>{% codeblock lang:java mark:50 %}
+import akka.actor.ActorRef; <br />
+import org.honeysoft.akka.Bootstrap; <br />
+import org.honeysoft.akka.service.IBusinessService; <br />
+import org.junit.Before; <br />
+import org.junit.Test; <br />
+import org.junit.runner.RunWith; <br />
+import org.mockito.Mock; <br />
+import org.mockito.MockitoAnnotations; <br />
+import org.slf4j.Logger; <br />
+import org.springframework.beans.factory.annotation.Autowired; <br />
+import org.springframework.beans.factory.annotation.Qualifier; <br />
+import org.springframework.test.context.ContextConfiguration; <br />
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</p>
+
+<p>import static org.fest.reflect.core.Reflection.field; <br />
+import static org.mockito.Matchers.anyString; <br />
+import static org.mockito.Matchers.eq; <br />
+import static org.mockito.Mockito.times; <br />
+import static org.mockito.Mockito.verify;</p>
+
+<p>@ContextConfiguration(classes = {Bootstrap.class})
+@RunWith(SpringJUnit4ClassRunner.class)
+public class BusinessActorTest {</p>
+
+<pre><code>@Autowired
+@Qualifier(Bootstrap.BUSINESS_ACTOR)
+private ActorRef businessActorRef;
+
+@Autowired
+private IBusinessService businessService;
+
+@Mock
+private Logger mockBusinessServiceLogger;
+
+@Before
+public void beforeEach() {
+    MockitoAnnotations.initMocks(this);
+}
+
+@Test
+public void shouldBeValidWhenNoOneIsNull() {
+    //GIVEN
+    field("logger").ofType(Logger.class).in(businessService).postDecorateWith(mockBusinessServiceLogger);
+
+    //WHEN
+    String testString = "test-string";
+    businessActorRef.tell(testString);
+
+    //THEN
+    verify(mockBusinessServiceLogger, times(1)).info(anyString(), eq(testString));
+}
+</code></pre>
+
+<p>}
+{% endcodeblock %}</p>
+
+<p>The thing is that this test case is prone to Heisenbugs. More precisely, the verification (at line 50) may pass some times and may fail others. Depending on the speed of execution and thread priority it can happen that the verification comes before the <em>businessService</em> receives the <em>testString</em> for processing. Luckily we have <a href="http://code.google.com/p/awaitility/">Awaitility</a> at our disposal so the fix is straightforward:  </p>
+
+<pre><code class=" java">import akka.actor.ActorRef;  
+import com.jayway.awaitility.Awaitility;  
+import com.jayway.awaitility.Duration;  
+import org.fest.assertions.Assertions;  
+import org.honeysoft.akka.Bootstrap;  
+import org.honeysoft.akka.service.IBusinessService;  
+import org.junit.Before;  
+import org.junit.Test;  
+import org.junit.runner.RunWith;  
+import org.mockito.MockitoAnnotations;  
+import org.slf4j.Logger;  
+import org.slf4j.Marker;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.beans.factory.annotation.Qualifier;  
+import org.springframework.test.context.ContextConfiguration;  
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.concurrent.Callable;  
+import java.util.concurrent.ConcurrentHashMap;  
+import java.util.concurrent.ConcurrentMap;
+
+import static org.fest.reflect.core.Reflection.field;
+
+@ContextConfiguration(classes = {Bootstrap.class})
+@RunWith(SpringJUnit4ClassRunner.class)
+public class BusinessActorTest {
+
+    @Autowired
+    @Qualifier(Bootstrap.BUSINESS_ACTOR)
+    private ActorRef businessActorRef;
+
+    @Autowired
+    private IBusinessService businessService;
+
+    @Before
+    public void beforeEach() {
+        MockitoAnnotations.initMocks(this);
+    }
+
+    @Test
+    public void shouldBeValidWhenNoOneIsNull() throws Exception {
+        //GIVEN
+        final ConcurrentMap&lt;String, Object&gt; threadSafeMap = new ConcurrentHashMap&lt;String, Object&gt;(1);
+        field("logger").ofType(Logger.class).in(businessService).postDecorateWith(new TestLogger(threadSafeMap));
+
+        //WHEN
+        String testString = "test-string";
+        businessActorRef.tell(testString);
+
+        //THEN
+        Awaitility.waitAtMost(Duration.FIVE_SECONDS).until(new Callable&lt;Boolean&gt;() {
+            @Override
+            public Boolean call() throws Exception {
+                return !threadSafeMap.isEmpty();
+            }
+        });
+
+        Assertions.assertThat(threadSafeMap).hasSize(1);
+        Assertions.assertThat(threadSafeMap.values().iterator().next()).isEqualTo(testString);
+    }
+
+    private static final class TestLogger implements Logger {
+
+        private final ConcurrentMap&lt;String, Object&gt; map;
+
+        private TestLogger(ConcurrentMap&lt;String, Object&gt; map) {
+            this.map = map;
+        }
+
+        @Override
+        public void info(String format, Object arg) {
+            map.put(format, arg);
+        }
+
+        //Other overridden methods go here
+    }
+}
+</code></pre>
+
+<p>So what happened is that instead of mocking our <em>logger</em> target we've created a thread-safe <em>TestLogger</em> to help us. Then we've added an awaitility block to either wait for at most 5 secs or until our piggy-bag map is not empty. Well, that was all. Not too painful right?</p>
+		</section>
+		<footer>
+			<ul class="share left">
+				<li><a href="http://twitter.com/share?text=Integration%20Test%20-%20AKKA%20Actor%20With%20Awaitility&url=http://ingini.org/2012/09/16/chasing-heisenbugs-from-akka-actor-integration-test-with-awaitility/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
+				<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2012/09/16/chasing-heisenbugs-from-akka-actor-integration-test-with-awaitility/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
+			</ul>
+			<ul class="tags right">
+				<a href="../../../../tag/fest-reflect/index.html" class="smallbutton solidgray">FEST-Reflect</a>
+				<a href="../../../../tag/java/index.html" class="smallbutton solidgray">Java</a>
+				<a href="../../../../tag/akka/index.html" class="smallbutton solidgray">AKKA</a>
+				<a href="../../../../tag/mockito/index.html" class="smallbutton solidgray">Mockito</a>
+				<a href="../../../../tag/spring/index.html" class="smallbutton solidgray">Spring</a>
+				<a href="../../../../tag/awaitility/index.html" class="smallbutton solidgray">Awaitility</a>
+				<a href="../../../../tag/fest/index.html" class="smallbutton solidgray">FEST</a>
+				<a href="../../../../tag/fest-assert/index.html" class="smallbutton solidgray">FEST-Assert</a>
+				<a href="../../../../tag/multithreading/index.html" class="smallbutton solidgray">Multithreading</a>
+			</ul>
+		</footer>
+		<div class="postprofile">
+			<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="user">
+			<div class="info">
+				<h4>Ivan Hristov</h4>
+				<a href="http://ingini.org">http://ingini.org</a>
+				<p></p>
+				
+				        <ul class="social">
+				            <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+				            <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+				            <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
+				            <!--<li><a href="http://youtube.com/" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a></li>-->
+				            <!--<li><a href="http://dribbble.com/" class="dribbble" target="_blank"><i class="fa fa-dribbble"></i></a></li>-->
+				            <li><a href="http://plus.google.com/" class="googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+				            <!--<li><a href="http://instagram.com/" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+				            <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
+				            <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+				            <li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+				        </ul>
+				
+				
+			</div>
+		</div>
+		<div class="comments">
+			<a href="javascript:;" class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</a>
+			<div id="disqus_thread"></div>
+			<div id="g-comments"></div>
+		</div>
+
+	</article>
+
+</section>
+
+
+
+	<footer class="wrapper">
+		<div class="inlinemenu">
+			<div class="graybar">
+				<div class="left"><i class="fa fa-bars"></i>Navigation</div>
+				<div class="right"><i class="fa fa-chevron-down"></i></div>
+			</div>
+			<ul class="menu">
+				<a id="top"></a>
+				<div class="navwrap">
+					<ul class="menu">
+					</ul>
+					<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
+				</div>			</ul>
+		</div>
+		<div>
+			Copyright &copy; <a href="http://ingini.org/">Ingini</a>. 2015 &bull; All rights reserved.
+			<span class="ghost">Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a>.</span>
+		</div>
+	</footer>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=1b13a5c811"></script>
+
+</body>
+</html>

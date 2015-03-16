@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>AKKA Ask Pattern: For Those Times When You Have to Block</title>
+	<meta name="description" content="" />
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/">
+	<link rel="shortcut icon" href="../../../../favicon.ico">
+	<link rel="prefetch" href="http://ingini.org">
+
+	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=1b13a5c811" />
+	<link href='http://fonts.googleapis.com/css?family=Domine:700|Open+Sans:400,600|Source+Code+Pro:500' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<link rel="canonical" href="http://ingini.org/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/" />
+    
+    <meta property="og:site_name" content="Ingini" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="AKKA Ask Pattern: For Those Times When You Have to Block" />
+    <meta property="og:description" content="Abstract : Since you are here, chances are, you are in one of those situations where you have to come up with a blocking solution using AKKA. Thus I’m going to skip the actor model introduction which is necessary to..." />
+    <meta property="og:url" content="http://ingini.org/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/" />
+    <meta property="article:published_time" content="2013-03-17T14:11:00.000Z" />
+    <meta property="article:modified_time" content="2015-03-15T17:54:51.968Z" />
+    <meta property="article:tag" content="Java" />
+    <meta property="article:tag" content="AKKA" />
+    <meta property="article:tag" content="Multithreading" />
+    <meta property="article:tag" content="Actor Model" />
+    <meta property="article:tag" content="Concurrency" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AKKA Ask Pattern: For Those Times When You Have to Block" />
+    <meta name="twitter:description" content="Abstract : Since you are here, chances are, you are in one of those situations where you have to come up with a blocking solution using AKKA. Thus I’m going to skip the actor model introduction which is necessary to..." />
+    <meta name="twitter:url" content="http://ingini.org/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Ingini",
+    "author": {
+        "@type": "Person",
+        "name": "Ivan Hristov",
+        "image": "http://ingini.org/content/images/2014/Jun/wolf_small.jpg",
+        "url": "http://ingini.org/author/ivan-hristov",
+        "sameAs": "http://ingini.org"
+    },
+    "headline": "AKKA Ask Pattern: For Those Times When You Have to Block",
+    "url": "http://ingini.org/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/",
+    "datePublished": "2013-03-17T14:11:00.000Z",
+    "dateModified": "2015-03-15T17:54:51.968Z",
+    "keywords": "Java, AKKA, Multithreading, Actor Model, Concurrency",
+    "description": "Abstract : Since you are here, chances are, you are in one of those situations where you have to come up with a blocking solution using AKKA. Thus I’m going to skip the actor model introduction which is necessary to..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/" />
+</head>
+<body class="post-template tag-java tag-akka tag-multithreading tag-actor-model tag-concurrency blogcover">
+
+	<header class="title">
+		<a href="http://ingini.org"><i class="fa fa-bookmark-o fa-lg"></i><span>Ingini</span></a>
+	</header>
+
+	<nav class="mainnav post tag-java tag-akka tag-multithreading tag-actor-model tag-concurrency">
+		<a id="top"></a>
+<div class="navwrap">
+	<ul class="menu">
+			<li class="nav-home" role="presentation"><a href="http://ingini.org/">Home</a></li>
+	</ul>
+	<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
+</div>
+	</nav>
+
+	
+
+<div class="index">
+	<div class="wrapper">
+		<h1 class="right">AKKA Ask Pattern: For Those Times When You Have to Block</h1>
+		<h2 class="left">Introduction</h2>
+	</div>
+</div>
+
+<div class="profile post tag-java tag-akka tag-multithreading tag-actor-model tag-concurrency">
+	<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="user">
+	<h4>Ivan Hristov</h4>
+	
+	        <ul class="socialside">
+	            <li><a href="https://twitter.com/iv_hristov" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+	            <!--<li><a href="http://facebook.com" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+	            <li><a href="https://github.com/ihr" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
+	            <!--<li><a href="htt://instagram.com/" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+	            <li><a href="http://ingini.org/rss/" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+	        </ul>
+	
+	
+	<p></p>
+	<hr>
+</div>
+
+<div id="cover" class="cover post tag-java tag-akka tag-multithreading tag-actor-model tag-concurrency">
+	<div class="background" ></div>
+	<header class="wrapper">
+		<h2>
+				<a href="../../../../tag/java/index.html">Java</a> 
+				<a href="../../../../tag/akka/index.html">AKKA</a> 
+				<a href="../../../../tag/multithreading/index.html">Multithreading</a> 
+				<a href="../../../../tag/actor-model/index.html">Actor Model</a> 
+				<a href="../../../../tag/concurrency/index.html">Concurrency</a> 
+		</h2>
+		<h1><a href="index.html#">AKKA Ask Pattern: For Those Times When You Have to Block</a></h1>
+		<span>
+			Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
+				on <i class="fa fa-clock-o"></i> <time datetime="2013-03-17">March 17th, 2013</time>.
+		</span>
+	</header>
+	<i class="fa fa-chevron-down movedown"></i>
+</div>
+
+<section class="posts wrapper">
+	<article class="post post tag-java tag-akka tag-multithreading tag-actor-model tag-concurrency">
+		<header>
+			<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+			<h2>
+					<a href="../../../../tag/java/index.html">Java</a> 
+					<a href="../../../../tag/akka/index.html">AKKA</a> 
+					<a href="../../../../tag/multithreading/index.html">Multithreading</a> 
+					<a href="../../../../tag/actor-model/index.html">Actor Model</a> 
+					<a href="../../../../tag/concurrency/index.html">Concurrency</a> 
+			</h2>
+			<h1 id="posttitle"><a href="index.html#">AKKA Ask Pattern: For Those Times When You Have to Block</a></h1>
+			<span>
+				Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
+				on <i class="fa fa-clock-o"></i> <time datetime="2013-03-17">March 17th, 2013</time>.
+			</span>
+		</header>
+		<section class="postbody">
+			<p><strong>Abstract</strong> : Since you are here, chances are, you are in one of those situations where you have to come up with a blocking solution using <a href="http://akka.io">AKKA</a>. Thus I’m going to skip the actor model introduction which is necessary to understand how AKKA actor model implementation works (you can read more about the actor model on the <a href="http://doc.akka.io/docs/akka/snapshot/index.html">AKKA docs website</a>). In this post you will find out how you can take advantage of AKKA’s ask pattern to do blocking when necessary.</p>
+
+<p><strong>Goal</strong> : Develop a “fire-and-await-confirmation” system based on AKKA ask pattern</p>
+
+<p><strong>Acknowledgement</strong> : My gratitude goes to the open source community and especially to:</p>
+
+<p><a href="http://jonasboner.com/">Jonas Bonér</a> (@jboner) for the creation of AKKA</p>
+
+<p>Viktor Klang (@viktorklang) for his attention to the details</p>
+
+<p>Maxime Nowak (@maximenowak) for his eye-opening discussions and “religious” clean-coding</p>
+
+<p><strong>Code</strong> : You can download the full source of the project from <a href="https://github.com/ihr/akka-blocking">GitHub</a></p>
+
+<p><strong>Maven Dependencies</strong> : There is nothing fancy in the pom.xml. Thus I’m not going to list it here.</p>
+
+<p><strong>Step 1</strong> : The business model</p>
+
+<p>We are going to develop a system for processing business messages. What we want from our system is to confirm that all messages are processed within a given timeout. Now, I would like to emphasis one more time on within a given timeout. If you think that you need to wait forever, I would advise you to re-think very, very carefully. There is a chance you have some bad smell in your architecture. Now, back to our business model, we need two domain objects:</p>
+
+<p>1 ) a <em>BusinessMessage</em> to be processed by our <em>BusinessService</em>:</p>
+
+<pre><code class="language-package org.ingini.akka.blocking.message;">import javax.annotation.concurrent.Immutable;
+
+@Immutable
+public class BusinessMessage {
+
+    private final String msgBody;
+
+    public BusinessMessage(String msgBody) {
+        this.msgBody = msgBody;
+    }
+
+    public String getMsgBody() {
+        return msgBody;
+    }
+}
+</code></pre>
+
+<p>2 ) an <em>AcknowledgementMessage</em> :</p>
+
+<pre><code class="language-package org.ingini.akka.blocking.message;">import javax.annotation.concurrent.Immutable;
+
+@Immutable
+public class AcknowledgementMessage {
+
+    private static final AcknowledgementMessage INSTANCE = new AcknowledgementMessage();
+
+    private AcknowledgementMessage() {
+    }
+
+    public static AcknowledgementMessage getInstance() {
+        return INSTANCE;
+    }
+}
+</code></pre>
+
+<p>The <em>AcknowledgementMessage</em> will be sent by our <em>BusinessConfirmationActor</em>, once a <em>BusinessMessage</em> is processed.</p>
+
+<p>Next we are going to “spoil” our business domain heaven by introducing a third domain object called <em>BusinessMessages</em>. The purposes of this wrapper object are purely technical - to ensure immutability, to increase readability, and to decrease maintainability costs.</p>
+
+<pre><code class="language-package org.ingini.akka.blocking.message;">import javax.annotation.concurrent.Immutable;  
+import java.util.Collections;  
+import java.util.List;
+
+@Immutable
+public class BusinessMessages {  
+    private final List&lt;BusinessMessage&gt; businessMessages;
+
+    public BusinessMessages(List&lt;BusinessMessage&gt; businessMessages) {
+        this.businessMessages = Collections.unmodifiableList(businessMessages);
+    }
+
+    public List&lt;BusinessMessage&gt; getBusinessMessages() {
+        return businessMessages;
+    }
+}
+</code></pre>
+
+<p>As you can see, <em>BusinessMessages</em> is a simple wrapper over an unmodifiable list of messages. And as you will see, a bit later, this object makes reading a bit easier when implementing the actor infrastructure.</p>
+
+<p><strong>Step 2</strong> : The business service</p>
+
+<p>For the sake of simplicity and clarity I’m going to keep our business service as simple as possible. So, here it is:</p>
+
+<pre><code class="language-package org.ingini.akka.blocking.service;">import org.ingini.akka.blocking.message.BusinessMessage;  
+import org.slf4j.Logger;  
+import org.slf4j.LoggerFactory;  
+import org.springframework.stereotype.Service;
+
+@Service
+public class BusinessService {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    public void doBusiness(BusinessMessage businessMessage) {
+        logger.info("Processing business message {}", businessMessage.getMsgBody());
+    }
+}
+</code></pre>
+
+<p>It does nothing more than pringing the message body of our business message. Now, let’s concentrate on the more important part - the infrastructural backbone provided by AKKA:</p>
+
+<p><strong>Step 3</strong> : AKKA - The infrastructural backbone</p>
+
+<p>Our most basic piece of machinery will be the <em>BusinessConfirmationActor</em>. As its name says, this actor will do some business (line 16) and when finished with the business doing it will send a confirmation (line 17):</p>
+
+<pre><code class="language-package org.ingini.akka.blocking.actor;">import akka.actor.UntypedActor;  
+import org.ingini.akka.blocking.message.AcknowledgementMessage;  
+import org.ingini.akka.blocking.message.BusinessMessage;  
+import org.ingini.akka.blocking.service.BusinessService;  
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class BusinessConfirmationActor extends UntypedActor {
+
+    @Autowired
+    private BusinessService businessService;
+
+    @Override
+    public void onReceive(Object message) throws Exception {
+        businessService.doBusiness((BusinessMessage) message);
+        getSender().tell(AcknowledgementMessage.getInstance());
+    }
+}
+</code></pre>
+
+<p>Due to the simplicity of our actor, the only bit that might appear a bit interesting is the autowiring of the <em>BusinessService</em>. The autoworing is backed-up by Spring and by a custom Spring-to-AKKA solution. You can find out more in a post I’ve already dedicated to that <a href="http://ingini.org/2012/08/05/akka-actor-dependency-injection-using-spring/">AKKA actor dependency injection using Spring</a> and of course you can examine the code directly on <a href="https://github.com/ihr/akka-blocking/tree/master/src/main/java/org/ingini/akka/di">GitHub</a>.</p>
+
+<p>The second piece of our AKKA infrastructure is the <em>FireAndAwaitMediatorActor</em>. An implementation of the gang of four (GoF) <a href="http://www.oodesign.com/mediator-pattern.html">Mediator Pattern</a>. It mediates the communication between a client service (which we haven’t seen yet) and the instances of <em>BusinessConfirmationActor</em>.  </p>
+
+<pre><code class="language-package org.ingini.akka.blocking.actor;">import akka.actor.ActorRef;  
+import akka.actor.UntypedActor;  
+import akka.routing.RoundRobinRouter;  
+import org.ingini.akka.blocking.message.AcknowledgementMessage;  
+import org.ingini.akka.blocking.message.BusinessMessages;  
+import org.ingini.akka.di.DependencyInjectionProps;  
+import org.slf4j.Logger;  
+import org.slf4j.LoggerFactory;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.context.ApplicationContext;
+
+import java.util.List;
+
+public class FireAndAwaitMediatorActor extends UntypedActor {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private static final int MAX_NUMBER_OF_ACTORS = 5;
+    private ActorRef router;
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    private long messageCounter;
+    private ActorRef acknowledgeRequester;
+
+    @Override
+    public void preStart() {
+        router = getContext().actorOf(new DependencyInjectionProps(//
+                applicationContext, BusinessConfirmationActor.class)//
+                .withRouter(new RoundRobinRouter(MAX_NUMBER_OF_ACTORS)), "router");
+    }
+
+    @Override
+    public void onReceive(Object message) {
+        if (message instanceof BusinessMessages) {
+            acknowledgeRequester = getSender();
+            List messages = ((BusinessMessages) message).getBusinessMessages();
+            messageCounter = messages.size();
+            processBusinessMessages(messages);
+            return;
+        } else if (message instanceof AcknowledgementMessage) {
+            processAcknowledgementMessage(message);
+            return;
+        }
+
+        logger.error("Cannot process message: {}", message);
+
+        throw new IllegalStateException("Cannot process message!");
+    }
+
+    private void processBusinessMessages(List messages) {
+        logger.info("Total message for processing: {}", messageCounter);
+        for (Object msg : messages) {
+            router.tell(msg, getSelf());
+        }
+    }
+
+    private void processAcknowledgementMessage(Object message) {
+        messageCounter--;
+        if (messageCounter &lt; 1 &amp;&amp; acknowledgeRequester != null) {
+            logger.info("Finally all messages are processed! Notifying requester ... ");
+            acknowledgeRequester.tell(message);
+        } else {
+            logger.info("Messages are processed but no acknowledge requester is set. " + //
+                    "Awaiting for acknowledgement request.");
+        }
+    }
+}
+</code></pre>
+
+<p><em>FireAndAwaitMediatorActor</em> encapsulates routing logic provided by AKKA’s RoundRobinRouter. The router will create at maximum 5 <em>BusinessConfirmationActors</em> and give them a BusinessMessage for processing (look at line 57). Once all <em>BusinessMessage</em> are sent, we will await for the messageCounter to drop to 0 and then the <em>FireAndAwaitMediatorActor</em> will send a confirmation message back to the original sender of the BusinessMessages (line 65), and that’s our client service, so continue reading.</p>
+
+<p><strong>Step 4</strong>: The client (service)</p>
+
+<p>Having looked at the backbone infrastructure and the business logic, what’s left is to see how we can use our system. For that purpose, I have developed two tests cases. Pay attention to lines 60, 64, 84, and 88. These are the lines you need when you develop your own client service. The <em>Patterns.ask()</em> will send a message (the 2nd argument) to the actor provided as first argument and will return an <em>AKKA Future</em> which will be completed within the specified timeout duration (given as 3rd argument). Once we have the <em>AKKA Future</em> we are going to await on it for a result.</p>
+
+<pre><code>package org.ingini.akka.blocking;
+
+import akka.actor.ActorRef;  
+import akka.dispatch.Await;  
+import akka.dispatch.Future;  
+import akka.pattern.Patterns;  
+import akka.util.Duration;  
+import akka.util.Timeout;  
+import org.ingini.akka.blocking.message.AcknowledgementMessage;  
+import org.ingini.akka.blocking.message.BusinessMessage;  
+import org.ingini.akka.blocking.message.BusinessMessages;  
+import org.ingini.akka.blocking.service.BusinessService;  
+import org.junit.Before;  
+import org.junit.Rule;  
+import org.junit.Test;  
+import org.junit.rules.ExpectedException;  
+import org.junit.runner.RunWith;  
+import org.mockito.Mock;  
+import org.mockito.MockitoAnnotations;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.test.context.ContextConfiguration;  
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.ArrayList;  
+import java.util.List;  
+import java.util.concurrent.TimeoutException;
+
+import static org.fest.assertions.Assertions.assertThat;
+
+@ContextConfiguration(classes = {Bootstrap.class})
+@RunWith(SpringJUnit4ClassRunner.class)
+public class BusinessTest {
+
+    @Autowired
+    private ActorRef fireAndAwaitRouter;
+
+    @Rule
+    public ExpectedException expectedExceptionRule = ExpectedException.none();
+
+    @Mock
+    public BusinessService mockedBusinessService;
+
+    @Before
+    public void beforeTest() {
+        MockitoAnnotations.initMocks(this);
+    }
+
+    @Test
+    public void allActorsShouldAcknowledgeWithinTime() throws Exception {
+        //GIVEN
+        int numberOfMessages = 100;
+        List&lt;BusinessMessage&gt; messages = new ArrayList&lt;BusinessMessage&gt;(numberOfMessages);
+        for (int i = 0; i &lt; numberOfMessages; i++) {
+            messages.add(new BusinessMessage("Msg number: " + i));
+        }
+
+        Duration duration = Duration.apply("10 sec");
+
+        //WHEN
+        Future&lt;Object&gt; answer = Patterns.ask(fireAndAwaitRouter, new BusinessMessages(messages), //
+                Timeout.durationToTimeout(duration));
+
+        //THEN
+        assertThat(Await.result(answer, duration))//
+                .isEqualTo(AcknowledgementMessage.getInstance());
+
+    }
+
+    @Test
+    public void failureToAcknowledgeWithinTimeout() throws Exception {
+        //GIVEN
+        expectedExceptionRule.expect(TimeoutException.class);
+        expectedExceptionRule.expectMessage("Futures timed out after [1] milliseconds");
+
+        int numberOfMessages = 100000;
+        List&lt;BusinessMessage&gt; messages = new ArrayList&lt;BusinessMessage&gt;(numberOfMessages);
+        for (int i = 0; i &lt; numberOfMessages; i++) {
+            messages.add(new BusinessMessage("Msg number: " + i));
+        }
+
+        Duration duration = Duration.apply("1 millisecond");
+
+        //WHEN
+        Future&lt;Object&gt; answer = Patterns.ask(fireAndAwaitRouter, //
+                new BusinessMessages(messages), Timeout.durationToTimeout(duration));
+
+        //THEN
+        Await.result(answer, duration);
+
+    }
+}
+</code></pre>
+
+<p>Within the method <em>allActorsShouldAcknowledgeWithinTime()</em>, we test that all actors (<em>BusinessConfirmationActors</em>) acknowledge their business messages within 10 sec by not expecting any (await-ing) timeout exception. The second test case, <em>failureToAcknowledgeWithinTimeout()</em>, is that the actors won’t acknowledge the processing of 100’000 messages within 1 <em>millisecond</em>, thus we will have an (await-ing) timeout exception. Having said that, I have to point out that the second test case may actually fail if you have a fast machine. In order to do it correctly, we can actually mock the <em>BusinessService</em> within a <em>BusinessConfirmationActor</em> and make it block for at least 1.1 milliseconds. I haven’t done that to keep the post shorter.</p>
+
+<p><strong>Conclusion</strong> : Before I wish you a farewell my dear reader, I would like to draw your attention on three things:</p>
+
+<p>Blocking is almost never a good idea, so try to avoid it.</p>
+
+<p>Using AKKA is not so difficult and you should not be afraid to use it. Once you understand the actor model and how it’s implemented in AKKA it’s really a fun to work with it.</p>
+
+<p>Do NOT sacrifice the quality of your code. In our example, I’ve introduced the <em>BusinessMessages</em> wrapper object which has no direct business value. Or does it? How would you like to see:  </p>
+
+<pre><code>if( message instanceof List ) {  
+...
+}
+</code></pre>
+
+<p>rather than</p>
+
+<pre><code>if( message instanceof BusinessMessages ) {  
+...
+}
+</code></pre>
+
+<p>or even better: apply the GoF <a href="http://www.oodesign.com/strategy-pattern.html">Strategy</a> pattern and remove all <em>if</em>s! Farewell for now and don’t forget to leave a comment!</p>
+		</section>
+		<footer>
+			<ul class="share left">
+				<li><a href="http://twitter.com/share?text=AKKA%20Ask%20Pattern%3A%20For%20Those%20Times%20When%20You%20Have%20to%20Block&url=http://ingini.org/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
+				<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
+			</ul>
+			<ul class="tags right">
+				<a href="../../../../tag/java/index.html" class="smallbutton solidgray">Java</a>
+				<a href="../../../../tag/akka/index.html" class="smallbutton solidgray">AKKA</a>
+				<a href="../../../../tag/multithreading/index.html" class="smallbutton solidgray">Multithreading</a>
+				<a href="../../../../tag/actor-model/index.html" class="smallbutton solidgray">Actor Model</a>
+				<a href="../../../../tag/concurrency/index.html" class="smallbutton solidgray">Concurrency</a>
+			</ul>
+		</footer>
+		<div class="postprofile">
+			<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="user">
+			<div class="info">
+				<h4>Ivan Hristov</h4>
+				<a href="http://ingini.org">http://ingini.org</a>
+				<p></p>
+				
+				        <ul class="social">
+				            <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+				            <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+				            <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
+				            <!--<li><a href="http://youtube.com/" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a></li>-->
+				            <!--<li><a href="http://dribbble.com/" class="dribbble" target="_blank"><i class="fa fa-dribbble"></i></a></li>-->
+				            <li><a href="http://plus.google.com/" class="googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+				            <!--<li><a href="http://instagram.com/" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+				            <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
+				            <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+				            <li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+				        </ul>
+				
+				
+			</div>
+		</div>
+		<div class="comments">
+			<a href="javascript:;" class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</a>
+			<div id="disqus_thread"></div>
+			<div id="g-comments"></div>
+		</div>
+
+	</article>
+
+</section>
+
+
+
+	<footer class="wrapper">
+		<div class="inlinemenu">
+			<div class="graybar">
+				<div class="left"><i class="fa fa-bars"></i>Navigation</div>
+				<div class="right"><i class="fa fa-chevron-down"></i></div>
+			</div>
+			<ul class="menu">
+				<a id="top"></a>
+				<div class="navwrap">
+					<ul class="menu">
+					</ul>
+					<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
+				</div>			</ul>
+		</div>
+		<div>
+			Copyright &copy; <a href="http://ingini.org/">Ingini</a>. 2015 &bull; All rights reserved.
+			<span class="ghost">Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a>.</span>
+		</div>
+	</footer>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=1b13a5c811"></script>
+
+</body>
+</html>

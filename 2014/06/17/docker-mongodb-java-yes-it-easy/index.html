@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>Bringing together Docker, Grunt, Maven, EmberJS &amp; MongoDB</title>
+	<meta name="description" content="" />
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/">
+	<link rel="shortcut icon" href="../../../../favicon.ico">
+	<link rel="prefetch" href="http://ingini.org">
+
+	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=1b13a5c811" />
+	<link href='http://fonts.googleapis.com/css?family=Domine:700|Open+Sans:400,600|Source+Code+Pro:500' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<link rel="canonical" href="http://ingini.org/2014/06/17/docker-mongodb-java-yes-it-easy/" />
+    
+    <meta property="og:site_name" content="Ingini" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Bringing together Docker, Grunt, Maven, EmberJS &amp; MongoDB" />
+    <meta property="og:description" content="Abstract : Will it work? ... How can I be sure? ... Am I forgetting something? ... questions that pile up slowly and ruin our confidence once we cannot clearly answer them. For reasons like these we write tests - to be confident, to..." />
+    <meta property="og:url" content="http://ingini.org/2014/06/17/docker-mongodb-java-yes-it-easy/" />
+    <meta property="article:published_time" content="2014-06-17T20:50:01.012Z" />
+    <meta property="article:modified_time" content="2015-03-15T20:54:49.773Z" />
+    <meta property="article:tag" content="Java" />
+    <meta property="article:tag" content="Maven" />
+    <meta property="article:tag" content="Jetty" />
+    <meta property="article:tag" content="Jongo" />
+    <meta property="article:tag" content="MongoDB" />
+    <meta property="article:tag" content="Docker" />
+    <meta property="article:tag" content="Grunt" />
+    <meta property="article:tag" content="EmberJS" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Bringing together Docker, Grunt, Maven, EmberJS &amp; MongoDB" />
+    <meta name="twitter:description" content="Abstract : Will it work? ... How can I be sure? ... Am I forgetting something? ... questions that pile up slowly and ruin our confidence once we cannot clearly answer them. For reasons like these we write tests - to be confident, to..." />
+    <meta name="twitter:url" content="http://ingini.org/2014/06/17/docker-mongodb-java-yes-it-easy/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Ingini",
+    "author": {
+        "@type": "Person",
+        "name": "Ivan Hristov",
+        "image": "http://ingini.org/content/images/2014/Jun/wolf_small.jpg",
+        "url": "http://ingini.org/author/ivan-hristov",
+        "sameAs": "http://ingini.org"
+    },
+    "headline": "Bringing together Docker, Grunt, Maven, EmberJS &amp; MongoDB",
+    "url": "http://ingini.org/2014/06/17/docker-mongodb-java-yes-it-easy/",
+    "datePublished": "2014-06-17T20:50:01.012Z",
+    "dateModified": "2015-03-15T20:54:49.773Z",
+    "keywords": "Java, Maven, Jetty, Jongo, MongoDB, Docker, Grunt, EmberJS",
+    "description": "Abstract : Will it work? ... How can I be sure? ... Am I forgetting something? ... questions that pile up slowly and ruin our confidence once we cannot clearly answer them. For reasons like these we write tests - to be confident, to..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/" />
+</head>
+<body class="post-template tag-java tag-maven tag-jetty tag-jongo tag-mongodb tag-docker tag-grunt tag-emberjs blogcover">
+
+	<header class="title">
+		<a href="http://ingini.org"><i class="fa fa-bookmark-o fa-lg"></i><span>Ingini</span></a>
+	</header>
+
+	<nav class="mainnav post tag-java tag-maven tag-jetty tag-jongo tag-mongodb tag-docker tag-grunt tag-emberjs">
+		<a id="top"></a>
+<div class="navwrap">
+	<ul class="menu">
+			<li class="nav-home" role="presentation"><a href="http://ingini.org/">Home</a></li>
+	</ul>
+	<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
+</div>
+	</nav>
+
+	
+
+<div class="index">
+	<div class="wrapper">
+		<h1 class="right">Bringing together Docker, Grunt, Maven, EmberJS &amp; MongoDB</h1>
+		<h2 class="left">Introduction</h2>
+	</div>
+</div>
+
+<div class="profile post tag-java tag-maven tag-jetty tag-jongo tag-mongodb tag-docker tag-grunt tag-emberjs">
+	<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="user">
+	<h4>Ivan Hristov</h4>
+	
+	        <ul class="socialside">
+	            <li><a href="https://twitter.com/iv_hristov" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+	            <!--<li><a href="http://facebook.com" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+	            <li><a href="https://github.com/ihr" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
+	            <!--<li><a href="htt://instagram.com/" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+	            <li><a href="http://ingini.org/rss/" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+	        </ul>
+	
+	
+	<p></p>
+	<hr>
+</div>
+
+<div id="cover" class="cover post tag-java tag-maven tag-jetty tag-jongo tag-mongodb tag-docker tag-grunt tag-emberjs">
+	<div class="background" ></div>
+	<header class="wrapper">
+		<h2>
+				<a href="../../../../tag/java/index.html">Java</a> 
+				<a href="../../../../tag/maven/index.html">Maven</a> 
+				<a href="../../../../tag/jetty/index.html">Jetty</a> 
+				<a href="../../../../tag/jongo/index.html">Jongo</a> 
+				<a href="../../../../tag/mongodb/index.html">MongoDB</a> 
+				<a href="../../../../tag/docker/index.html">Docker</a> 
+				<a href="../../../../tag/grunt/index.html">Grunt</a> 
+				<a href="../../../../tag/emberjs/index.html">EmberJS</a> 
+		</h2>
+		<h1><a href="index.html#">Bringing together Docker, Grunt, Maven, EmberJS &amp; MongoDB</a></h1>
+		<span>
+			Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
+				on <i class="fa fa-clock-o"></i> <time datetime="2014-06-17">June 17th, 2014</time>.
+		</span>
+	</header>
+	<i class="fa fa-chevron-down movedown"></i>
+</div>
+
+<section class="posts wrapper">
+	<article class="post post tag-java tag-maven tag-jetty tag-jongo tag-mongodb tag-docker tag-grunt tag-emberjs">
+		<header>
+			<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+			<h2>
+					<a href="../../../../tag/java/index.html">Java</a> 
+					<a href="../../../../tag/maven/index.html">Maven</a> 
+					<a href="../../../../tag/jetty/index.html">Jetty</a> 
+					<a href="../../../../tag/jongo/index.html">Jongo</a> 
+					<a href="../../../../tag/mongodb/index.html">MongoDB</a> 
+					<a href="../../../../tag/docker/index.html">Docker</a> 
+					<a href="../../../../tag/grunt/index.html">Grunt</a> 
+					<a href="../../../../tag/emberjs/index.html">EmberJS</a> 
+			</h2>
+			<h1 id="posttitle"><a href="index.html#">Bringing together Docker, Grunt, Maven, EmberJS &amp; MongoDB</a></h1>
+			<span>
+				Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
+				on <i class="fa fa-clock-o"></i> <time datetime="2014-06-17">June 17th, 2014</time>.
+			</span>
+		</header>
+		<section class="postbody">
+			<p><strong>Abstract :</strong> <em>Will it work? ... How can I be sure? ... Am I forgetting something?</em> ... questions that pile up slowly and ruin our confidence once we cannot clearly answer them. For reasons like these we write tests - to be confident, to be certain, to sleep better. Yet, writing tests is one part of the problem. Getting them executed in an environment close to the production one is another . ... and so, more questions pile up : How do we keep a snapshot of our production environment for testing purposes? What if our app needs to run in different environments? Can we keep multiple virtual environment snapshots? How many? Can we have test parallelization? Is the sandboxing guaranteed? and so on, and so on ... </p>
+
+<p>In this post, we are going to take a look at orchestrating Maven, Grunt &amp; Docker to provide the basis for setting up integration tests.</p>
+
+<p><strong>Goal :</strong> 
+Prepare your development environment (using <a href="http://maven.apache.org/">Maven</a>, <a href="http://gruntjs.com/">Grunt</a>, and <a href="https://www.docker.io/">Docker</a>) for integration tests. </p>
+
+<p><strong>Code :</strong> 
+To reach the goal, we will work with a small project containing a frontend based on <a href="http://emberjs.com/">EmberJS</a> (via <a href="http://yeoman.io/">Yeoman</a>) and backend based on Java (<a href="http://www.eclipse.org/jetty/">Jetty</a>, <a href="https://jersey.java.net/">Jersey</a>, <a href="https://code.google.com/p/google-guice/">Guice</a>, and <a href="http://jongo.org/">Jongo</a> ). As a storage we will use a  <a href="http://www.mongodb.org/downloads">MongoDB</a> database. </p>
+
+<p>Here is what the project structure looks like:</p>
+
+<pre><code class="language-text">src  
+ `- main
+     `- java
+      - webapp
+         `- ...
+          - dist
+          - ...
+ `- test
+     `- java
+      - resources
+         `- docker
+             `- Dockerfile.template
+              - docker_rm.sh.template
+              - entrypoint.sh.template
+pom.xml  
+</code></pre>
+
+<p>The frontend part is embedded within the Maven backend (that's fine for a showcase but for large projects the two should be apart). </p>
+
+<p>In this, otherwise standard Maven strucutre, the <strong><em>src/main/webapp/dist</em></strong> folder holds the final frontend code generated by Grunt. The <strong><em>src/test/resources/docker</em></strong> folder holds some reusable templates used for bridging Maven &amp; Docker. </p>
+
+<p>As for the business logic of our app, let's keep it simple and design a read-only library. We are going to have a MongoDB database called <strong><em>library</em></strong> and inside it a single <strong><em>books</em></strong> collection with pre-loaded documents. Our app will display book titles in a web browser. Nothing exciting but complex enough for orchestration. </p>
+
+<p>The basic flow of data will be: </p>
+
+<ol>
+<li>Browser sends an AJAX request from the EmberJS based interface to the backend. </li>
+<li>Then the backend makes a request to the MongoDB database. The backend is built with <a href="https://code.google.com/p/google-guice/">Guice</a> (dependency injection framework), embedded Jetty server to process HTTP requests and <a href="http://jongo.org/">Jongo</a> for bridging the backend logic and MongoDB. </li>
+<li>In the end the response from the database is presented in the browser.</li>
+</ol>
+
+<p>Don't hesitate to checkout the code on <a href="https://github.com/ihr/library-emberjs-mongodb-docker">GitHub</a></p>
+
+<p><strong>Docker Basics :</strong> </p>
+
+<p>Docker is a tool (a virtualization engine) which allows you to build an environment for your application. An environment is wrapped into a Docker container where you can deploy your app. A Docker container is described by a <strong><em>Dockerfile</em></strong> which you can reuse as many times as you wish.</p>
+
+<p>At the very least, an environment consists of an operating system (OS). Often, there is also a database installed (for our example - MongoDB) and some preconfigured environmental variables (in our case - PORT). In addition there could be also different configuration files and other things needed by your application (such as a JVM). </p>
+
+<p>Truth be told, you don't need Docker to install an OS, a database, a JVM and a couple of files. What you need Docker for is to construct a <em>virtual</em> environment which can then be reused (for development, staging, production) and easily transferred to your co-workers (by means of a Dockerfile). But wait ... isn't that what my virtual machine (VM) does? Yes, only Docker does it in a smarter way. </p>
+
+<p>Docker uses a Linux kernel virtualization technique called <a href="https://linuxcontainers.org/">Linux containers (LXC)</a> (don't worry you can still use Docker on <a href="https://docs.docker.com/installation/mac/">Mac OS</a> or <a href="https://docs.docker.com/installation/windows/">Windows</a> via an ordinary VM). Thanks to this virtualization method, you can have many sandboxed virtual environments. What's quite nice is that these containers will use not only common hardware resources but also software resources such as the OS and libraries. In this way you can host many more environments than if you are using VM in a traditional way. For further details checkout the docs <a href="https://www.docker.io/the_whole_story/#How-Do-Containers-Work?-(And-How-are-they-Different-From-VMs)">How Do Docker Containers Work? (And How are they Different From VMs)</a>. </p>
+
+<p>The process of building a virtual environment is quite simple. You create a <strong>Dockerfile</strong> and inside it you describe what things comprise your environment. Once you have the Dockerfile you can build a container and then you can run it, stop it, or delete it. You can also promote a container to a Docker image which can server as a basis for other containers and be published on the <a href="https://index.docker.io/">Docker Index</a>. </p>
+
+<p>Here is what the Dockerfile for our application looks. like</p>
+
+<p><em>The Dockerfile :</em></p>
+
+<pre><code>FROM dockerfile/ubuntu
+
+MAINTAINER {name: "Ivan Hristov", email: "hristov[DOT]iv[AT]gmail.com"}
+
+# Install Java.
+RUN \  
+  echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections &amp;&amp; \
+  echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections &amp;&amp; \
+  add-apt-repository -y ppa:webupd8team/java &amp;&amp; \
+  apt-get update &amp;&amp; \
+  apt-get install -y oracle-java8-installer
+
+# Install MongoDB.
+RUN \  
+  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 &amp;&amp; \
+  echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | tee /etc/apt/sources.list.d/mongodb.list &amp;&amp; \
+  apt-get update &amp;&amp; \
+  apt-get install -y mongodb-org &amp;&amp; \
+  mkdir -p /data/db
+
+# Define mountable directories.
+VOLUME ["/data"]
+
+#Create app directory
+RUN \  
+  mkdir -p /{app.working.directory}/src/main/webapp \
+  mkdir -p /{app.working.directory}/src/test/resources
+
+# Add the application JAR
+ADD target/{app.name}-{app.version}.jar /{app.working.directory}/{app.name}-{app.version}.jar
+
+# Add the application WEBAPP directory
+ADD src/main/webapp/dist /{app.working.directory}/src/main/webapp
+
+# Add the test resources
+ADD src/test/resources/books_array.json /{app.working.directory}/src/test/resources/books_array.json
+
+# Add the application WEBAPP directory
+ADD entrypoint.sh /{app.working.directory}/
+
+#Set port for the application
+ENV PORT 8080
+
+# By default start the application
+ENTRYPOINT ["/{app.working.directory}/entrypoint.sh"]
+
+# Expose app port
+EXPOSE 8080  
+</code></pre>
+
+<p>Let's go through the file. The first line basically states: "Hey, I need Ubuntu!". The second line tells who's the person who maintains the file. In the third line, we imagine ourselves being already in an Ubuntu OS terminal and installing Java 8. After that we install MongoDB. The line with the <strong>VOLUME</strong> is kinda tricky. What it does is mapping the <strong>/data</strong> folder on your machine to a folder with the same name but in the virtual environment (the Docker container). You don't have to use the <strong>VOLUME</strong> command. I use it so that I can see the content of the MongoDB database from my local terminal without the need to go in the Docker container or connect to the MonogoDB daemon running in the container. For this to work, you need the <strong>/data</strong> folder on your hard-drive to be present. In case you don't use the <strong>VOLUME</strong> command you have to create a <strong>/data</strong> directory in the container (or specify another folder for MongoDB to place it's DB files). Next, we create some folders for our application. Since the Java backend is shaded (packed) into a single JAR file (thanks to the <a href="http://maven.apache.org/plugins/maven-shade-plugin/">Maven Shade Plugin</a>) we copy it onto the container. We also copy the frontend <strong>dist</strong> folder and a file called <strong>books<em>_</em>array.json</strong>. The file <strong>books_array.json</strong> is used to populate our database with some books. This is done within the <strong>entrypoint.sh</strong> bash script, which is specified with an <strong>ENTRYPOINT</strong> Docker command in the end of the <strong>Dockerfile</strong>. Furthermore, our backend needs an environmental variable called <strong>PORT</strong> which tells an embedded <a href="http://www.eclipse.org/jetty/">Jetty</a> server on which port to run. We use the <strong>ENV</strong> Docker command to set it. We also expose the port on the container via the <strong>EXPOSE</strong> Docker command. Later we will see how to map the exposed container port to a port on the local machine. Once all this is done, we copy the aforementioned <strong>entrypoint.sh</strong> bash script and then we tell  Docker (through the <strong>ENTRYPOINT</strong> command) that this script should be executed when the container runs.</p>
+
+<p>Well that's quite of an explanation ... and although it's far from perfect, it should give you a basic understanding of how to describe a Docker container for your application's virtual environment. There is more on the <a href="https://docs.docker.com/">Docker's docs</a>.</p>
+
+<p><strong>After the Dockerfile:</strong> </p>
+
+<p>As I said, the <strong>Dockerfile</strong> is a set of instructions for building a Docker container. In order to build the container you need to execute the <strong>docker</strong> command with the following syntax:</p>
+
+<pre><code>docker build -t="ihristov/ilibrary" .  
+</code></pre>
+
+<p>Once the container is built you can start it with the command:</p>
+
+<pre><code>docker run -p 8080:8080 -i -t ihristov/ilibrary  
+</code></pre>
+
+<p>Here is what the different options mean:</p>
+
+<ul>
+<li>-p 8080:8080 - maps the container exposed port 8080 to the localhost 8080 port. <strong>Note:</strong> When using Mac OS, in addition to this option you have to enable the port forwarding through the VM. I've used <a href="https://www.virtualbox.org/">VirtualBox</a> (version 4.3.12 r93733) and with it you need to select the <strong>boot2docker-vm</strong> -> press <strong>Settings</strong> -> choose <strong>Network</strong> -> click on <strong>Port Forwarding</strong> -> <strong>Insert new rule</strong></li>
+<li>-i - From the docs: <em>Keep stdin open even if not attached</em></li>
+<li>-t - From the docs: <em>Allocate a pseudo-tty</em></li>
+</ul>
+
+<p>In case you want to run the container in the background you can do:  </p>
+
+<pre><code>docker run -p 8080:8080 -d ihristov/ilibrary  
+</code></pre>
+
+<p><strong>The Maven Way:</strong></p>
+
+<p>Now, what we need is way to automatically do all this with a single command. Let's say:</p>
+
+<pre><code>mvn clean verify  
+</code></pre>
+
+<p>In the next few lines I'm going to show you how you can:</p>
+
+<ol>
+<li>Run Grunt to build the frontend  </li>
+<li>Create the right <strong>Dockerfile</strong> for your Maven artifact  </li>
+<li>Build the Docker container  </li>
+<li>Run the Docker container in the background</li>
+</ol>
+
+<p>For these steps we need two Maven plugins: the <a href="http://mojo.codehaus.org/exec-maven-plugin/">Exec Maven Plugin</a> and the <a href="https://code.google.com/p/maven-replacer-plugin/">Replacer Maven Plugin</a></p>
+
+<hr />
+
+<p><strong>Step 1:</strong> Run Grunt to build the frontend</p>
+
+<p>Here is the relevant portion of the <strong>pom.xml</strong> :</p>
+
+<pre><code>&lt;build&gt;  
+ &lt;plugins&gt;
+  &lt;plugin&gt;
+   &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+   &lt;artifactId&gt;exec-maven-plugin&lt;/artifactId&gt;
+   &lt;version&gt;${exec-maven-plugin.version}&lt;/version&gt;
+    &lt;executions&gt;
+     &lt;execution&gt;
+      &lt;id&gt;Build front-end via Grunt&lt;/id&gt;
+      &lt;phase&gt;package&lt;/phase&gt;
+      &lt;goals&gt;
+       &lt;goal&gt;exec&lt;/goal&gt;
+      &lt;/goals&gt;
+      &lt;configuration&gt;
+       &lt;executable&gt;grunt&lt;/executable&gt;                       &lt;workingDirectory&gt;src/main/webapp&lt;/workingDirectory&gt;
+       &lt;arguments&gt;
+        &lt;argument&gt;build&lt;/argument&gt;
+       &lt;/arguments&gt;
+      &lt;/configuration&gt;
+    &lt;/execution&gt;
+    ...                
+</code></pre>
+
+<p>What happens here is no magic at all. We change the working directory to <strong>src/main/webapp</strong> and we execute:</p>
+
+<pre><code>grunt build  
+</code></pre>
+
+<hr />
+
+<p><strong>Step 2:</strong> Create the right <strong>Dockerfile</strong> for your Maven artifact</p>
+
+<p>The tricky part here is figuring out how to reuse what we do now for subsequent Maven based projects. One thing surely changes from project to project - the Maven artifact name. Thus we need to parameterize this and then replace it when more contextual information is available (during the Maven <strong>package</strong> phase for example). For this, we can use the Replacer Maven Plugin.</p>
+
+<p>Here is the relevant portion of the <strong>pom.xml</strong></p>
+
+<pre><code>&lt;build&gt;  
+ &lt;plugins&gt;
+ ...
+&lt;plugin&gt;  
+ &lt;groupId&gt;com.google.code.maven-replacer-plugin&lt;/groupId&gt;
+ &lt;artifactId&gt;replacer&lt;/artifactId&gt;
+ &lt;version&gt;${maven-replacer-plugin.version}&lt;/version&gt;
+ &lt;execution&gt;
+  &lt;id&gt;Prepare Dockerfile&lt;/id&gt;
+  &lt;phase&gt;package&lt;/phase&gt;
+  &lt;goals&gt;
+   &lt;goal&gt;replace&lt;/goal&gt;
+  &lt;/goals&gt;
+  &lt;configuration&gt;
+ &lt;file&gt;src/test/resources/docker/Dockerfile.template&lt;/file&gt;
+   &lt;outputFile&gt;Dockerfile&lt;/outputFile&gt;
+   &lt;regex&gt;false&lt;/regex&gt;
+    &lt;replacements&gt;
+     &lt;replacement&gt;
+      &lt;token&gt;{app.version}&lt;/token&gt;
+      &lt;value&gt;${version}&lt;/value&gt;
+     &lt;/replacement&gt;
+     &lt;replacement&gt;
+      &lt;token&gt;{app.name}&lt;/token&gt;
+      &lt;value&gt;${artifactId}&lt;/value&gt;
+     &lt;/replacement&gt;
+     &lt;replacement&gt;
+      &lt;token&gt;{app.working.directory}&lt;/token&gt;
+      &lt;value&gt;${app.docker.working.directory}&lt;/value&gt;
+     &lt;/replacement&gt;
+    &lt;/replacements&gt;
+   &lt;/configuration&gt;
+  &lt;/execution&gt;
+  ...
+</code></pre>
+
+<p><strong>{app.version}</strong>, <strong>{app.name}</strong>, and <strong>{app.working.directory}</strong> are placeholders which you can find in the <strong>src/test/resources/docker/Dockerfile.template</strong> </p>
+
+<p>The end result of executing this plugin is a <strong>Dockerfile</strong> ready to use.</p>
+
+<hr />
+
+<p><strong>Step 3:</strong> Build the Docker container</p>
+
+<p>We've already seen the Docker command for building a container out of a <strong>Dockerfile</strong>. The same command translated for Maven with the help of the Exec Maven Plugin looks like this:</p>
+
+<pre><code>&lt;build&gt;  
+ &lt;plugins&gt;
+  &lt;plugin&gt;
+   &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+   &lt;artifactId&gt;exec-maven-plugin&lt;/artifactId&gt;
+   &lt;version&gt;${exec-maven-plugin.version}&lt;/version&gt;
+    &lt;executions&gt;
+     &lt;execution&gt;
+      &lt;id&gt;Build Docker container&lt;/id&gt;
+      &lt;phase&gt;pre-integration-test&lt;/phase&gt;
+      &lt;goals&gt;
+       &lt;goal&gt;exec&lt;/goal&gt;
+      &lt;/goals&gt;
+      &lt;configuration&gt;
+      &lt;executable&gt;docker&lt;/executable&gt;
+      &lt;arguments&gt;
+       &lt;argument&gt;build&lt;/argument&gt;
+       &lt;argument&gt;-t=${docker.tag.name}&lt;/argument&gt;
+       &lt;argument&gt;.&lt;/argument&gt;
+      &lt;/arguments&gt;
+     &lt;/configuration&gt;
+    &lt;/execution&gt;
+    ...
+</code></pre>
+
+<hr />
+
+<p><strong>Step 4:</strong> Run the Docker container in the background</p>
+
+<p>Now let's run the container in the background:</p>
+
+<pre><code>&lt;build&gt;  
+ &lt;plugins&gt;
+  &lt;plugin&gt;
+   &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+   &lt;artifactId&gt;exec-maven-plugin&lt;/artifactId&gt;
+   &lt;version&gt;${exec-maven-plugin.version}&lt;/version&gt;
+    &lt;executions&gt;
+     &lt;execution&gt;
+      &lt;id&gt;Start Docker container&lt;/id&gt;
+      &lt;phase&gt;pre-integration-test&lt;/phase&gt;
+      &lt;goals&gt;
+       &lt;goal&gt;exec&lt;/goal&gt;
+      &lt;/goals&gt;
+      &lt;configuration&gt;
+      &lt;executable&gt;docker&lt;/executable&gt;
+      &lt;arguments&gt;
+       &lt;argument&gt;run&lt;/argument&gt;
+       &lt;argument&gt;-p&lt;/argument&gt;
+       &lt;argument&gt;8080:8080&lt;/argument&gt;
+       &lt;argument&gt;-d&lt;/argument&gt;
+       &lt;argument&gt;--name&lt;/argument&gt;
+       &lt;argument&gt;${docker.container.name}&lt;/argument&gt;
+       &lt;argument&gt;${docker.tag.name}&lt;/argument&gt;
+      &lt;/arguments&gt;
+     &lt;/configuration&gt;
+    &lt;/execution&gt;
+    ...
+</code></pre>
+
+<p><strong>Final words:</strong> For those of you who've made it so far, I can only say - Congrats! (and I can only wish that you've found what you've been searching for) It's one of the longest (both in terms of time-taken and size) articles that I've ever written. Probably some of you expect to find here something along the lines: "That's all folks!" ... but unfortunately that's not all. Getting things done in a reliable way is quite tricky. As you can see, it takes quite some effort to configure Maven and take into account different possibilities. There is a project started by <a href="http://www.alexecollins.com/about-me/">Alex Collins</a> for developing a <a href="http://www.alexecollins.com/content/docker-maven-plugin/">Docker Maven Plugin</a>. Yet, orchestrating Maven &amp; Docker (and also Grunt) by yourself gives you more flexibility.</p>
+
+<p>On <a href="https://github.com/ihr/library-emberjs-mongodb-docker">GitHub</a> you can find the whole project should you need it. Bare in mind that there is more to consider, such as : "When executing integration tests how do we make sure that the container is <strong><em>hot</em></strong> and ready?". This I will leave for another article.</p>
+		</section>
+		<footer>
+			<ul class="share left">
+				<li><a href="http://twitter.com/share?text=Bringing%20together%20Docker%2C%20Grunt%2C%20Maven%2C%20EmberJS%20%26%20MongoDB&url=http://ingini.org/2014/06/17/docker-mongodb-java-yes-it-easy/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
+				<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2014/06/17/docker-mongodb-java-yes-it-easy/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
+			</ul>
+			<ul class="tags right">
+				<a href="../../../../tag/java/index.html" class="smallbutton solidgray">Java</a>
+				<a href="../../../../tag/maven/index.html" class="smallbutton solidgray">Maven</a>
+				<a href="../../../../tag/jetty/index.html" class="smallbutton solidgray">Jetty</a>
+				<a href="../../../../tag/jongo/index.html" class="smallbutton solidgray">Jongo</a>
+				<a href="../../../../tag/mongodb/index.html" class="smallbutton solidgray">MongoDB</a>
+				<a href="../../../../tag/docker/index.html" class="smallbutton solidgray">Docker</a>
+				<a href="../../../../tag/grunt/index.html" class="smallbutton solidgray">Grunt</a>
+				<a href="../../../../tag/emberjs/index.html" class="smallbutton solidgray">EmberJS</a>
+			</ul>
+		</footer>
+		<div class="postprofile">
+			<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="user">
+			<div class="info">
+				<h4>Ivan Hristov</h4>
+				<a href="http://ingini.org">http://ingini.org</a>
+				<p></p>
+				
+				        <ul class="social">
+				            <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+				            <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+				            <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
+				            <!--<li><a href="http://youtube.com/" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a></li>-->
+				            <!--<li><a href="http://dribbble.com/" class="dribbble" target="_blank"><i class="fa fa-dribbble"></i></a></li>-->
+				            <li><a href="http://plus.google.com/" class="googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+				            <!--<li><a href="http://instagram.com/" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+				            <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
+				            <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+				            <li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+				        </ul>
+				
+				
+			</div>
+		</div>
+		<div class="comments">
+			<a href="javascript:;" class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</a>
+			<div id="disqus_thread"></div>
+			<div id="g-comments"></div>
+		</div>
+
+	</article>
+
+</section>
+
+
+
+	<footer class="wrapper">
+		<div class="inlinemenu">
+			<div class="graybar">
+				<div class="left"><i class="fa fa-bars"></i>Navigation</div>
+				<div class="right"><i class="fa fa-chevron-down"></i></div>
+			</div>
+			<ul class="menu">
+				<a id="top"></a>
+				<div class="navwrap">
+					<ul class="menu">
+					</ul>
+					<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
+				</div>			</ul>
+		</div>
+		<div>
+			Copyright &copy; <a href="http://ingini.org/">Ingini</a>. 2015 &bull; All rights reserved.
+			<span class="ghost">Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a>.</span>
+		</div>
+	</footer>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=1b13a5c811"></script>
+
+</body>
+</html>

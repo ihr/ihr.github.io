@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>Nested Java Field Access With FEST Reflect</title>
+	<meta name="description" content="" />
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/">
+	<link rel="shortcut icon" href="../../../../favicon.ico">
+	<link rel="prefetch" href="http://ingini.org">
+
+	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=1b13a5c811" />
+	<link href='http://fonts.googleapis.com/css?family=Domine:700|Open+Sans:400,600|Source+Code+Pro:500' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<link rel="canonical" href="http://ingini.org/2012/06/18/nested-field-access-with-fest-reflect/" />
+    
+    <meta property="og:site_name" content="Ingini" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Nested Java Field Access With FEST Reflect" />
+    <meta property="og:description" content="Abstract: For one reason or another it&#x27;s often needed to access fields which are nested (sometimes deeply nested) within other fields. Of course you can write the logic yourself or (from now on) you can simply use the light-weighted framework..." />
+    <meta property="og:url" content="http://ingini.org/2012/06/18/nested-field-access-with-fest-reflect/" />
+    <meta property="article:published_time" content="2012-06-18T12:04:00.000Z" />
+    <meta property="article:modified_time" content="2014-05-28T13:43:01.042Z" />
+    <meta property="article:tag" content="FEST-Reflect" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Nested Java Field Access With FEST Reflect" />
+    <meta name="twitter:description" content="Abstract: For one reason or another it&#x27;s often needed to access fields which are nested (sometimes deeply nested) within other fields. Of course you can write the logic yourself or (from now on) you can simply use the light-weighted framework..." />
+    <meta name="twitter:url" content="http://ingini.org/2012/06/18/nested-field-access-with-fest-reflect/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Ingini",
+    "author": {
+        "@type": "Person",
+        "name": "Ivan Hristov",
+        "image": "http://ingini.org/content/images/2014/Jun/wolf_small.jpg",
+        "url": "http://ingini.org/author/ivan-hristov",
+        "sameAs": "http://ingini.org"
+    },
+    "headline": "Nested Java Field Access With FEST Reflect",
+    "url": "http://ingini.org/2012/06/18/nested-field-access-with-fest-reflect/",
+    "datePublished": "2012-06-18T12:04:00.000Z",
+    "dateModified": "2014-05-28T13:43:01.042Z",
+    "keywords": "FEST-Reflect",
+    "description": "Abstract: For one reason or another it&#x27;s often needed to access fields which are nested (sometimes deeply nested) within other fields. Of course you can write the logic yourself or (from now on) you can simply use the light-weighted framework..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/" />
+</head>
+<body class="post-template tag-fest-reflect blogcover">
+
+	<header class="title">
+		<a href="http://ingini.org"><i class="fa fa-bookmark-o fa-lg"></i><span>Ingini</span></a>
+	</header>
+
+	<nav class="mainnav post tag-fest-reflect">
+		<a id="top"></a>
+<div class="navwrap">
+	<ul class="menu">
+			<li class="nav-home" role="presentation"><a href="http://ingini.org/">Home</a></li>
+	</ul>
+	<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
+</div>
+	</nav>
+
+	
+
+<div class="index">
+	<div class="wrapper">
+		<h1 class="right">Nested Java Field Access With FEST Reflect</h1>
+		<h2 class="left">Introduction</h2>
+	</div>
+</div>
+
+<div class="profile post tag-fest-reflect">
+	<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="user">
+	<h4>Ivan Hristov</h4>
+	
+	        <ul class="socialside">
+	            <li><a href="https://twitter.com/iv_hristov" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+	            <!--<li><a href="http://facebook.com" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+	            <li><a href="https://github.com/ihr" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
+	            <!--<li><a href="htt://instagram.com/" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+	            <li><a href="http://ingini.org/rss/" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+	        </ul>
+	
+	
+	<p></p>
+	<hr>
+</div>
+
+<div id="cover" class="cover post tag-fest-reflect">
+	<div class="background" ></div>
+	<header class="wrapper">
+		<h2>
+				<a href="../../../../tag/fest-reflect/index.html">FEST-Reflect</a> 
+		</h2>
+		<h1><a href="index.html#">Nested Java Field Access With FEST Reflect</a></h1>
+		<span>
+			Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
+				on <i class="fa fa-clock-o"></i> <time datetime="2012-06-18">June 18th, 2012</time>.
+		</span>
+	</header>
+	<i class="fa fa-chevron-down movedown"></i>
+</div>
+
+<section class="posts wrapper">
+	<article class="post post tag-fest-reflect">
+		<header>
+			<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+			<h2>
+					<a href="../../../../tag/fest-reflect/index.html">FEST-Reflect</a> 
+			</h2>
+			<h1 id="posttitle"><a href="index.html#">Nested Java Field Access With FEST Reflect</a></h1>
+			<span>
+				Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
+				on <i class="fa fa-clock-o"></i> <time datetime="2012-06-18">June 18th, 2012</time>.
+			</span>
+		</header>
+		<section class="postbody">
+			<p><strong>Abstract</strong>: For one reason or another it's often needed to access fields which are nested (sometimes deeply nested) within other fields. Of course you can write the logic yourself or (from now on) you can simply use the light-weighted framework FEST Reflect v1.4 (compatible with Java 1.5 and above). This short blog will show you how.</p>
+
+<p><strong>Acknowledgement</strong>: My gratitude goes to the open source community and to the following people:
+Joel Costigliola for his support and open mind <br />
+Jonathan Melly for inspiring the idea of accessing nested fields</p>
+
+<p><strong>Goal</strong>: Discover the nested field functionality coming with the new release of FEST Reflect.</p>
+
+<!-- more -->
+
+<p>The maven dependency for FEST Reflect is as follows:</p>
+
+<pre><code class=" xml">  &lt;dependency&gt;
+    &lt;groupId&gt;org.easytesting&lt;/groupId&gt;
+    &lt;artifactId&gt;fest-reflect&lt;/artifactId&gt;
+    &lt;version&gt;1.4&lt;/version&gt;
+  &lt;/dependency&gt;
+</code></pre>
+
+<p><strong>Example 1</strong>: Setting a 1st level nested field</p>
+
+<p>For this example we are going to need a simple service to start with, let's say <em>BusinessService</em> :  </p>
+
+<pre><code class=" java">public class BusinessService {  
+    private final NotificationService notificationService;
+
+    public BusinessService() {
+      this.notificationService = new NotificationService();
+    }
+
+    public void doBusinessLogic() {
+      // ...
+      notificationService.notifySomeone();
+    }
+
+  }
+</code></pre>
+
+<p>Our <em>BusinessService</em> is doing some business logic and in the end is notifying someone by using the <em>NotificationService</em>:</p>
+
+<pre><code class=" java">public class NotificationService {  
+    private final Logger logger = new Logger();
+    private final IClientStatusDao clientStatusDao;
+
+    public NotificationService() {
+      this.clientStatusDao = new ClientStatusDao();
+    }
+
+    public void notifySomeone() {
+      // notification logic goes here
+      logger.info("About to update client status");
+      clientStatusDao.updateStatus("client notified");
+    }
+  }
+</code></pre>
+
+<p>Now, imagine that you have a strong desire to access the <em>logger</em> field member inside the <em>notificationService</em> instance variable of our mighty <em>BusinessService</em> (for example when doing some testing). The path to the <em>logger</em> is: <em>businessService.notificationService.logger</em></p>
+
+<p>Here is how (line 7) you can take advantage of FEST Reflect:</p>
+
+<p>{% codeblock lang:java mark:7 %}
+import static org.fest.reflect.core.Reflection.field;</p>
+
+<p>public class SomeTestClass { <br />
+  public void someTestMethod(){
+    //some pre-testing logic ...
+    Logger loggerMock = Mockito.mock(Logger.class);
+    field("notificationService.logger").ofType(Logger.class).in(businessService)//
+      .set(loggerMock);
+    //some testing logic ...
+  }
+}
+{% endcodeblock %}</p>
+
+<p>Notice that I've specified only <em>"notificationService.logger"</em> as an argument of the <em>org.fest.reflect.core.Reflection.field()</em> method. That's because we give the root (<em>businessService</em>) of the path as an argument of the <em>in()</em> method. Yes, you've guessed it, that's why I call this example accessing 1st level nested field.</p>
+
+<p>By the way you don't need to be testing in order to use FEST Reflect there are other situation where you can profit from accessing nested fields.</p>
+
+<p><strong>Example 2</strong>: Getting a 2nd level nested generic type field</p>
+
+<p>There is no limit at what level the field at which you are interested is located (as long as you type the correct path to it). <br />
+Let's continue our example and explore the <em>ClientStatusDao</em> class:</p>
+
+<pre><code class=" java">public class ClientStatusDao implements IClientStatusDao {  
+    private final Session session;
+    private final List&lt;String&gt; listOfNotifications = Arrays.asList("General Notification", "Greetings");
+
+    public ClientStatusDao() {
+      this.session = new SessionImpl();
+    }
+
+    public void updateStatus(String newStatus) {
+      session.startTransaction();
+      // here we can use somehow our list of notifications and update status
+      session.stopTransaction();
+    }
+  }
+</code></pre>
+
+<p>This time we are going to access an instance variable with a bit more complex type, namely the <em>listOfNotifications</em> which is of a <em>List<String></em> type. Here is the one and only line you need (assuming you've already imported the static <em>field</em> method member (or all static members) of <em>org.fest.reflect.core.Reflection</em>):</p>
+
+<pre><code class=" java">List&lt;String&gt; listOfNames = field("notificationService.clientStatusDao.listOfNames").ofType(new TypeRef&lt;List&lt;String&gt;&gt;() {}).in(businessService).get();  
+</code></pre>
+
+<p>Well, that was all for now folks. Please, leave a comment if you would like to share your views,recommendations, use-cases or requests. If you would like to contribute you can do it via GitHub <a href="https://github.com/alexruiz/fest-reflect">FEST Reflect</a> (you can add your requests at <a href="https://github.com/alexruiz/fest-reflect/issues">GitHub FEST Project Issues</a>). </p>
+
+<p>P.S. <br />
+In case you are wondering what else you can do with FEST Reflect and how to play with field access don't forget to check my <a href="http://honeysoft.wordpress.com/2012/04/04/fest-reflect-1-3/">previous post on how to decorate fields</a> (yes, you can decorate nested fields as well).</p>
+		</section>
+		<footer>
+			<ul class="share left">
+				<li><a href="http://twitter.com/share?text=Nested%20Java%20Field%20Access%20With%20FEST%20Reflect&url=http://ingini.org/2012/06/18/nested-field-access-with-fest-reflect/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
+				<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2012/06/18/nested-field-access-with-fest-reflect/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
+			</ul>
+			<ul class="tags right">
+				<a href="../../../../tag/fest-reflect/index.html" class="smallbutton solidgray">FEST-Reflect</a>
+			</ul>
+		</footer>
+		<div class="postprofile">
+			<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="user">
+			<div class="info">
+				<h4>Ivan Hristov</h4>
+				<a href="http://ingini.org">http://ingini.org</a>
+				<p></p>
+				
+				        <ul class="social">
+				            <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+				            <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+				            <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
+				            <!--<li><a href="http://youtube.com/" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a></li>-->
+				            <!--<li><a href="http://dribbble.com/" class="dribbble" target="_blank"><i class="fa fa-dribbble"></i></a></li>-->
+				            <li><a href="http://plus.google.com/" class="googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+				            <!--<li><a href="http://instagram.com/" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+				            <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
+				            <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+				            <li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+				        </ul>
+				
+				
+			</div>
+		</div>
+		<div class="comments">
+			<a href="javascript:;" class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</a>
+			<div id="disqus_thread"></div>
+			<div id="g-comments"></div>
+		</div>
+
+	</article>
+
+</section>
+
+
+
+	<footer class="wrapper">
+		<div class="inlinemenu">
+			<div class="graybar">
+				<div class="left"><i class="fa fa-bars"></i>Navigation</div>
+				<div class="right"><i class="fa fa-chevron-down"></i></div>
+			</div>
+			<ul class="menu">
+				<a id="top"></a>
+				<div class="navwrap">
+					<ul class="menu">
+					</ul>
+					<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
+				</div>			</ul>
+		</div>
+		<div>
+			Copyright &copy; <a href="http://ingini.org/">Ingini</a>. 2015 &bull; All rights reserved.
+			<span class="ghost">Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a>.</span>
+		</div>
+	</footer>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=1b13a5c811"></script>
+
+</body>
+</html>

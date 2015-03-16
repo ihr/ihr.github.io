@@ -1,0 +1,3 @@
+User-agent: *
+Sitemap: http://ingini.org/sitemap.xml
+Disallow: /ghost/

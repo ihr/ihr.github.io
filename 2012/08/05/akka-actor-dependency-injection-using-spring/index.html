@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>AKKA Actor Dependency Injection Using Spring</title>
+	<meta name="description" content="" />
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/">
+	<link rel="shortcut icon" href="../../../../favicon.ico">
+	<link rel="prefetch" href="http://ingini.org">
+
+	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=1b13a5c811" />
+	<link href='http://fonts.googleapis.com/css?family=Domine:700|Open+Sans:400,600|Source+Code+Pro:500' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<link rel="canonical" href="http://ingini.org/2012/08/05/akka-actor-dependency-injection-using-spring/" />
+    
+    <meta property="og:site_name" content="Ingini" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="AKKA Actor Dependency Injection Using Spring" />
+    <meta property="og:description" content="Abstract : Dependency Injection (DI) is refine flavor of Inversion of Control (IoC) design pattern. One of the software frameworks out there which provides DI implementation is Spring. AKKA on the other hand is &quot;a toolkit and runtime for building highly..." />
+    <meta property="og:url" content="http://ingini.org/2012/08/05/akka-actor-dependency-injection-using-spring/" />
+    <meta property="article:published_time" content="2012-08-05T12:09:00.000Z" />
+    <meta property="article:modified_time" content="2014-05-28T13:58:32.771Z" />
+    <meta property="article:tag" content="FEST-Reflect" />
+    <meta property="article:tag" content="Java" />
+    <meta property="article:tag" content="Maven" />
+    <meta property="article:tag" content="AKKA" />
+    <meta property="article:tag" content="Spring" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AKKA Actor Dependency Injection Using Spring" />
+    <meta name="twitter:description" content="Abstract : Dependency Injection (DI) is refine flavor of Inversion of Control (IoC) design pattern. One of the software frameworks out there which provides DI implementation is Spring. AKKA on the other hand is &quot;a toolkit and runtime for building highly..." />
+    <meta name="twitter:url" content="http://ingini.org/2012/08/05/akka-actor-dependency-injection-using-spring/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Ingini",
+    "author": {
+        "@type": "Person",
+        "name": "Ivan Hristov",
+        "image": "http://ingini.org/content/images/2014/Jun/wolf_small.jpg",
+        "url": "http://ingini.org/author/ivan-hristov",
+        "sameAs": "http://ingini.org"
+    },
+    "headline": "AKKA Actor Dependency Injection Using Spring",
+    "url": "http://ingini.org/2012/08/05/akka-actor-dependency-injection-using-spring/",
+    "datePublished": "2012-08-05T12:09:00.000Z",
+    "dateModified": "2014-05-28T13:58:32.771Z",
+    "keywords": "FEST-Reflect, Java, Maven, AKKA, Spring",
+    "description": "Abstract : Dependency Injection (DI) is refine flavor of Inversion of Control (IoC) design pattern. One of the software frameworks out there which provides DI implementation is Spring. AKKA on the other hand is &quot;a toolkit and runtime for building highly..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/" />
+</head>
+<body class="post-template tag-fest-reflect tag-java tag-maven tag-akka tag-spring blogcover">
+
+	<header class="title">
+		<a href="http://ingini.org"><i class="fa fa-bookmark-o fa-lg"></i><span>Ingini</span></a>
+	</header>
+
+	<nav class="mainnav post tag-fest-reflect tag-java tag-maven tag-akka tag-spring">
+		<a id="top"></a>
+<div class="navwrap">
+	<ul class="menu">
+			<li class="nav-home" role="presentation"><a href="http://ingini.org/">Home</a></li>
+	</ul>
+	<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
+</div>
+	</nav>
+
+	
+
+<div class="index">
+	<div class="wrapper">
+		<h1 class="right">AKKA Actor Dependency Injection Using Spring</h1>
+		<h2 class="left">Introduction</h2>
+	</div>
+</div>
+
+<div class="profile post tag-fest-reflect tag-java tag-maven tag-akka tag-spring">
+	<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="user">
+	<h4>Ivan Hristov</h4>
+	
+	        <ul class="socialside">
+	            <li><a href="https://twitter.com/iv_hristov" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+	            <!--<li><a href="http://facebook.com" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+	            <li><a href="https://github.com/ihr" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
+	            <!--<li><a href="htt://instagram.com/" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+	            <li><a href="http://ingini.org/rss/" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+	        </ul>
+	
+	
+	<p></p>
+	<hr>
+</div>
+
+<div id="cover" class="cover post tag-fest-reflect tag-java tag-maven tag-akka tag-spring">
+	<div class="background" ></div>
+	<header class="wrapper">
+		<h2>
+				<a href="../../../../tag/fest-reflect/index.html">FEST-Reflect</a> 
+				<a href="../../../../tag/java/index.html">Java</a> 
+				<a href="../../../../tag/maven/index.html">Maven</a> 
+				<a href="../../../../tag/akka/index.html">AKKA</a> 
+				<a href="../../../../tag/spring/index.html">Spring</a> 
+		</h2>
+		<h1><a href="index.html#">AKKA Actor Dependency Injection Using Spring</a></h1>
+		<span>
+			Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
+				on <i class="fa fa-clock-o"></i> <time datetime="2012-08-05">August 5th, 2012</time>.
+		</span>
+	</header>
+	<i class="fa fa-chevron-down movedown"></i>
+</div>
+
+<section class="posts wrapper">
+	<article class="post post tag-fest-reflect tag-java tag-maven tag-akka tag-spring">
+		<header>
+			<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+			<h2>
+					<a href="../../../../tag/fest-reflect/index.html">FEST-Reflect</a> 
+					<a href="../../../../tag/java/index.html">Java</a> 
+					<a href="../../../../tag/maven/index.html">Maven</a> 
+					<a href="../../../../tag/akka/index.html">AKKA</a> 
+					<a href="../../../../tag/spring/index.html">Spring</a> 
+			</h2>
+			<h1 id="posttitle"><a href="index.html#">AKKA Actor Dependency Injection Using Spring</a></h1>
+			<span>
+				Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
+				on <i class="fa fa-clock-o"></i> <time datetime="2012-08-05">August 5th, 2012</time>.
+			</span>
+		</header>
+		<section class="postbody">
+			<p><strong>Abstract</strong> : <strong>D</strong>ependency <strong>I</strong>njection (DI) is refine flavor of <a href="http://martinfowler.com/articles/injection.html"><strong>I</strong>nversion <strong>o</strong>f <strong>C</strong>ontrol (IoC)</a> design pattern. One of the software frameworks out there which provides DI implementation is Spring. AKKA on the other hand is "<a href="http://akka.io/">a toolkit and runtime for building highly concurrent, distributed, and fault tolerant event-driven applications on the JVM</a>". In this article we are going to concentrate on the actor model implemented by AKKA and more specifically on dependency injection in the <em>UntypedActor</em> class, as well as, injecting AKKA actor in a Spring enabled service.</p>
+
+<p><strong>Goal</strong> : Create a software bridge between Spring and an AKKA actor to ensure basic dependency injection</p>
+
+<p><strong>Acknowledgement</strong> : My gratitude goes to the open source community</p>
+
+<p>We are going to use the following components to reach our goal: AKKA version 2.0.2, Spring 3.1.1.RELEASE, FEST Reflect 1.4, Logback 1.0.6, CGLIB 2.2, and Maven to glue everything together. All programming will be done in Java and you can find all files on <a href="https://github.com/ihr/akka-di">GitHub</a>. Don't hesitate to fork the project and improve it. Here is the Maven POM file:</p>
+
+<!-- more -->
+
+<pre><code class=" xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;  
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0"  
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+    &lt;groupId&gt;org.honeysoft.akka&lt;/groupId&gt;
+    &lt;artifactId&gt;akka-di&lt;/artifactId&gt;
+    &lt;version&gt;1.0&lt;/version&gt;
+
+    &lt;properties&gt;
+        &lt;akka.version&gt;2.0.2&lt;/akka.version&gt;
+        &lt;spring.version&gt;3.1.1.RELEASE&lt;/spring.version&gt;
+        &lt;fest-reflect.version&gt;1.4&lt;/fest-reflect.version&gt;
+        &lt;logback.version&gt;1.0.6&lt;/logback.version&gt;
+    &lt;/properties&gt;
+
+    &lt;dependencies&gt;
+        &lt;!-- Akka dependencies  --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.typesafe.akka&lt;/groupId&gt;
+            &lt;artifactId&gt;akka-actor&lt;/artifactId&gt;
+            &lt;version&gt;${akka.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- Spring dependencies --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- Tools --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.easytesting&lt;/groupId&gt;
+            &lt;artifactId&gt;fest-reflect&lt;/artifactId&gt;
+            &lt;version&gt;${fest-reflect.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;cglib&lt;/groupId&gt;
+            &lt;artifactId&gt;cglib-nodep&lt;/artifactId&gt;
+            &lt;version&gt;2.2&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- Logging --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+            &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
+            &lt;version&gt;${logback.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+
+    &lt;/dependencies&gt;
+
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;akka.repository&lt;/id&gt;
+            &lt;name&gt;Akka Maven Repository&lt;/name&gt;
+            &lt;url&gt;http://repo.akka.io/releases/&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+ &lt;/project&gt;
+</code></pre>
+
+<p>Good. Once you have all what's needed we can start by building our simple business service which we are going to inject in our actor, here it is:  </p>
+
+<pre><code class=" java">package org.honeysoft.akka.service;
+
+public interface IBusinessService {
+
+    void doBusiness(Object o);
+}
+</code></pre>
+
+<p>... and it's implementation:</p>
+
+<pre><code class=" java">package org.honeysoft.akka.service.impl;
+
+import org.honeysoft.akka.service.IBusinessService;  
+import org.slf4j.Logger;  
+import org.slf4j.LoggerFactory;  
+import org.springframework.stereotype.Service;
+
+@Service
+public class BusinessService implements IBusinessService {  
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Override
+    public void doBusiness(Object o) {
+        logger.info("Doing business with {}", o);
+    }
+}
+</code></pre>
+
+<p>As we can seen there is nothing fancy in our simple business service. All that it's doing is logging an information about doing business with someone. Note, however, that it's annotated with <em>@Service</em> this allows it to be discovered, created and injected by Spring.</p>
+
+<p>Now, let's see our actor:</p>
+
+<pre><code class=" java">package org.honeysoft.akka.actor;
+
+import akka.actor.UntypedActor;  
+import org.honeysoft.akka.service.IBusinessService;  
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class BusinessActor extends UntypedActor {
+
+    @Autowired
+    private IBusinessService businessService;
+
+    @Override
+    public void onReceive(Object o) throws Exception {
+        businessService.doBusiness(o);
+    }
+}
+</code></pre>
+
+<p>Once more, nothing special, just injecting our business service using the <em>@Autowired</em> annotation. Now comes the interesting part. We are going to need a custom implementation of <em>akka.actor.Props</em> class:</p>
+
+<pre><code class=" java">package org.honeysoft.akka.di;
+
+import akka.actor.Props;  
+import akka.actor.UntypedActorFactory;  
+import org.springframework.context.ApplicationContext;
+
+public class DependencyInjectionProps extends Props {  
+    /**
+     * No-args constructor that sets all the default values.
+     */
+    public DependencyInjectionProps(ApplicationContext applicationContext, Class&lt;?&gt; actorClass) {
+        super(new SpringUntypedActorFactory(actorClass, applicationContext));
+    }
+
+    /**
+     * Java API.
+     */
+    public DependencyInjectionProps(ApplicationContext applicationContext, UntypedActorFactory factory) {
+        super(new SpringUntypedActorFactory(factory, applicationContext));
+    }
+}
+</code></pre>
+
+<p>The interesting part here is our <em>SpringUntypedActorFactory</em> which is implemented as follows:</p>
+
+<pre><code class=" java">package org.honeysoft.akka.di;
+
+import akka.actor.UntypedActor;  
+import akka.actor.UntypedActorFactory;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.context.ApplicationContext;
+
+import java.lang.reflect.Field;
+
+import static org.fest.reflect.util.Accessibles.setAccessible;  
+import static org.fest.reflect.util.Accessibles.setAccessibleIgnoringExceptions;
+
+public class SpringUntypedActorFactory implements UntypedActorFactory {
+
+    private final DependencyInjectionFactory dependencyInjectionFactory;
+
+    private final ApplicationContext applicationContext;
+
+    public SpringUntypedActorFactory(Class&lt;?&gt; actorClass, ApplicationContext applicationContext) {
+        this.dependencyInjectionFactory = new DefaultUntypedActorFactory(actorClass);
+        this.applicationContext = applicationContext;
+    }
+
+    public SpringUntypedActorFactory(UntypedActorFactory customFactory, ApplicationContext applicationContext) {
+        this.dependencyInjectionFactory = new SpecificUntypedActorFactory(customFactory);
+        this.applicationContext = applicationContext;
+    }
+
+    private interface DependencyInjectionFactory {
+        UntypedActor createAndInject();
+    }
+
+
+    private abstract class AbstractUntypedActorFactory implements DependencyInjectionFactory {
+
+        @Override
+        public final UntypedActor createAndInject() {
+            try {
+                UntypedActor untypedActor = create();
+
+                Class&lt;?&gt; aClass = getActorClass();
+                for (Field field : aClass.getDeclaredFields()) {
+
+                    if (field.getAnnotation(Autowired.class) != null) {
+                        boolean accessible = field.isAccessible();
+                        try {
+                            setAccessible(field, true);
+                            field.set(untypedActor, applicationContext.getBean(field.getType()));
+                        } catch (IllegalAccessException e) {
+                            throw new IllegalStateException("Unable to create actor instance", e);
+                        } finally {
+                            setAccessibleIgnoringExceptions(field, accessible);
+                        }
+                    }
+                }
+                return untypedActor;
+
+            } catch (InstantiationException e) {
+                throw new IllegalStateException("Unable to create actor instance", e);
+            } catch (IllegalAccessException e) {
+                throw new IllegalStateException("Unable to create actor instance", e);
+            }
+
+        }
+
+        protected abstract Class&lt;?&gt; getActorClass();
+
+        protected abstract UntypedActor create() throws InstantiationException, IllegalAccessException;
+
+    }
+
+    private final class SpecificUntypedActorFactory extends AbstractUntypedActorFactory {
+
+        private final UntypedActorFactory specificFactory;
+        private volatile Class&lt;?&gt; actorClass;
+
+        private SpecificUntypedActorFactory(UntypedActorFactory specificFactory) {
+            this.specificFactory = specificFactory;
+        }
+
+        @Override
+        protected Class&lt;?&gt; getActorClass() {
+            return actorClass;
+        }
+
+        @Override
+        protected UntypedActor create() throws InstantiationException, IllegalAccessException {
+            UntypedActor untypedActor = (UntypedActor) specificFactory.create();
+            actorClass = untypedActor.getClass();
+            return untypedActor;
+        }
+    }
+
+    private final class DefaultUntypedActorFactory extends AbstractUntypedActorFactory {
+        private final Class&lt;?&gt; actorClass;
+
+        public DefaultUntypedActorFactory(Class&lt;?&gt; actorClass) {
+            this.actorClass = actorClass;
+        }
+
+        @Override
+        protected Class&lt;?&gt; getActorClass() {
+            return actorClass;
+        }
+
+        @Override
+        protected UntypedActor create() throws InstantiationException, IllegalAccessException {
+            return (UntypedActor) actorClass.newInstance();
+        }
+    }
+
+    /**
+     * This method must return a different instance upon every call.
+     */
+    @Override
+    public UntypedActor create() {
+        return dependencyInjectionFactory.createAndInject();
+    }
+}
+</code></pre>
+
+<p>Inside our custom <em>SpringUntypedActorFactory</em> is a <a href="http://www.oodesign.com/strategy-pattern.html">Strategy pattern</a> which allows us to inject Spring context available beans in an actor fields annotated with <em>@Autowired</em>.</p>
+
+<p>Well, that's almost all. Now we need a bootstrap component and we are going to provide one using XML-less Spring configuration:</p>
+
+<pre><code class=" java">package org.honeysoft.akka;
+
+import akka.actor.ActorRef;  
+import akka.actor.ActorSystem;  
+import org.honeysoft.akka.actor.BusinessActor;  
+import org.honeysoft.akka.di.DependencyInjectionProps;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.context.ApplicationContext;  
+import org.springframework.context.annotation.Bean;  
+import org.springframework.context.annotation.ComponentScan;  
+import org.springframework.context.annotation.Configuration;  
+import org.springframework.context.annotation.DependsOn;
+
+@Configuration
+@ComponentScan({"org.honeysoft.akka.service"})
+public class Bootstrap {
+
+    public static final String BUSINESS_ACTOR = "honeysoft-business-actor";
+    public static final String ACTOR_SYSTEM = "honeysoft-actor-actorSystem";
+    private ActorSystem actorSystem;
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    @Bean(name = ACTOR_SYSTEM, destroyMethod = "shutdown")
+    public ActorSystem actorSystem() {
+        actorSystem = ActorSystem.create(ACTOR_SYSTEM);
+        return actorSystem;
+    }
+
+    @Bean(name = BUSINESS_ACTOR)
+    @DependsOn({ACTOR_SYSTEM})
+    public ActorRef businessActor() {
+        return actorSystem.actorOf(//
+                new DependencyInjectionProps(applicationContext, BusinessActor.class), BUSINESS_ACTOR);
+    }
+}
+</code></pre>
+
+<p>Oh, you can also inject our <em>BusinessActor</em> in another Spring enabled service (or component in general) like this:  </p>
+
+<pre><code class=" java">import akka.actor.ActorRef;  
+import org.honeysoft.akka.Bootstrap;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.beans.factory.annotation.Qualifier;  
+import org.springframework.stereotype.Service;
+
+@Service
+public class MyCoolService {
+
+    @Autowired
+    @Qualifier(Bootstrap.BUSINESS_ACTOR)
+    private ActorRef businessActor;
+
+    public void doSomething() {
+       businessActor.tell("message"); 
+       // more logic goes here ...
+    }
+}
+</code></pre>
+
+<p>That was all folks. Now it's up to you to leave a comment or contribute on <a href="https://github.com/ihr/akka-di">GitHub</a>.</p>
+		</section>
+		<footer>
+			<ul class="share left">
+				<li><a href="http://twitter.com/share?text=AKKA%20Actor%20Dependency%20Injection%20Using%20Spring&url=http://ingini.org/2012/08/05/akka-actor-dependency-injection-using-spring/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
+				<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2012/08/05/akka-actor-dependency-injection-using-spring/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
+			</ul>
+			<ul class="tags right">
+				<a href="../../../../tag/fest-reflect/index.html" class="smallbutton solidgray">FEST-Reflect</a>
+				<a href="../../../../tag/java/index.html" class="smallbutton solidgray">Java</a>
+				<a href="../../../../tag/maven/index.html" class="smallbutton solidgray">Maven</a>
+				<a href="../../../../tag/akka/index.html" class="smallbutton solidgray">AKKA</a>
+				<a href="../../../../tag/spring/index.html" class="smallbutton solidgray">Spring</a>
+			</ul>
+		</footer>
+		<div class="postprofile">
+			<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="user">
+			<div class="info">
+				<h4>Ivan Hristov</h4>
+				<a href="http://ingini.org">http://ingini.org</a>
+				<p></p>
+				
+				        <ul class="social">
+				            <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+				            <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+				            <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
+				            <!--<li><a href="http://youtube.com/" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a></li>-->
+				            <!--<li><a href="http://dribbble.com/" class="dribbble" target="_blank"><i class="fa fa-dribbble"></i></a></li>-->
+				            <li><a href="http://plus.google.com/" class="googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+				            <!--<li><a href="http://instagram.com/" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+				            <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
+				            <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+				            <li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+				        </ul>
+				
+				
+			</div>
+		</div>
+		<div class="comments">
+			<a href="javascript:;" class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</a>
+			<div id="disqus_thread"></div>
+			<div id="g-comments"></div>
+		</div>
+
+	</article>
+
+</section>
+
+
+
+	<footer class="wrapper">
+		<div class="inlinemenu">
+			<div class="graybar">
+				<div class="left"><i class="fa fa-bars"></i>Navigation</div>
+				<div class="right"><i class="fa fa-chevron-down"></i></div>
+			</div>
+			<ul class="menu">
+				<a id="top"></a>
+				<div class="navwrap">
+					<ul class="menu">
+					</ul>
+					<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
+				</div>			</ul>
+		</div>
+		<div>
+			Copyright &copy; <a href="http://ingini.org/">Ingini</a>. 2015 &bull; All rights reserved.
+			<span class="ghost">Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a>.</span>
+		</div>
+	</footer>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=1b13a5c811"></script>
+
+</body>
+</html>
