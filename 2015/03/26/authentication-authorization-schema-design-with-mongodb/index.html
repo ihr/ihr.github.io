@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>Authentication &amp; authorization - Spring Boot &amp; MongoDB schema design</title>
+	<meta name="description" content="Denormalize or not? MongoDB or not? How do you design an authentication &amp; authorization schema and build a solution with Spring Boot and Spring Security." />
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/">
+	<link rel="shortcut icon" href="../../../../favicon.ico">
+	<link rel="prefetch" href="http://ingini.org">
+
+    <link rel="stylesheet" type="text/css" href="../../../../assets/css/prettify.css?v=6b64daccad" />
+	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=6b64daccad" />
+	<link href='http://fonts.googleapis.com/css?family=Domine:700|Open+Sans:400,600|Source+Code+Pro:500' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<link rel="canonical" href="http://ingini.org/2015/03/26/authentication-authorization-schema-design-with-mongodb/" />
+    
+    <meta property="og:site_name" content="Ingini" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Authentication &amp; authorization - Spring Boot &amp; MongoDB schema design" />
+    <meta property="og:description" content="Denormalize or not? MongoDB or not? How do you design an authentication &amp; authorization schema and build a solution with Spring Boot and Spring Security...." />
+    <meta property="og:url" content="http://ingini.org/2015/03/26/authentication-authorization-schema-design-with-mongodb/" />
+    <meta property="article:published_time" content="2015-03-26T21:47:41.076Z" />
+    <meta property="article:modified_time" content="2015-03-26T22:10:55.901Z" />
+    <meta property="article:tag" content="Java" />
+    <meta property="article:tag" content="Spring" />
+    <meta property="article:tag" content="Jongo" />
+    <meta property="article:tag" content="Spring Boot" />
+    <meta property="article:tag" content="Spring Security" />
+    <meta property="article:tag" content="Authentication" />
+    <meta property="article:tag" content="Authorization" />
+    <meta property="article:tag" content="Denormalization" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Authentication &amp; authorization - Spring Boot &amp; MongoDB schema design" />
+    <meta name="twitter:description" content="Denormalize or not? MongoDB or not? How do you design an authentication &amp; authorization schema and build a solution with Spring Boot and Spring Security...." />
+    <meta name="twitter:url" content="http://ingini.org/2015/03/26/authentication-authorization-schema-design-with-mongodb/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Ingini",
+    "author": {
+        "@type": "Person",
+        "name": "Ivan Hristov",
+        "image": "http://ingini.org/content/images/2014/Jun/wolf_small.jpg",
+        "url": "http://ingini.org/author/ivan-hristov",
+        "sameAs": "http://ingini.org"
+    },
+    "headline": "Authentication &amp; authorization - Spring Boot &amp; MongoDB schema design",
+    "url": "http://ingini.org/2015/03/26/authentication-authorization-schema-design-with-mongodb/",
+    "datePublished": "2015-03-26T21:47:41.076Z",
+    "dateModified": "2015-03-26T22:10:55.901Z",
+    "keywords": "Java, Spring, Jongo, Spring Boot, Spring Security, Authentication, Authorization, Denormalization",
+    "description": "Denormalize or not? MongoDB or not? How do you design an authentication &amp; authorization schema and build a solution with Spring Boot and Spring Security...."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/" />
+</head>
+<body class="post-template tag-java tag-spring tag-jongo tag-spring-boot tag-spring-security tag-authentication tag-authorization tag-denormalization blogcover">
+
+	<header class="title">
+		<a href="http://ingini.org"><i class="fa fa-bookmark-o fa-lg"></i><span>Ingini</span></a>
+	</header>
+
+	<nav class="mainnav post tag-java tag-spring tag-jongo tag-spring-boot tag-spring-security tag-authentication tag-authorization tag-denormalization featured">
+		
+	</nav>
+
+	
+
+<div class="index">
+	<div class="wrapper">
+		<h1 class="right">Authentication &amp; authorization with Spring Boot &amp; MongoDB</h1>
+		<h2 class="left">Introduction</h2>
+	</div>
+</div>
+
+<div class="profile post tag-java tag-spring tag-jongo tag-spring-boot tag-spring-security tag-authentication tag-authorization tag-denormalization featured">
+	<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="user">
+	<h4>Ivan Hristov</h4>
+	
+	        <ul class="socialside">
+	            <li><a href="https://twitter.com/iv_hristov" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+	            <!--<li><a href="http://facebook.com" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+	            <li><a href="https://github.com/ihr" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
+	            <!--<li><a href="htt://instagram.com/" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+	            <li><a href="http://ingini.org/rss/" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+	        </ul>
+	
+	
+	<p></p>
+	<hr>
+</div>
+
+<div id="cover" class="cover post tag-java tag-spring tag-jongo tag-spring-boot tag-spring-security tag-authentication tag-authorization tag-denormalization featured">
+	<div class="background" ></div>
+	<header class="wrapper">
+		<h2>
+				<a href="../../../../tag/java/index.html">Java</a> 
+				<a href="../../../../tag/spring/index.html">Spring</a> 
+				<a href="../../../../tag/jongo/index.html">Jongo</a> 
+				<a href="../../../../tag/spring-boot/index.html">Spring Boot</a> 
+				<a href="../../../../tag/spring-security/index.html">Spring Security</a> 
+				<a href="../../../../tag/authentication/index.html">Authentication</a> 
+				<a href="../../../../tag/authorization/index.html">Authorization</a> 
+				<a href="../../../../tag/denormalization/index.html">Denormalization</a> 
+		</h2>
+		<h1><a href="index.html#">Authentication &amp; authorization with Spring Boot &amp; MongoDB</a></h1>
+		<span>
+			Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
+				on <i class="fa fa-clock-o"></i> <time datetime="2015-03-26">March 26th, 2015</time>.
+		</span>
+	</header>
+	<i class="fa fa-chevron-down movedown"></i>
+</div>
+
+<section class="posts wrapper">
+	<article class="post post tag-java tag-spring tag-jongo tag-spring-boot tag-spring-security tag-authentication tag-authorization tag-denormalization featured">
+		<header>
+			<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+			<h2>
+					<a href="../../../../tag/java/index.html">Java</a> 
+					<a href="../../../../tag/spring/index.html">Spring</a> 
+					<a href="../../../../tag/jongo/index.html">Jongo</a> 
+					<a href="../../../../tag/spring-boot/index.html">Spring Boot</a> 
+					<a href="../../../../tag/spring-security/index.html">Spring Security</a> 
+					<a href="../../../../tag/authentication/index.html">Authentication</a> 
+					<a href="../../../../tag/authorization/index.html">Authorization</a> 
+					<a href="../../../../tag/denormalization/index.html">Denormalization</a> 
+			</h2>
+			<h1 id="posttitle"><a href="index.html#">Authentication &amp; authorization with Spring Boot &amp; MongoDB</a></h1>
+			<span>
+				Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
+				on <i class="fa fa-clock-o"></i> <time datetime="2015-03-26">March 26th, 2015</time>.
+			</span>
+		</header>
+		<section class="postbody">
+			<p><strong>Abstract:</strong> <em>What should we <a href="http://en.wikipedia.org/wiki/Denormalization">denormalize</a> and what should we not?</em> How many times have you heard this question in the context of <a href="https://www.mongodb.org/">MongoDB</a>? As a follow up of this question there is often a counter example of how we used to do it with a relational database. In this article we are going to look at some schema design considerations from a relational and document-oriented perspective. Then we will implement an authentication &amp; authorization solution using <a href="http://projects.spring.io/spring-boot/">Spring Boot</a>, <a href="http://projects.spring.io/spring-security/">Spring Security</a>, and <a href="http://jongo.org/">Jongo</a>.</p>
+
+<p><strong>Goal:</strong> Comparison between relational and document-oriented schema designs for an authentication &amp; authorization solution. Learn how to setup MongoDB as a data source for Spring Security. See how to wrap up everything in Spring Boot. </p>
+
+<p><strong>Acknowledgement:</strong> My gratitude goes to the open source community.</p>
+
+<p><strong>Code:</strong> A repository dedicated to this article is located on GitHub: <a href="https://github.com/ihr/spring-boot-mongodb">Spring Boot &amp; MongoDB</a></p>
+
+<p>Maybe this is the first time that you have to create an authentication &amp; authorization (A&amp;A) solution. Maybe you have already worked on such a problem once or twice. Regardless of what is your experience on this subject, here is a short setup of a common way to tackle this task with a relational database. <br />
+<em>Note</em>: For the sake of brevity and the <a href="http://en.wikipedia.org/wiki/KISS_principle">KISS principle</a>, I've omitted some parts of the complete <a href="http://docs.spring.io/spring-security/site/docs/3.0.x/reference/appendix-schema.html">Security Database Schema</a> of Spring Security.</p>
+
+<p>First, you need a <strong>USER</strong> table to contain at least the username and the password:</p>
+
+<p>Table: <strong>USER</strong>  </p>
+
+<pre><code>| ID | USERNAME | PASSWORD |
+----------------------------
+| 10 | user     | pass     |
+</code></pre>
+
+<p>Second, you need a <strong>ROLE</strong> table to stock all roles a user can have:</p>
+
+<p>Table: <strong>ROLE</strong>  </p>
+
+<pre><code>| ID | ROLE |
+-------------
+| 20 | ADMIN |
+</code></pre>
+
+<p>And now of course a third table to link the previous two:</p>
+
+<p>Table: <strong>USER_ROLES</strong>  </p>
+
+<pre><code>| USER_ID | ROLE_ID |
+---------------------
+| 10      | 20      |
+</code></pre>
+
+<p>This is all we need in terms of a nicely normalized relational database design. Simple right? Three tables each having it's purpose. </p>
+
+<p>Now, let us take a step back and ponder over this schema. Our tables are designed in a fashion that avoids redundancy. That is of course, if we assume that passwords are properly salted and usernames and roles are unique. Then the only duplication of data that we might have under this assumption is in the third, intermediary table which is also called a <em>join table</em> or <em>associative table</em>. </p>
+
+<p><a href="https://www.simple-talk.com/sql/learn-sql-server/facts-and-fallacies-about-first-normal-form/">Some</a> will argue that this schema brings also higher degree of data integrity and consistency. <a href="https://www.google.ch/search?tbo=p&amp;tbm=bks&amp;q=isbn:1591400244">Some</a> will argue that indeed data integrity and consistency are higher but we are trading off referential integrity.</p>
+
+<p>So how does this bring us closer to solving our client's problem of having a system for authentication and authorization purposes? Well, it does not. The chances that you will find a client who will state: <em>"I want an A&amp;A solution but mind the redundancy / integrity / consistency!"</em> are pretty low (if such chances exist at all). </p>
+
+<p>Provided that we believe that most human beings are responsible when it comes to security and adding some marge for unforseen situations. It is safe to assume that the person who will choose what roles will exist in a system will rename them no more than 5 times per year. Thanks to this statement we can simplify the tables to only have two that look like:</p>
+
+<p>Table: <strong>USERS</strong>  </p>
+
+<pre><code>| ID | USERNAME | PASSWORD |
+----------------------------
+| 10 | user     | pass     |
+</code></pre>
+
+<p>Table: <strong>USER_ROLES</strong>  </p>
+
+<pre><code>| USERNAME | ROLE |
+-------------------
+| user     | ADMIN|
+</code></pre>
+
+<p>We can go even further as to have one single <strong>USER</strong> table with a <strong>ROLES</strong> column of an array type. Some database such as Oracle and PostgreSQL have support for array data type. </p>
+
+<p>Let's go one step further and ask: <em>Why? Why do we work with tables and represent users as rows?</em> </p>
+
+<p>Truth to be told from a client perspective it does not matter. How we represent data is our concern as engineers and not something that our client want or need to be aware of. If it's easier for you to work by representing users as rows than go that way. If on the other hand you think it's more reasonable and intuitive to keep a document describing a user then let's see how we can resolve the problem with MongoDB.</p>
+
+<p>MongoDB is a document oriented database that uses a binary JSON format (called for short BSON) to represent entities, such as our user. In order to represent the information concerning a user we need this:</p>
+
+<p>Document: <strong>USER</strong>  </p>
+
+<pre><code>{
+  _id: &lt;id_generated_or_given_by_us&gt;
+  username: 'user',
+  password: 'pass',
+  roles: ['ADMIN']
+}
+</code></pre>
+
+<p>The above few rows form a <strong>document</strong> in MongoDB terminology. This document is stored in a <strong>collection</strong>, for example named as <strong>users</strong>. That's all we need to have the data stored in our MongoDB to answer the problem who is authorized to do what and how is he authenticated.</p>
+
+<p>I leave to the dearest reader to decide for himself which approach he/she likes - a table based or a document based. For those of you who would like to go with the document based approached the next few lines will teach you how to use Spring Boot, Spring Security and <a href="http://jongo.org/">Jongo</a> to authenticate and authorise a user. To avoid pasting all the code here, I've setup a <a href="https://github.com/ihr/spring-boot-mongodb">GitHub repo</a> which needs running MongoDB on <strong>127.0.0.1:27017</strong> with a database called <strong>test</strong> inside which there is a collection <strong>users</strong>. For the purpose of testing you will need to create a document inside the collection by opening the mongo shell and executing:</p>
+
+<pre><code>db.users.insert({username: 'user', password: 'pass', roles: ['ADMIN']});  
+</code></pre>
+
+<p>That being done, let's see the Java-based Spring Configuration:</p>
+
+<p>File: <strong><a href="https://github.com/ihr/spring-boot-mongodb/blob/master/src/main/java/org/ingini/spring/boot/mongodb/InginiMain.java">InginiMain.java</a></strong>  </p>
+
+<pre><code>package org.ingini.spring.boot.mongodb;
+
+import com.mongodb.DB;  
+import com.mongodb.MongoClient;  
+import com.mongodb.MongoException;  
+import org.jongo.Jongo;  
+import org.jongo.MongoCollection;  
+import org.springframework.boot.SpringApplication;  
+import org.springframework.boot.autoconfigure.SpringBootApplication;  
+import org.springframework.context.annotation.Bean;
+
+import java.net.UnknownHostException;
+
+@SpringBootApplication
+public class InginiMain {
+
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(InginiMain.class, args);
+    }
+
+    @Bean
+    public Jongo jongo() {
+        DB db;
+        try {
+            db = new MongoClient("127.0.0.1", 27017).getDB("test");
+        } catch (UnknownHostException e) {
+            throw new MongoException("Connection error : ", e);
+        }
+        return new Jongo(db);
+    }
+
+    @Bean
+    public MongoCollection users() {
+        return jongo().getCollection("users");
+    }
+}
+</code></pre>
+
+<p>What is important to note here is the <strong>MongoDBAuthenticationProvider</strong> which is a custom made class extending Spring <strong>AbstractUserDetailsAuthenticationProvider</strong> class. Here what it looks like:</p>
+
+<p>File: <strong><a href="https://github.com/ihr/spring-boot-mongodb/blob/master/src/main/java/org/ingini/spring/boot/mongodb/security/MongoDBAuthenticationProvider.java">MongoDBAuthenticationProvider.java</a></strong>  </p>
+
+<pre><code>package org.ingini.spring.boot.mongodb.security;
+
+import org.ingini.spring.boot.mongodb.domain.Client;  
+import org.jongo.MongoCollection;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.security.authentication.InternalAuthenticationServiceException;  
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;  
+import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;  
+import org.springframework.security.core.AuthenticationException;  
+import org.springframework.security.core.userdetails.User;  
+import org.springframework.security.core.userdetails.UserDetails;  
+import org.springframework.stereotype.Service;
+
+@Service
+public class MongoDBAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
+
+    @Autowired
+    private MongoCollection users;
+
+    @Override
+    protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
+    }
+
+    @Override
+    protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
+        UserDetails loadedUser;
+
+        try {
+            Client client = users.findOne("{#: #}", Client.USERNAME, username).as(Client.class);
+            loadedUser = new User(client.getUsername(), client.getPassword(), client.getRoles());
+        } catch (Exception repositoryProblem) {
+            throw new InternalAuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
+        }
+
+        if (loadedUser == null) {
+            throw new InternalAuthenticationServiceException(
+                    "UserDetailsService returned null, which is an interface contract violation");
+        }
+        return loadedUser;
+    }
+}
+</code></pre>
+
+<p>To save some space, I won't paste the details about the <strong>Client.java</strong> class which you can check <a href="https://github.com/ihr/spring-boot-mongodb/blob/master/src/main/java/org/ingini/spring/boot/mongodb/domain/Client.java">on-line</a>.</p>
+
+<p>Rather, let's concentrate on the Spring Security configuration:</p>
+
+<p>File: <strong><a href="https://github.com/ihr/spring-boot-mongodb/blob/master/src/main/java/org/ingini/spring/boot/mongodb/config/SecurityConfig.java">SecurityConfig.java</a></strong>  </p>
+
+<pre><code>package org.ingini.spring.boot.mongodb.config;
+
+import org.ingini.spring.boot.mongodb.security.MongoDBAuthenticationProvider;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.boot.autoconfigure.security.SecurityProperties;  
+import org.springframework.context.annotation.Configuration;  
+import org.springframework.core.annotation.Order;  
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;  
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;  
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;  
+import org.springframework.security.config.annotation.web.builders.WebSecurity;  
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;  
+import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+
+@Configuration
+@EnableWebMvcSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true)
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private MongoDBAuthenticationProvider authenticationProvider;
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/js/**", "/css/**");
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        http.formLogin().defaultSuccessUrl("/resource")
+                .and().logout().and().authorizeRequests()
+                .antMatchers("/index.html", "/home.html", "/login.html", "/", "/access", "/logout").permitAll().anyRequest()
+                .authenticated()
+                .and().csrf().disable();
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider);
+    }
+}
+</code></pre>
+
+<p>Note that I've set  </p>
+
+<pre><code>@EnableGlobalMethodSecurity(securedEnabled = true)
+</code></pre>
+
+<p>This will trigger verifycation of Spring Security's <strong>@Secured</strong> annotation. Like for example in the <strong><a href="https://github.com/ihr/spring-boot-mongodb/blob/master/src/main/java/org/ingini/spring/boot/mongodb/controller/ResourceController.java">ResourceController.java</a></strong>:</p>
+
+<pre><code>package org.ingini.spring.boot.mongodb.controller;
+
+import org.ingini.spring.boot.mongodb.domain.Client;  
+import org.jongo.MongoCollection;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.security.access.annotation.Secured;  
+import org.springframework.security.core.userdetails.UserDetails;  
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;  
+import org.springframework.web.bind.annotation.RequestMapping;  
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;  
+import java.util.Map;
+
+@RestController
+public class ResourceController {
+
+    @Autowired
+    private MongoCollection users;
+
+    @Secured({"ROLE_ADMIN"})
+    @RequestMapping("/resource")
+    public Map&lt;String, Object&gt; home(@AuthenticationPrincipal UserDetails userDetails) {
+        Client client = users.findOne("{#: #}", Client.USERNAME, userDetails.getUsername()).as(Client.class);
+        Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();
+        model.put("roles", client.getRoles());
+        return model;
+    }
+}
+</code></pre>
+
+<p>... and that's almost everything you need to have an A&amp;A solution. Don't forget to check-out the <a href="https://github.com/ihr/spring-boot-mongodb">GitHub repo</a> for the full project.</p>
+
+<p>P.S. <br />
+To test the solution you can use <a href="https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en">Chrome Postman REST client</a> or <a href="http://en.wikipedia.org/wiki/CURL">CURL</a>. </p>
+		</section>
+		<footer>
+			<ul class="share left">
+				<li><a href="http://twitter.com/share?text=Authentication%20%26%20authorization%20with%20Spring%20Boot%20%26%20MongoDB&url=http://ingini.org/2015/03/26/authentication-authorization-schema-design-with-mongodb/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
+				<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2015/03/26/authentication-authorization-schema-design-with-mongodb/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
+			</ul>
+			<ul class="tags right">
+				<a href="../../../../tag/java/index.html" class="smallbutton solidgray">Java</a>
+				<a href="../../../../tag/spring/index.html" class="smallbutton solidgray">Spring</a>
+				<a href="../../../../tag/jongo/index.html" class="smallbutton solidgray">Jongo</a>
+				<a href="../../../../tag/spring-boot/index.html" class="smallbutton solidgray">Spring Boot</a>
+				<a href="../../../../tag/spring-security/index.html" class="smallbutton solidgray">Spring Security</a>
+				<a href="../../../../tag/authentication/index.html" class="smallbutton solidgray">Authentication</a>
+				<a href="../../../../tag/authorization/index.html" class="smallbutton solidgray">Authorization</a>
+				<a href="../../../../tag/denormalization/index.html" class="smallbutton solidgray">Denormalization</a>
+			</ul>
+		</footer>
+		<div class="postprofile">
+			<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="user">
+			<div class="info">
+				<h4>Ivan Hristov</h4>
+				<a href="http://ingini.org">http://ingini.org</a>
+				<p></p>
+				
+				        <ul class="social">
+				            <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+				            <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+				            <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
+				            <!--<li><a href="http://youtube.com/" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a></li>-->
+				            <!--<li><a href="http://dribbble.com/" class="dribbble" target="_blank"><i class="fa fa-dribbble"></i></a></li>-->
+				            <li><a href="http://plus.google.com/" class="googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+				            <!--<li><a href="http://instagram.com/" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+				            <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
+				            <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+				            <li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+				        </ul>
+				
+				
+			</div>
+		</div>
+		<div class="comments">
+			<a href="javascript:;" class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</a>
+			<div id="disqus_thread"></div>
+			<div id="g-comments"></div>
+		</div>
+
+	</article>
+
+</section>
+
+
+
+	<footer class="wrapper">
+		<div class="inlinemenu">
+			<div class="graybar">
+				<div class="left"><i class="fa fa-bars"></i>Navigation</div>
+				<div class="right"><i class="fa fa-chevron-down"></i></div>
+			</div>
+			<ul class="menu">
+				<a id="top"></a>
+				<div class="navwrap">
+					<ul class="menu">
+					</ul>
+					<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
+				</div>			</ul>
+		</div>
+		<div>
+			Copyright &copy; <a href="http://ingini.org/">Ingini</a>. 2015 &bull; All rights reserved.
+			<span class="ghost">Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a>.</span>
+		</div>
+	</footer>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=6b64daccad"></script>
+
+</body>
+</html>
