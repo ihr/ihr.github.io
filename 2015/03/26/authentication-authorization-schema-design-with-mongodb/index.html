@@ -15,8 +15,8 @@
 	<link rel="shortcut icon" href="../../../../favicon.ico">
 	<link rel="prefetch" href="http://ingini.org">
 
-    <link rel="stylesheet" type="text/css" href="../../../../assets/css/prettify.css?v=6b64daccad" />
-	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=6b64daccad" />
+    <link rel="stylesheet" type="text/css" href="../../../../assets/css/prettify.css?v=b196cc4aea" />
+	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=b196cc4aea" />
 	<link href='http://fonts.googleapis.com/css?family=Domine:700|Open+Sans:400,600|Source+Code+Pro:500' rel='stylesheet' type='text/css'>
 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -25,10 +25,10 @@
     <meta property="og:site_name" content="Ingini" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Authentication &amp; authorization - Spring Boot &amp; MongoDB schema design" />
-    <meta property="og:description" content="Denormalize or not? MongoDB or not? How do you design an authentication &amp; authorization schema and build a solution with Spring Boot and Spring Security...." />
+    <meta property="og:description" content="Denormalize or not? MongoDB or not? How do you design an authentication &amp; authorization schema and build a solution with Spring Boot and Spring Security." />
     <meta property="og:url" content="http://ingini.org/2015/03/26/authentication-authorization-schema-design-with-mongodb/" />
     <meta property="article:published_time" content="2015-03-26T21:47:41.076Z" />
-    <meta property="article:modified_time" content="2015-03-26T22:10:55.901Z" />
+    <meta property="article:modified_time" content="2015-04-27T14:02:27.673Z" />
     <meta property="article:tag" content="Java" />
     <meta property="article:tag" content="Spring" />
     <meta property="article:tag" content="Jongo" />
@@ -40,7 +40,7 @@
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Authentication &amp; authorization - Spring Boot &amp; MongoDB schema design" />
-    <meta name="twitter:description" content="Denormalize or not? MongoDB or not? How do you design an authentication &amp; authorization schema and build a solution with Spring Boot and Spring Security...." />
+    <meta name="twitter:description" content="Denormalize or not? MongoDB or not? How do you design an authentication &amp; authorization schema and build a solution with Spring Boot and Spring Security." />
     <meta name="twitter:url" content="http://ingini.org/2015/03/26/authentication-authorization-schema-design-with-mongodb/" />
     
     <script type="application/ld+json">
@@ -53,18 +53,19 @@
         "name": "Ivan Hristov",
         "image": "http://ingini.org/content/images/2014/Jun/wolf_small.jpg",
         "url": "http://ingini.org/author/ivan-hristov",
-        "sameAs": "http://ingini.org"
+        "sameAs": "http://ingini.org",
+        "description": null
     },
     "headline": "Authentication &amp; authorization - Spring Boot &amp; MongoDB schema design",
     "url": "http://ingini.org/2015/03/26/authentication-authorization-schema-design-with-mongodb/",
     "datePublished": "2015-03-26T21:47:41.076Z",
-    "dateModified": "2015-03-26T22:10:55.901Z",
+    "dateModified": "2015-04-27T14:02:27.673Z",
     "keywords": "Java, Spring, Jongo, Spring Boot, Spring Security, Authentication, Authorization, Denormalization",
-    "description": "Denormalize or not? MongoDB or not? How do you design an authentication &amp; authorization schema and build a solution with Spring Boot and Spring Security...."
+    "description": "Denormalize or not? MongoDB or not? How do you design an authentication &amp; authorization schema and build a solution with Spring Boot and Spring Security."
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.5" />
+    <meta name="generator" content="Ghost 0.6" />
     <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/" />
 </head>
 <body class="post-template tag-java tag-spring tag-jongo tag-spring-boot tag-spring-security tag-authentication tag-authorization tag-denormalization blogcover">
@@ -90,15 +91,15 @@
 	<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="user">
 	<h4>Ivan Hristov</h4>
 	
-	        <ul class="socialside">
-	            <li><a href="https://twitter.com/iv_hristov" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-	            <!--<li><a href="http://facebook.com" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
-	            <li><a href="https://github.com/ihr" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
-	            <!--<li><a href="htt://instagram.com/" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
-	            <li><a href="http://ingini.org/rss/" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>
-	        </ul>
-	
-	
+        <ul class="socialside">
+            <li><a href="https://twitter.com/iv_hristov" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <!--<li><a href="http://facebook.com" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+            <li><a href="https://github.com/ihr" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
+            <!--<li><a href="htt://instagram.com/" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+            <li><a href="http://ingini.org/rss/" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+        </ul>
+
+
 	<p></p>
 	<hr>
 </div>
@@ -415,6 +416,17 @@ public class ResourceController {
 
 <p>P.S. <br />
 To test the solution you can use <a href="https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en">Chrome Postman REST client</a> or <a href="http://en.wikipedia.org/wiki/CURL">CURL</a>. </p>
+
+<p><del>Update: 27th of April 2015</del> </p>
+
+<p>Question (re-printed for clarity from a comment):  </p>
+
+<blockquote>
+  <p><em>Would it not be better to define a UserDetailsService and configure your AuthenticationManagerBuilder with that?</em></p>
+</blockquote>
+
+<p>You should consider a custom <em>AbstractUserDetailsAuthenticationProvider</em> if you need more flexibility than a custom <em>UserDetailsService</em> can provide. <br />
+In a production environment, I would suggest to stick to the default implementation - the <em>DaoAuthenticationProvider</em> unless you need to add or modify default security checks. In case you are interested, I've created a branch <a href="https://github.com/ihr/spring-boot-mongodb/tree/feature/user_details_service">feature/user_details_service</a> which works with a custom implementation of <em>UserDetailsService</em>.</p>
 		</section>
 		<footer>
 			<ul class="share left">
@@ -439,20 +451,20 @@ To test the solution you can use <a href="https://chrome.google.com/webstore/det
 				<a href="http://ingini.org">http://ingini.org</a>
 				<p></p>
 				
-				        <ul class="social">
-				            <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-				            <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
-				            <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
-				            <!--<li><a href="http://youtube.com/" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a></li>-->
-				            <!--<li><a href="http://dribbble.com/" class="dribbble" target="_blank"><i class="fa fa-dribbble"></i></a></li>-->
-				            <li><a href="http://plus.google.com/" class="googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-				            <!--<li><a href="http://instagram.com/" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
-				            <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
-				            <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-				            <li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>
-				        </ul>
-				
-				
+        <ul class="social">
+            <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+            <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
+            <!--<li><a href="http://youtube.com/" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a></li>-->
+            <!--<li><a href="http://dribbble.com/" class="dribbble" target="_blank"><i class="fa fa-dribbble"></i></a></li>-->
+            <li><a href="http://plus.google.com/" class="googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+            <!--<li><a href="http://instagram.com/" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+            <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
+            <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>
+        </ul>
+
+
 			</div>
 		</div>
 		<div class="comments">
@@ -475,11 +487,11 @@ To test the solution you can use <a href="https://chrome.google.com/webstore/det
 			</div>
 			<ul class="menu">
 				<a id="top"></a>
-				<div class="navwrap">
-					<ul class="menu">
-					</ul>
-					<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
-				</div>			</ul>
+<div class="navwrap">
+	<ul class="menu">
+	</ul>
+	<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
+</div>			</ul>
 		</div>
 		<div>
 			Copyright &copy; <a href="http://ingini.org/">Ingini</a>. 2015 &bull; All rights reserved.
@@ -488,7 +500,7 @@ To test the solution you can use <a href="https://chrome.google.com/webstore/det
 	</footer>
 	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=6b64daccad"></script>
+	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=b196cc4aea"></script>
 
 </body>
 </html>
