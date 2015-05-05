@@ -29,7 +29,7 @@
     <meta property="og:url" content="http://ingini.org/2015/05/04/apache-spark-java-8-streams-overview/" />
     <meta property="og:image" content="http://ingini.org/content/images/2015/05/FullSizeRender.jpg" />
     <meta property="article:published_time" content="2015-05-04T19:33:00.000Z" />
-    <meta property="article:modified_time" content="2015-05-04T19:33:15.061Z" />
+    <meta property="article:modified_time" content="2015-05-05T07:16:52.004Z" />
     <meta property="article:tag" content="java 8" />
     <meta property="article:tag" content="streams api" />
     <meta property="article:tag" content="apache spark" />
@@ -57,7 +57,7 @@
     "headline": "Apache Spark Resilient Distributed Dataset &amp; Java 8 Streams API",
     "url": "http://ingini.org/2015/05/04/apache-spark-java-8-streams-overview/",
     "datePublished": "2015-05-04T19:33:00.000Z",
-    "dateModified": "2015-05-04T19:33:15.061Z",
+    "dateModified": "2015-05-05T07:16:52.004Z",
     "image": "http://ingini.org/content/images/2015/05/FullSizeRender.jpg",
     "keywords": "java 8, streams api, apache spark, resilient distributed dataset",
     "description": "In this article you can discover how Apache Spark RDDs compare to Java 8 Streams and how you can benefit from both. Source code is on GitHub."
@@ -206,7 +206,7 @@
 
 <p>Reflecting on all this, should give you some hints on when to consider using Spark and when to stay with Java 8 Streams. Hint: the moment you start scratching your head on how to distribute your streams is a good time to step back and ask yourself if it would be appropriate to switch to Spark. That being said, you should know that you can run Spark on your local machine and play with it. However, in order to unleash the full power of Spark you should give it problems that require fast analysis of large datasets.  </p>
 
-<p>Moving forward, we come across the <em>parallel</em> idiom which also stressed several times. Both, the RDDs and the Streams, are designed to facilitate parallel computation. In addition, Spark will help you to distribute both data and computation over the cluster, whereas the JDK cannot do this for you, at least not yet on its own. Who knows, maybe one day we will see a similar functionality within the JDK. </p>
+<p>Moving forward, we come across the <em>parallel</em> idiom which is also stressed several times. Both, the RDDs and the Streams, are designed to facilitate parallel computation. In addition, Spark will help you to distribute both data and computation over the cluster, whereas the JDK cannot do this for you, at least not yet on its own. Who knows, maybe one day we will see a similar functionality within the JDK. </p>
 
 <p>For one last time, go back to the definitions and re-read. What you will notice is that both use the term <em>collection</em>. You probably know or have heard of a Java collection (Vector, Set, List, Queue). That is why it is important to be aware that neither an RDD nor a Stream is actually a Java collection. Both of them are an abstract notion of a collection of elements, yet neither of them needs to have any elements at all. That is their internal beauty, you can reuse them over different "materialised" collection of elements.</p>
 
@@ -303,7 +303,7 @@ public class WordsCounterSpark implements Serializable {
 
 <p>Here the things are a bit more complicated. First we need to setup the <code>SparkConf</code> &amp; <code>JavaSparkContext</code>. Second, we create a <code>JavaRDD</code> from a <code>textFile</code>. It's worthy mentioning that this initial RDD will operated on line-by-line from the text file. That's why we split each <code>line</code> into sequence of words and <code>flatMap</code> them. Then we transform a <code>word</code> into a key-value tuple with a safe base for incremental counting. Once we have done that, we group by words (<code>reduceByKey</code>) our key-value tuples from the previous RDD and in the end we sort them in natural order. </p>
 
-<p>As you can see, both implementations are quite similar. Spark requires a bit more configuration and is a bit more verbose but it's also a lot more powerful. Yet, don't throw away a Java 8 Stream only because Spark is more powerful. As software engineers we need to know what tools exist and and when to apply them. It's not always evident or an easy choice to make. Remember to seek for a balance between complexity and maintainability (it's not necessarily you who's going to update the code one day). Along these lines, there is no need to kill a fly with a sledgehammer when it would be easier with a flyswatter. </p>
+<p>As you can see, both implementations are quite similar. Spark requires a bit more configuration and is a bit more verbose but it's also a lot more powerful. Yet, don't throw away a Java 8 Stream only because Spark is more powerful. As software engineers we need to know what tools exist and when to apply them. It's not always evident or an easy choice to make. Remember to seek for a balance between complexity and maintainability (it's not necessarily you who's going to update the code one day). Along these lines, there is no need to kill a fly with a sledgehammer when it would be easier with a flyswatter. </p>
 
 <div class="footnotes"><ol><li class="footnote" id="fn:1"><p><a href="https://www.cs.berkeley.edu/~matei/papers/2012/nsdi_spark.pdf">https://www.cs.berkeley.edu/~matei/papers/2012/nsdi_spark.pdf</a> <a href="index.html#fnref:1" title="return to article">↩</a></p></li>
 <li class="footnote" id="fn:2"><p><a href="http://radar.oreilly.com/2015/02/java-8-streams-api-and-parallelism.html">http://radar.oreilly.com/2015/02/java-8-streams-api-and-parallelism.html</a> <a href="index.html#fnref:2" title="return to article">↩</a></p></li></ol></div>
