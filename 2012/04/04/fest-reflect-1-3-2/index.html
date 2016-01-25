@@ -1,41 +1,40 @@
-<!DOCTYPE html>
-<html>
+
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<title>Decoration With FEST-Reflect 1.3</title>
-	<meta name="description" content="" />
+	<meta name="description" content="">
 
-	<meta name="HandheldFriendly" content="True" />
-	<meta name="MobileOptimized" content="320" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!--link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/"-->
+	<link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/">
 	<link rel="shortcut icon" href="../../../../favicon.ico">
 	<link rel="prefetch" href="http://ingini.org">
 
-    <link rel="stylesheet" type="text/css" href="../../../../assets/css/prettify.css?v=a9a8db849d" />
-	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=a9a8db849d" />
-	<link href='http://fonts.googleapis.com/css?family=Domine:700|Open+Sans:400,600|Source+Code+Pro:500' rel='stylesheet' type='text/css'>
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=70b6e1da2b">
+	<link href="https://fonts.googleapis.com/css?family=Domine:700%7COpen+Sans:400,600%7CSource+Code+Pro:500" rel="stylesheet" type="text/css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
-	<link rel="canonical" href="http://ingini.org/2012/04/04/fest-reflect-1-3-2/" />
+	<link rel="canonical" href="http://ingini.org/2012/04/04/fest-reflect-1-3-2/">
+    <meta name="referrer" content="origin">
     
-    <meta property="og:site_name" content="Ingini" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Decoration With FEST-Reflect 1.3" />
-    <meta property="og:description" content="Yesterday (3rd of April, 2012) the FEST-Reflect 1.3 (part of FEST libraries) was published on maven central. Since this fact requires a celebration, I&#x27;ve prepared a short tutorial of the new field decorator functionality. Add the following dependency in..." />
-    <meta property="og:url" content="http://ingini.org/2012/04/04/fest-reflect-1-3-2/" />
-    <meta property="article:published_time" content="2012-04-04T11:54:00.000Z" />
-    <meta property="article:modified_time" content="2014-05-28T13:41:12.755Z" />
-    <meta property="article:tag" content="FEST-Reflect" />
-    <meta property="article:tag" content="Java" />
+    <meta property="og:site_name" content="Ingini">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Decoration With FEST-Reflect 1.3">
+    <meta property="og:description" content="Yesterday (3rd of April, 2012) the FEST-Reflect 1.3 (part of FEST libraries) was published on maven central. Since this fact requires a celebration, I've prepared a short tutorial of the new field decorator functionality. Add the following dependency in...">
+    <meta property="og:url" content="http://ingini.org/2012/04/04/fest-reflect-1-3-2/">
+    <meta property="article:published_time" content="2012-04-04T11:54:00.000Z">
+    <meta property="article:modified_time" content="2016-01-24T20:48:08.565Z">
+    <meta property="article:tag" content="FEST-Reflect">
+    <meta property="article:tag" content="Java">
     
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Decoration With FEST-Reflect 1.3" />
-    <meta name="twitter:description" content="Yesterday (3rd of April, 2012) the FEST-Reflect 1.3 (part of FEST libraries) was published on maven central. Since this fact requires a celebration, I&#x27;ve prepared a short tutorial of the new field decorator functionality. Add the following dependency in..." />
-    <meta name="twitter:url" content="http://ingini.org/2012/04/04/fest-reflect-1-3-2/" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Decoration With FEST-Reflect 1.3">
+    <meta name="twitter:description" content="Yesterday (3rd of April, 2012) the FEST-Reflect 1.3 (part of FEST libraries) was published on maven central. Since this fact requires a celebration, I've prepared a short tutorial of the new field decorator functionality. Add the following dependency in...">
+    <meta name="twitter:url" content="http://ingini.org/2012/04/04/fest-reflect-1-3-2/">
     
     <script type="application/ld+json">
 {
@@ -53,17 +52,20 @@
     "headline": "Decoration With FEST-Reflect 1.3",
     "url": "http://ingini.org/2012/04/04/fest-reflect-1-3-2/",
     "datePublished": "2012-04-04T11:54:00.000Z",
-    "dateModified": "2014-05-28T13:41:12.755Z",
+    "dateModified": "2016-01-24T20:48:08.565Z",
     "keywords": "FEST-Reflect, Java",
     "description": "Yesterday (3rd of April, 2012) the FEST-Reflect 1.3 (part of FEST libraries) was published on maven central. Since this fact requires a celebration, I&#x27;ve prepared a short tutorial of the new field decorator functionality. Add the following dependency in..."
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.6" />
-    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/" />
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/">
+    <link href="../../../../assets/css/prism.css" rel="stylesheet">
+<script type="text/javascript" src="../../../../assets/js/prism.js"></script>
 </head>
 <body class="post-template tag-fest-reflect tag-java blogcover">
 
+	
 	<header class="title">
 		<a href="http://ingini.org"><i class="fa fa-bookmark-o fa-lg"></i><span>Ingini</span></a>
 	</header>
@@ -74,71 +76,79 @@
 
 	
 
-<div class="index">
-	<div class="wrapper">
-		<h1 class="right">Decoration With FEST-Reflect 1.3</h1>
-		<h2 class="left">Introduction</h2>
-	</div>
-</div>
-
-<div class="profile post tag-fest-reflect tag-java">
-	<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="user">
-	<h4>Ivan Hristov</h4>
 	
-        <ul class="socialside">
-            <li><a href="https://twitter.com/iv_hristov" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <!--<li><a href="http://facebook.com" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
-            <li><a href="https://github.com/ihr" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
-	    <!--<li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
-            <!--<li><a href="htt://instagram.com/" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
-            <!--<li><a href="http://ingini.org/rss/" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        </ul>
+	<div class="flowbar">
+		<div class="wrapper">
+			<h1 class="right">Decoration With FEST-Reflect 1.3</h1>
+			<h2 class="left">Introduction</h2>
+		</div>
+	</div>
+
+	
+	<div class="profile post tag-fest-reflect tag-java">
+		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="Ivan Hristov">
+		<h4>Ivan Hristov</h4>
+		
+	        <ul class="socialside">
+            	<li><a href="https://twitter.com/iv_hristov" class="smallsocial twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <!--<li><a href="http://facebook.com" class="smallsocial facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+            	<li><a href="https://github.com/ihr" class="smallsocial github" target="_blank"><i class="fa fa-github"></i></a></li>
+		<li><a href="http://plus.google.com/" class="smallsocial googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+		<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            <!--<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
+            <!--<li><a href="htt://instagram.com/" class="smallsocial instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+            <!--<li><a href="http://ingini.org/rss/" class="smallsocial rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
+        	</ul>
 
 
-	<p></p>
-	<hr>
-</div>
 
-<div id="cover" class="cover post tag-fest-reflect tag-java">
-	<div class="background" ></div>
-	<header class="wrapper">
-		<h2>
-				<a href="../../../../tag/fest-reflect/index.html">FEST-Reflect</a> 
-				<a href="../../../../tag/java/index.html">Java</a> 
-		</h2>
-		<h1><a href="index.html#">Decoration With FEST-Reflect 1.3</a></h1>
-		<span>
-			Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
-				on <i class="fa fa-clock-o"></i> <time datetime="2012-04-04">April 4th, 2012</time>.
-		</span>
-	</header>
-	<i class="fa fa-chevron-down movedown"></i>
-</div>
 
-<section class="posts wrapper">
-	<article class="post post tag-fest-reflect tag-java">
-		<header>
-			<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+		<p></p>
+		<hr>
+	</div>
+
+	
+	<div id="cover" class="cover post tag-fest-reflect tag-java">
+		<div class="background"></div>
+		<header class="wrapper">
 			<h2>
-					<a href="../../../../tag/fest-reflect/index.html">FEST-Reflect</a> 
-					<a href="../../../../tag/java/index.html">Java</a> 
+				<a href="../../../../tag/fest-reflect/">FEST-Reflect</a> 
+				<a href="../../../../tag/java/">Java</a> 
 			</h2>
-			<h1 id="posttitle"><a href="index.html#">Decoration With FEST-Reflect 1.3</a></h1>
-			<span>
-				Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
-				on <i class="fa fa-clock-o"></i> <time datetime="2012-04-04">April 4th, 2012</time>.
+			<h1>Decoration With FEST-Reflect 1.3</h1>
+			<span class="meta">
+				Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2012-04-04">April 4th, 2012</time>.
 			</span>
 		</header>
-		<section class="postbody">
-			<p>Yesterday (3rd of April, 2012) the FEST-Reflect 1.3 (part of <a href="http://code.google.com/p/fest/">FEST</a> libraries) was published on maven central. Since this fact requires a celebration, I've prepared a short tutorial of the new field decorator functionality.</p>
+		<i class="fa fa-chevron-down movedown"></i>
+	</div>
+
+	<section class="posts wrapper">
+		<article class="post post tag-fest-reflect tag-java">
+
+			
+	<header>
+		<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+		<h2>
+			<a href="../../../../tag/fest-reflect/">FEST-Reflect</a> 
+			<a href="../../../../tag/java/">Java</a> 
+		</h2>
+		<h1 id="posttitle">Decoration With FEST-Reflect 1.3</h1>
+		<span class="meta">
+			Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2012-04-04">April 4th, 2012</time>.
+		</span>
+	</header>
+
+			<section class="postbody">
+				<p>Yesterday (3rd of April, 2012) the FEST-Reflect 1.3 (part of <a href="http://code.google.com/p/fest/">FEST</a> libraries) was published on maven central. Since this fact requires a celebration, I've prepared a short tutorial of the new field decorator functionality.</p>
 
 <p>Add the following dependency in your pom.xml to take advantage of FEST-Reflect.</p>
 
-<pre><code class=" xml">        &lt;dependency&gt;
-            &lt;groupId&gt;org.easytesting&lt;/groupId&gt;
-            &lt;artifactId&gt;fest-reflect&lt;/artifactId&gt;
-            &lt;version&gt;1.3&lt;/version&gt;
-        &lt;/dependency&gt;
+<pre><code class="language-xml">&lt;dependency&gt;  
+    &lt;groupId&gt;org.easytesting&lt;/groupId&gt;
+    &lt;artifactId&gt;fest-reflect&lt;/artifactId&gt;
+    &lt;version&gt;1.3&lt;/version&gt;
+&lt;/dependency&gt;  
 </code></pre>
 
 <!-- more -->
@@ -147,7 +157,7 @@
 
 <p>Let's say we have a simple business service:</p>
 
-<pre><code class=" java">package org.honey.service.impl;
+<pre><code class="language-java line-numbers">package org.honey.service.impl;
 
 import org.honey.service.IBusinessService;  
 import org.slf4j.Logger;  
@@ -169,55 +179,54 @@ public class BusinessService implements IBusinessService {
 
 <p>Our goal would be to test that the <code>logger</code> field is called and still be able to see the printed message on our screen. With the help of FEST-Reflect we can pre-decorate or post-decorate the <code>logger</code> with another object implementing the <code>org.slf4j.Logger</code> (I'm going to use a mock object via <a href="https://code.google.com/p/mockito/">Mockito</a>). Here is the test:</p>
 
-<p>{% codeblock lang:java mark:22 %}
-package org.honey.service.impl;</p>
+<pre class="language-java line-numbers" data-line="23">  
+<code class="language-java">package org.honey.service.impl;
 
-<p>import static org.fest.reflect.core.Reflection.field; <br />
-import static org.mockito.Matchers.eq; <br />
-import static org.mockito.Mockito.mock; <br />
-import static org.mockito.Mockito.times; <br />
-import static org.mockito.Mockito.verify;</p>
+import static org.fest.reflect.core.Reflection.field;  
+import static org.mockito.Matchers.eq;  
+import static org.mockito.Mockito.mock;  
+import static org.mockito.Mockito.times;  
+import static org.mockito.Mockito.verify;
 
-<p>import org.honey.service.IBusinessService; <br />
-import org.junit.Test; <br />
-import org.slf4j.Logger;</p>
+import org.honey.service.IBusinessService;  
+import org.junit.Test;  
+import org.slf4j.Logger;
 
-<p>public class TestBusinessService {</p>
+public class TestBusinessService {
 
-<p>@Test
+  @Test
   public void shouldCallLogger() {
     //GIVEN
-    Logger loggerMock = mock(Logger.class);</p>
+    Logger loggerMock = mock(Logger.class);
 
-<pre><code>IBusinessService service = new BusinessService();
+    IBusinessService service = new BusinessService();
 
-field("logger").ofType(Logger.class).in(service).preDecorateWith(loggerMock);
+    field("logger").ofType(Logger.class).in(service).preDecorateWith(loggerMock);
 
-//WHEN
-service.doBusiness();
+    //WHEN
+    service.doBusiness();
 
-//THEN
-verify(loggerMock, times(1)).info(eq("Hi! This is a business service ..."));
-</code></pre>
-
-<p>}
+    //THEN
+    verify(loggerMock, times(1)).info(eq("Hi! This is a business service ..."));
+  }
 }
-{% endcodeblock %}</p>
+</code>  
+</pre>
 
 <p>With the above code, our <code>loggerMock</code> is going to be called first and then the actual <code>logger</code>. We can also post-decorate the targeted field (in which case the <code>logger</code> will be called first and then the <code>loggerMock</code>):</p>
 
-<pre><code class=" java">field("logger").ofType(Logger.class).in(service).postDecorateWith(loggerMock);  
+<pre><code class="language-java">field("logger").ofType(Logger.class).in(service).postDecorateWith(loggerMock);  
 </code></pre>
 
 <p>In fact we can have both pre-decoration and post-decoration:</p>
 
-<pre><code class=" java">field("logger").ofType(Logger.class).in(service)//  
+<pre><code class="language-java">field("logger").ofType(Logger.class).in(service)//  
 .preDecorateWith(loggerMock).postDecorateWith(loggerMock);
 </code></pre>
 
 <p>However, don't forget to change the verification step (for the test to work) to:</p>
 
-<pre><code class=" java">verify(loggerMock, times(2)).info(eq("Hi! This is a business service ..."));  
+<pre><code class="language-java">verify(loggerMock, times(2)).info(eq("Hi! This is a business service ..."));  
 </code></pre>
 
 <p>Example 2: Complex decoration</p>
@@ -226,7 +235,7 @@ verify(loggerMock, times(1)).info(eq("Hi! This is a business service ..."));
 
 <p>Let's upgrade our <code>BusinessService</code> implementation:</p>
 
-<pre><code class=" java">public class BusinessService implements IBusinessService {
+<pre><code class="language-java line-numbers">public class BusinessService implements IBusinessService {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -264,7 +273,7 @@ verify(loggerMock, times(1)).info(eq("Hi! This is a business service ..."));
 
 <p>So what happened? I've added an <code>INotificationService</code> interface and a simple implementation in the constructor of our <code>BusinessService</code>. As we can see the implementation of <code>INotificationService.notify()</code> always returns false, so we can expect that the <code>else</code> branch in the <code>doBusiness()</code> method is always taken. What if we want to change this behaviour but without changing the actual <code>INotificationService.notify()</code> implementation? Here is a test that does exactly that:</p>
 
-<pre><code class=" java">public class TestBusinessService {
+<pre><code class="language-java line-numbers">public class TestBusinessService {
 
   @Test
   public void shouldCallInfoLogger() {
@@ -293,7 +302,7 @@ verify(loggerMock, times(1)).info(eq("Hi! This is a business service ..."));
 
 <p>Again, we can pre-decorate instead of post-decorate, or we can pre- and post-decorate. Here is how:</p>
 
-<pre><code class=" java">field("notificationService").ofType(INotificationService.class) //  
+<pre><code class="language-java">field("notificationService").ofType(INotificationService.class) //  
 .in(service).preDecorateWith(notificationServiceMock1)//
 .returningDecoratorResult()// taking the result from notificationServiceMock1
 .postDecorateWith(notificationServiceMock2);
@@ -301,36 +310,42 @@ verify(loggerMock, times(1)).info(eq("Hi! This is a business service ..."));
 
 <p>Ok, but what if our <code>notificationServiceMock</code> throws an exception? Well, we can silence any <code>RuntimeException</code> like this:</p>
 
-<pre><code class=" java">field("notificationService").ofType(INotificationService.class) //  
+<pre><code class="language-java">field("notificationService").ofType(INotificationService.class) //  
 .in(service).postDecorateWith(notificationServiceMock).returningDecoratorResult()//
 .ignoringDecoratorExceptions(); // ignores any RuntimeException
 </code></pre>
 
 <p>Or a specific exception like this:</p>
 
-<pre><code class=" java">field("notificationService").ofType(INotificationService.class) //  
+<pre><code class="language-java">field("notificationService").ofType(INotificationService.class) //  
 .in(service).postDecorateWith(notificationServiceMock).returningDecoratorResult()//
 .ignoringDecoratorExceptionsOfType(MyCoolException.class); // ignores only MyCoolException
 </code></pre>
-		</section>
-		<footer>
-			<ul class="share left">
-				<li><a href="http://twitter.com/share?text=Decoration%20With%20FEST-Reflect%201.3&url=http://ingini.org/2012/04/04/fest-reflect-1-3-2/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
-				<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2012/04/04/fest-reflect-1-3-2/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
-			</ul>
-			<ul class="tags right">
-				<a href="../../../../tag/fest-reflect/index.html" class="smallbutton solidgray">FEST-Reflect</a>
-				<a href="../../../../tag/java/index.html" class="smallbutton solidgray">Java</a>
-			</ul>
-		</footer>
-		<div class="postprofile">
-			<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="user">
-			<div class="info">
-				<h4>Ivan Hristov</h4>
-				<a href="http://ingini.org">http://ingini.org</a>
-				<p></p>
-				
-        <ul class="social">
+			</section>
+
+			
+	<footer>
+		<ul class="share left">
+			<li><a href="http://twitter.com/share?text=Decoration%20With%20FEST-Reflect%201.3&amp;url=http://ingini.org/2012/04/04/fest-reflect-1-3-2/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
+			<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2012/04/04/fest-reflect-1-3-2/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
+			<li><a href="https://plus.google.com/share?url=http://ingini.org/2012/04/04/fest-reflect-1-3-2/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" class="smallbutton lightgray"><i class="fa fa-google-plus"></i>Google+</a></li>
+		</ul>
+		<ul class="tags right">
+			<a href="../../../../tag/fest-reflect/" class="smallbutton solidgray">FEST-Reflect</a>
+			<a href="../../../../tag/java/" class="smallbutton solidgray">Java</a>
+		</ul>
+	</footer>
+
+			
+	<div class="postprofile">
+		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="Ivan Hristov">
+		<div class="info">
+			<h4>Ivan Hristov</h4>
+			<a href="http://ingini.org">http://ingini.org</a>
+			<p></p>
+			
+
+        	<ul class="social">
             <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
             <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
             <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
@@ -341,45 +356,48 @@ verify(loggerMock, times(1)).info(eq("Hi! This is a business service ..."));
             <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
             <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
             <!--<li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        </ul>
+        	</ul>
+		
 
 
+
+		</div>
+	</div>
+
+			<div class="comments">
+				<span class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</span>
+				<div id="disqus_thread"></div>
+				<div id="g-comments"></div>
 			</div>
-		</div>
-		<div class="comments">
-			<a href="javascript:;" class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</a>
-			<div id="disqus_thread"></div>
-			<div id="g-comments"></div>
-		</div>
 
-	</article>
+		</article>
 
-</section>
+	</section>
 
 
 
+	
 	<footer class="wrapper">
 		<div class="inlinemenu">
 			<div class="graybar">
 				<div class="left"><i class="fa fa-bars"></i>Navigation</div>
 				<div class="right"><i class="fa fa-chevron-down"></i></div>
 			</div>
-			<ul class="menu">
-				<a id="top"></a>
-<div class="navwrap">
-	<ul class="menu">
-	</ul>
-	<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
-</div>			</ul>
+			<div class="menu">
+				
+			</div>
 		</div>
-		<div>
-			Copyright &copy; <a href="http://ingini.org/">Ingini</a>. 2015 &bull; All rights reserved.
+		<div class="copyright">
+			Copyright © <a href="http://ingini.org/">Ingini</a>. 2016 • All rights reserved.
 			<span class="ghost">Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a>.</span>
+			<span class="ecko"><a href="http://ecko.me/themes/ghost/astro/" target="_blank">Astro Ghost Theme</a> by <a href="http://ecko.me/" target="_blank">EckoThemes</a>.</span>
 		</div>
 	</footer>
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=a9a8db849d"></script>
+	<!-- You can safely delete this line if your theme does not require jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=70b6e1da2b"></script>
 
 </body>
-</html>

@@ -1,45 +1,44 @@
-<!DOCTYPE html>
-<html>
+
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<title>Apache Spark Resilient Distributed Dataset &amp; Java 8 Streams API</title>
-	<meta name="description" content="In this article you can discover how Apache Spark RDDs compare to Java 8 Streams and how you can benefit from both. Source code is on GitHub." />
+	<meta name="description" content="In this article you can discover how Apache Spark RDDs compare to Java 8 Streams and how you can benefit from both. Source code is on GitHub.">
 
-	<meta name="HandheldFriendly" content="True" />
-	<meta name="MobileOptimized" content="320" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!--link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/"-->
+	<link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/">
 	<link rel="shortcut icon" href="../../../../favicon.ico">
 	<link rel="prefetch" href="http://ingini.org">
 
-    <link rel="stylesheet" type="text/css" href="../../../../assets/css/prettify.css?v=a9a8db849d" />
-	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=a9a8db849d" />
-	<link href='http://fonts.googleapis.com/css?family=Domine:700|Open+Sans:400,600|Source+Code+Pro:500' rel='stylesheet' type='text/css'>
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=70b6e1da2b">
+	<link href="https://fonts.googleapis.com/css?family=Domine:700%7COpen+Sans:400,600%7CSource+Code+Pro:500" rel="stylesheet" type="text/css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
-	<link rel="canonical" href="http://ingini.org/2015/05/04/apache-spark-java-8-streams-overview/" />
+	<link rel="canonical" href="http://ingini.org/2015/05/04/apache-spark-java-8-streams-overview/">
+    <meta name="referrer" content="origin">
     
-    <meta property="og:site_name" content="Ingini" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Apache Spark Resilient Distributed Dataset &amp; Java 8 Streams API" />
-    <meta property="og:description" content="In this article you can discover how Apache Spark RDDs compare to Java 8 Streams and how you can benefit from both. Source code is on GitHub." />
-    <meta property="og:url" content="http://ingini.org/2015/05/04/apache-spark-java-8-streams-overview/" />
-    <meta property="og:image" content="http://ingini.org/content/images/2015/05/FullSizeRender.jpg" />
-    <meta property="article:published_time" content="2015-05-04T19:33:00.000Z" />
-    <meta property="article:modified_time" content="2015-05-05T07:16:52.004Z" />
-    <meta property="article:tag" content="java 8" />
-    <meta property="article:tag" content="streams api" />
-    <meta property="article:tag" content="apache spark" />
-    <meta property="article:tag" content="resilient distributed dataset" />
+    <meta property="og:site_name" content="Ingini">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Apache Spark Resilient Distributed Dataset &amp; Java 8 Streams API">
+    <meta property="og:description" content="In this article you can discover how Apache Spark RDDs compare to Java 8 Streams and how you can benefit from both. Source code is on GitHub.">
+    <meta property="og:url" content="http://ingini.org/2015/05/04/apache-spark-java-8-streams-overview/">
+    <meta property="og:image" content="http://ingini.org/content/images/2015/05/FullSizeRender.jpg">
+    <meta property="article:published_time" content="2015-05-04T19:33:00.000Z">
+    <meta property="article:modified_time" content="2016-01-24T15:30:45.219Z">
+    <meta property="article:tag" content="java 8">
+    <meta property="article:tag" content="streams api">
+    <meta property="article:tag" content="apache spark">
+    <meta property="article:tag" content="resilient distributed dataset">
     
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Apache Spark Resilient Distributed Dataset &amp; Java 8 Streams API" />
-    <meta name="twitter:description" content="In this article you can discover how Apache Spark RDDs compare to Java 8 Streams and how you can benefit from both. Source code is on GitHub." />
-    <meta name="twitter:url" content="http://ingini.org/2015/05/04/apache-spark-java-8-streams-overview/" />
-    <meta name="twitter:image:src" content="http://ingini.org/content/images/2015/05/FullSizeRender.jpg" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Apache Spark Resilient Distributed Dataset &amp; Java 8 Streams API">
+    <meta name="twitter:description" content="In this article you can discover how Apache Spark RDDs compare to Java 8 Streams and how you can benefit from both. Source code is on GitHub.">
+    <meta name="twitter:url" content="http://ingini.org/2015/05/04/apache-spark-java-8-streams-overview/">
+    <meta name="twitter:image:src" content="http://ingini.org/content/images/2015/05/FullSizeRender.jpg">
     
     <script type="application/ld+json">
 {
@@ -57,18 +56,21 @@
     "headline": "Apache Spark Resilient Distributed Dataset &amp; Java 8 Streams API",
     "url": "http://ingini.org/2015/05/04/apache-spark-java-8-streams-overview/",
     "datePublished": "2015-05-04T19:33:00.000Z",
-    "dateModified": "2015-05-05T07:16:52.004Z",
+    "dateModified": "2016-01-24T15:30:45.219Z",
     "image": "http://ingini.org/content/images/2015/05/FullSizeRender.jpg",
     "keywords": "java 8, streams api, apache spark, resilient distributed dataset",
     "description": "In this article you can discover how Apache Spark RDDs compare to Java 8 Streams and how you can benefit from both. Source code is on GitHub."
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.6" />
-    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/" />
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/">
+    <link href="../../../../assets/css/prism.css" rel="stylesheet">
+<script type="text/javascript" src="../../../../assets/js/prism.js"></script>
 </head>
 <body class="post-template tag-java-8 tag-streams-api tag-apache-spark tag-resilient-distributed-dataset blogcover">
 
+	
 	<header class="title">
 		<a href="http://ingini.org"><i class="fa fa-bookmark-o fa-lg"></i><span>Ingini</span></a>
 	</header>
@@ -79,67 +81,75 @@
 
 	
 
-<div class="index">
-	<div class="wrapper">
-		<h1 class="right">An overview of Apache Spark RDD &amp; Java 8 Streams</h1>
-		<h2 class="left">Introduction</h2>
-	</div>
-</div>
-
-<div class="profile post tag-java-8 tag-streams-api tag-apache-spark tag-resilient-distributed-dataset featured">
-	<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="user">
-	<h4>Ivan Hristov</h4>
 	
-        <ul class="socialside">
-            <li><a href="https://twitter.com/iv_hristov" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <!--<li><a href="http://facebook.com" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
-            <li><a href="https://github.com/ihr" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
-	    <!--<li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
-            <!--<li><a href="htt://instagram.com/" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
-            <!--<li><a href="http://ingini.org/rss/" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        </ul>
+	<div class="flowbar">
+		<div class="wrapper">
+			<h1 class="right">An overview of Apache Spark RDD &amp; Java 8 Streams</h1>
+			<h2 class="left">Introduction</h2>
+		</div>
+	</div>
+
+	
+	<div class="profile post tag-java-8 tag-streams-api tag-apache-spark tag-resilient-distributed-dataset featured">
+		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="Ivan Hristov">
+		<h4>Ivan Hristov</h4>
+		
+	        <ul class="socialside">
+            	<li><a href="https://twitter.com/iv_hristov" class="smallsocial twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <!--<li><a href="http://facebook.com" class="smallsocial facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+            	<li><a href="https://github.com/ihr" class="smallsocial github" target="_blank"><i class="fa fa-github"></i></a></li>
+		<li><a href="http://plus.google.com/" class="smallsocial googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+		<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            <!--<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
+            <!--<li><a href="htt://instagram.com/" class="smallsocial instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+            <!--<li><a href="http://ingini.org/rss/" class="smallsocial rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
+        	</ul>
 
 
-	<p></p>
-	<hr>
-</div>
 
-<div id="cover" class="cover post tag-java-8 tag-streams-api tag-apache-spark tag-resilient-distributed-dataset featured">
-	<div class="background"  style="background-image: url(../../../../content/images/2015/05/FullSizeRender.jpg)" ></div>
-	<header class="wrapper">
-		<h2>
-				<a href="../../../../tag/java-8/index.html">java 8</a> 
-				<a href="../../../../tag/streams-api/index.html">streams api</a> 
-				<a href="../../../../tag/apache-spark/index.html">apache spark</a> 
-				<a href="../../../../tag/resilient-distributed-dataset/index.html">resilient distributed dataset</a> 
-		</h2>
-		<h1><a href="index.html#">An overview of Apache Spark RDD &amp; Java 8 Streams</a></h1>
-		<span>
-			Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
-				on <i class="fa fa-clock-o"></i> <time datetime="2015-05-04">May 4th, 2015</time>.
-		</span>
-	</header>
-	<i class="fa fa-chevron-down movedown"></i>
-</div>
 
-<section class="posts wrapper">
-	<article class="post post tag-java-8 tag-streams-api tag-apache-spark tag-resilient-distributed-dataset featured">
-		<header>
-			<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+		<p></p>
+		<hr>
+	</div>
+
+	
+	<div id="cover" class="cover post tag-java-8 tag-streams-api tag-apache-spark tag-resilient-distributed-dataset featured">
+		<div class="background" style="background-image: url(../../../../content/images/2015/05/FullSizeRender.jpg)"></div>
+		<header class="wrapper">
 			<h2>
-					<a href="../../../../tag/java-8/index.html">java 8</a> 
-					<a href="../../../../tag/streams-api/index.html">streams api</a> 
-					<a href="../../../../tag/apache-spark/index.html">apache spark</a> 
-					<a href="../../../../tag/resilient-distributed-dataset/index.html">resilient distributed dataset</a> 
+				<a href="../../../../tag/java-8/">java 8</a> 
+				<a href="../../../../tag/streams-api/">streams api</a> 
+				<a href="../../../../tag/apache-spark/">apache spark</a> 
+				<a href="../../../../tag/resilient-distributed-dataset/">resilient distributed dataset</a> 
 			</h2>
-			<h1 id="posttitle"><a href="index.html#">An overview of Apache Spark RDD &amp; Java 8 Streams</a></h1>
-			<span>
-				Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
-				on <i class="fa fa-clock-o"></i> <time datetime="2015-05-04">May 4th, 2015</time>.
+			<h1>An overview of Apache Spark RDD &amp; Java 8 Streams</h1>
+			<span class="meta">
+				Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2015-05-04">May 4th, 2015</time>.
 			</span>
 		</header>
-		<section class="postbody">
-			<p><strong>Abstract:</strong> Everyday we make conscious or subconscious decisions based on information we receive from different sources. We analyse data in our own way without necessarily being a certified data analyst. Broadly speaking, data crunching can happen to anyone of us and during anytime of the day. If you happen to be a software engineer then chances are rather high that at times you would like to automatise data extraction and its processing. In this post we are going to take a look at two quite different tools that can help you with data analysis - <a href="https://spark.apache.org/">Apache Spark</a> &amp; <a href="http://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html">Java Development Kit (JDK) 8</a>. In particular, we will examine two of their components - the <a href="https://spark.apache.org/docs/latest/programming-guide.html">Resilient Distributed Dataset (RDD)</a><sup id="fnref:1"><a href="index.html#fn:1" rel="footnote">1</a></sup> and <a href="https://docs.oracle.com/javase/tutorial/collections/streams/">Java Streams</a><sup id="fnref:2"><a href="index.html#fn:2" rel="footnote">2</a></sup> respectively.</p>
+		<i class="fa fa-chevron-down movedown"></i>
+	</div>
+
+	<section class="posts wrapper">
+		<article class="post post tag-java-8 tag-streams-api tag-apache-spark tag-resilient-distributed-dataset featured">
+
+			
+	<header>
+		<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+		<h2>
+			<a href="../../../../tag/java-8/">java 8</a> 
+			<a href="../../../../tag/streams-api/">streams api</a> 
+			<a href="../../../../tag/apache-spark/">apache spark</a> 
+			<a href="../../../../tag/resilient-distributed-dataset/">resilient distributed dataset</a> 
+		</h2>
+		<h1 id="posttitle">An overview of Apache Spark RDD &amp; Java 8 Streams</h1>
+		<span class="meta">
+			Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2015-05-04">May 4th, 2015</time>.
+		</span>
+	</header>
+
+			<section class="postbody">
+				<p><strong>Abstract:</strong> Everyday we make conscious or subconscious decisions based on information we receive from different sources. We analyse data in our own way without necessarily being a certified data analyst. Broadly speaking, data crunching can happen to anyone of us and during anytime of the day. If you happen to be a software engineer then chances are rather high that at times you would like to automatise data extraction and its processing. In this post we are going to take a look at two quite different tools that can help you with data analysis - <a href="https://spark.apache.org/">Apache Spark</a> &amp; <a href="http://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html">Java Development Kit (JDK) 8</a>. In particular, we will examine two of their components - the <a href="https://spark.apache.org/docs/latest/programming-guide.html">Resilient Distributed Dataset (RDD)</a><sup id="fnref:1"><a href="index.html#fn:1" rel="footnote">1</a></sup> and <a href="https://docs.oracle.com/javase/tutorial/collections/streams/">Java Streams</a><sup id="fnref:2"><a href="index.html#fn:2" rel="footnote">2</a></sup> respectively.</p>
 
 <p><strong>Goal:</strong> Learn about Apache Spark RDD and Java 8 Streams</p>
 
@@ -198,7 +208,7 @@
 
 <blockquote>
   <p><em>"We have presented resilient distributed datasets (RDDs),
-  an efficient, general-purpose and fault-tolerant abstraction <br />
+  an efficient, general-purpose and fault-tolerant abstraction <br>
   for sharing data in cluster applications."</em> <strong>Source:</strong> <a href="https://www.google.ch/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=3&amp;ved=0CCgQFjAC&amp;url=https%3A%2F%2Fwww.cs.berkeley.edu%2F~matei%2Fpapers%2F2012%2Fnsdi_spark.pdf&amp;ei=cOY_Vev-OYv4Urf2gPgM&amp;usg=AFQjCNGZwxf310Pmp0NBTmEKq5nLoqiVRw&amp;sig2=wzcwjXAsiisQMTw5U7q4Og&amp;bvm=bv.91665533,d.bGQ">Resilient Distributed Datasets</a></p>
 </blockquote>
 
@@ -234,7 +244,7 @@
 
 <p>File: <a href="https://github.com/ihr/java8-spark/blob/master/src/main/java/org/ingini/spark/java8/WordsCounterJava.java">WordsCounterJava.java</a></p>
 
-<pre><code class="language-java">package org.ingini.spark.java8;
+<pre><code class="language-java line-numbers">package org.ingini.spark.java8;
 
 import java.io.IOException;  
 import java.nio.file.Files;  
@@ -267,7 +277,7 @@ public class WordsCounterJava {
 
 <p>File: <a href="https://github.com/ihr/java8-spark/blob/master/src/main/java/org/ingini/spark/java8/WordsCounterSpark.java">WordsCounterSpark.java</a></p>
 
-<pre><code class="language-java">package org.ingini.spark.java8;
+<pre><code class="language-java line-numbers">package org.ingini.spark.java8;
 
 import org.apache.spark.SparkConf;  
 import org.apache.spark.api.java.JavaPairRDD;  
@@ -307,27 +317,33 @@ public class WordsCounterSpark implements Serializable {
 
 <div class="footnotes"><ol><li class="footnote" id="fn:1"><p><a href="https://www.cs.berkeley.edu/~matei/papers/2012/nsdi_spark.pdf">https://www.cs.berkeley.edu/~matei/papers/2012/nsdi_spark.pdf</a> <a href="index.html#fnref:1" title="return to article">↩</a></p></li>
 <li class="footnote" id="fn:2"><p><a href="http://radar.oreilly.com/2015/02/java-8-streams-api-and-parallelism.html">http://radar.oreilly.com/2015/02/java-8-streams-api-and-parallelism.html</a> <a href="index.html#fnref:2" title="return to article">↩</a></p></li></ol></div>
-		</section>
-		<footer>
-			<ul class="share left">
-				<li><a href="http://twitter.com/share?text=An%20overview%20of%20Apache%20Spark%20RDD%20%26%20Java%208%20Streams&url=http://ingini.org/2015/05/04/apache-spark-java-8-streams-overview/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
-				<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2015/05/04/apache-spark-java-8-streams-overview/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
-			</ul>
-			<ul class="tags right">
-				<a href="../../../../tag/java-8/index.html" class="smallbutton solidgray">java 8</a>
-				<a href="../../../../tag/streams-api/index.html" class="smallbutton solidgray">streams api</a>
-				<a href="../../../../tag/apache-spark/index.html" class="smallbutton solidgray">apache spark</a>
-				<a href="../../../../tag/resilient-distributed-dataset/index.html" class="smallbutton solidgray">resilient distributed dataset</a>
-			</ul>
-		</footer>
-		<div class="postprofile">
-			<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="user">
-			<div class="info">
-				<h4>Ivan Hristov</h4>
-				<a href="http://ingini.org">http://ingini.org</a>
-				<p></p>
-				
-        <ul class="social">
+			</section>
+
+			
+	<footer>
+		<ul class="share left">
+			<li><a href="http://twitter.com/share?text=An%20overview%20of%20Apache%20Spark%20RDD%20%26%20Java%208%20Streams&amp;url=http://ingini.org/2015/05/04/apache-spark-java-8-streams-overview/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
+			<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2015/05/04/apache-spark-java-8-streams-overview/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
+			<li><a href="https://plus.google.com/share?url=http://ingini.org/2015/05/04/apache-spark-java-8-streams-overview/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" class="smallbutton lightgray"><i class="fa fa-google-plus"></i>Google+</a></li>
+		</ul>
+		<ul class="tags right">
+			<a href="../../../../tag/java-8/" class="smallbutton solidgray">java 8</a>
+			<a href="../../../../tag/streams-api/" class="smallbutton solidgray">streams api</a>
+			<a href="../../../../tag/apache-spark/" class="smallbutton solidgray">apache spark</a>
+			<a href="../../../../tag/resilient-distributed-dataset/" class="smallbutton solidgray">resilient distributed dataset</a>
+		</ul>
+	</footer>
+
+			
+	<div class="postprofile">
+		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="Ivan Hristov">
+		<div class="info">
+			<h4>Ivan Hristov</h4>
+			<a href="http://ingini.org">http://ingini.org</a>
+			<p></p>
+			
+
+        	<ul class="social">
             <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
             <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
             <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
@@ -338,45 +354,48 @@ public class WordsCounterSpark implements Serializable {
             <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
             <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
             <!--<li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        </ul>
+        	</ul>
+		
 
 
+
+		</div>
+	</div>
+
+			<div class="comments">
+				<span class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</span>
+				<div id="disqus_thread"></div>
+				<div id="g-comments"></div>
 			</div>
-		</div>
-		<div class="comments">
-			<a href="javascript:;" class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</a>
-			<div id="disqus_thread"></div>
-			<div id="g-comments"></div>
-		</div>
 
-	</article>
+		</article>
 
-</section>
+	</section>
 
 
 
+	
 	<footer class="wrapper">
 		<div class="inlinemenu">
 			<div class="graybar">
 				<div class="left"><i class="fa fa-bars"></i>Navigation</div>
 				<div class="right"><i class="fa fa-chevron-down"></i></div>
 			</div>
-			<ul class="menu">
-				<a id="top"></a>
-<div class="navwrap">
-	<ul class="menu">
-	</ul>
-	<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
-</div>			</ul>
+			<div class="menu">
+				
+			</div>
 		</div>
-		<div>
-			Copyright &copy; <a href="http://ingini.org/">Ingini</a>. 2015 &bull; All rights reserved.
+		<div class="copyright">
+			Copyright © <a href="http://ingini.org/">Ingini</a>. 2016 • All rights reserved.
 			<span class="ghost">Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a>.</span>
+			<span class="ecko"><a href="http://ecko.me/themes/ghost/astro/" target="_blank">Astro Ghost Theme</a> by <a href="http://ecko.me/" target="_blank">EckoThemes</a>.</span>
 		</div>
 	</footer>
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=a9a8db849d"></script>
+	<!-- You can safely delete this line if your theme does not require jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=70b6e1da2b"></script>
 
 </body>
-</html>

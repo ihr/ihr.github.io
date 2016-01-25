@@ -1,45 +1,44 @@
-<!DOCTYPE html>
-<html>
+
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<title>Testing AKKA Actors With Mockito and FEST-Reflect</title>
-	<meta name="description" content="" />
+	<meta name="description" content="">
 
-	<meta name="HandheldFriendly" content="True" />
-	<meta name="MobileOptimized" content="320" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!--link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/"-->
+	<link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/">
 	<link rel="shortcut icon" href="../../../../favicon.ico">
 	<link rel="prefetch" href="http://ingini.org">
 
-    <link rel="stylesheet" type="text/css" href="../../../../assets/css/prettify.css?v=a9a8db849d" />
-	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=a9a8db849d" />
-	<link href='http://fonts.googleapis.com/css?family=Domine:700|Open+Sans:400,600|Source+Code+Pro:500' rel='stylesheet' type='text/css'>
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=70b6e1da2b">
+	<link href="https://fonts.googleapis.com/css?family=Domine:700%7COpen+Sans:400,600%7CSource+Code+Pro:500" rel="stylesheet" type="text/css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
-	<link rel="canonical" href="http://ingini.org/2012/07/01/test-akka-actor-mockito-fest-reflect/" />
+	<link rel="canonical" href="http://ingini.org/2012/07/01/test-akka-actor-mockito-fest-reflect/">
+    <meta name="referrer" content="origin">
     
-    <meta property="og:site_name" content="Ingini" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Testing AKKA Actors With Mockito and FEST-Reflect" />
-    <meta property="og:description" content="Abstract : One of the few frameworks implementing the actor model is AKKA. In fact AKKA is a lot more than just an implementation of the actor model, but within this post we are going to concentrate on combining Mockito, JUnit..." />
-    <meta property="og:url" content="http://ingini.org/2012/07/01/test-akka-actor-mockito-fest-reflect/" />
-    <meta property="article:published_time" content="2012-07-01T12:06:00.000Z" />
-    <meta property="article:modified_time" content="2014-05-28T13:43:34.486Z" />
-    <meta property="article:tag" content="FEST-Reflect" />
-    <meta property="article:tag" content="Java" />
-    <meta property="article:tag" content="Maven" />
-    <meta property="article:tag" content="AKKA" />
-    <meta property="article:tag" content="JUnit" />
-    <meta property="article:tag" content="Mockito" />
+    <meta property="og:site_name" content="Ingini">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Testing AKKA Actors With Mockito and FEST-Reflect">
+    <meta property="og:description" content="Abstract : One of the few frameworks implementing the actor model is AKKA. In fact AKKA is a lot more than just an implementation of the actor model, but within this post we are going to concentrate on combining Mockito, JUnit...">
+    <meta property="og:url" content="http://ingini.org/2012/07/01/test-akka-actor-mockito-fest-reflect/">
+    <meta property="article:published_time" content="2012-07-01T12:06:00.000Z">
+    <meta property="article:modified_time" content="2016-01-24T16:57:36.176Z">
+    <meta property="article:tag" content="FEST-Reflect">
+    <meta property="article:tag" content="Java">
+    <meta property="article:tag" content="Maven">
+    <meta property="article:tag" content="AKKA">
+    <meta property="article:tag" content="JUnit">
+    <meta property="article:tag" content="Mockito">
     
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Testing AKKA Actors With Mockito and FEST-Reflect" />
-    <meta name="twitter:description" content="Abstract : One of the few frameworks implementing the actor model is AKKA. In fact AKKA is a lot more than just an implementation of the actor model, but within this post we are going to concentrate on combining Mockito, JUnit..." />
-    <meta name="twitter:url" content="http://ingini.org/2012/07/01/test-akka-actor-mockito-fest-reflect/" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Testing AKKA Actors With Mockito and FEST-Reflect">
+    <meta name="twitter:description" content="Abstract : One of the few frameworks implementing the actor model is AKKA. In fact AKKA is a lot more than just an implementation of the actor model, but within this post we are going to concentrate on combining Mockito, JUnit...">
+    <meta name="twitter:url" content="http://ingini.org/2012/07/01/test-akka-actor-mockito-fest-reflect/">
     
     <script type="application/ld+json">
 {
@@ -57,17 +56,20 @@
     "headline": "Testing AKKA Actors With Mockito and FEST-Reflect",
     "url": "http://ingini.org/2012/07/01/test-akka-actor-mockito-fest-reflect/",
     "datePublished": "2012-07-01T12:06:00.000Z",
-    "dateModified": "2014-05-28T13:43:34.486Z",
+    "dateModified": "2016-01-24T16:57:36.176Z",
     "keywords": "FEST-Reflect, Java, Maven, AKKA, JUnit, Mockito",
     "description": "Abstract : One of the few frameworks implementing the actor model is AKKA. In fact AKKA is a lot more than just an implementation of the actor model, but within this post we are going to concentrate on combining Mockito, JUnit..."
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.6" />
-    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/" />
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/">
+    <link href="../../../../assets/css/prism.css" rel="stylesheet">
+<script type="text/javascript" src="../../../../assets/js/prism.js"></script>
 </head>
 <body class="post-template tag-fest-reflect tag-java tag-maven tag-akka tag-junit tag-mockito blogcover">
 
+	
 	<header class="title">
 		<a href="http://ingini.org"><i class="fa fa-bookmark-o fa-lg"></i><span>Ingini</span></a>
 	</header>
@@ -78,71 +80,79 @@
 
 	
 
-<div class="index">
-	<div class="wrapper">
-		<h1 class="right">Testing AKKA Actors With Mockito and FEST-Reflect</h1>
-		<h2 class="left">Introduction</h2>
-	</div>
-</div>
-
-<div class="profile post tag-fest-reflect tag-java tag-maven tag-akka tag-junit tag-mockito">
-	<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="user">
-	<h4>Ivan Hristov</h4>
 	
-        <ul class="socialside">
-            <li><a href="https://twitter.com/iv_hristov" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <!--<li><a href="http://facebook.com" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
-            <li><a href="https://github.com/ihr" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
-	    <!--<li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
-            <!--<li><a href="htt://instagram.com/" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
-            <!--<li><a href="http://ingini.org/rss/" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        </ul>
+	<div class="flowbar">
+		<div class="wrapper">
+			<h1 class="right">Testing AKKA Actors With Mockito and FEST-Reflect</h1>
+			<h2 class="left">Introduction</h2>
+		</div>
+	</div>
+
+	
+	<div class="profile post tag-fest-reflect tag-java tag-maven tag-akka tag-junit tag-mockito">
+		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="Ivan Hristov">
+		<h4>Ivan Hristov</h4>
+		
+	        <ul class="socialside">
+            	<li><a href="https://twitter.com/iv_hristov" class="smallsocial twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <!--<li><a href="http://facebook.com" class="smallsocial facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+            	<li><a href="https://github.com/ihr" class="smallsocial github" target="_blank"><i class="fa fa-github"></i></a></li>
+		<li><a href="http://plus.google.com/" class="smallsocial googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+		<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            <!--<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
+            <!--<li><a href="htt://instagram.com/" class="smallsocial instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+            <!--<li><a href="http://ingini.org/rss/" class="smallsocial rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
+        	</ul>
 
 
-	<p></p>
-	<hr>
-</div>
 
-<div id="cover" class="cover post tag-fest-reflect tag-java tag-maven tag-akka tag-junit tag-mockito">
-	<div class="background" ></div>
-	<header class="wrapper">
-		<h2>
-				<a href="../../../../tag/fest-reflect/index.html">FEST-Reflect</a> 
-				<a href="../../../../tag/java/index.html">Java</a> 
-				<a href="../../../../tag/maven/index.html">Maven</a> 
-				<a href="../../../../tag/akka/index.html">AKKA</a> 
-				<a href="../../../../tag/junit/index.html">JUnit</a> 
-				<a href="../../../../tag/mockito/index.html">Mockito</a> 
-		</h2>
-		<h1><a href="index.html#">Testing AKKA Actors With Mockito and FEST-Reflect</a></h1>
-		<span>
-			Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
-				on <i class="fa fa-clock-o"></i> <time datetime="2012-07-01">July 1st, 2012</time>.
-		</span>
-	</header>
-	<i class="fa fa-chevron-down movedown"></i>
-</div>
 
-<section class="posts wrapper">
-	<article class="post post tag-fest-reflect tag-java tag-maven tag-akka tag-junit tag-mockito">
-		<header>
-			<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+		<p></p>
+		<hr>
+	</div>
+
+	
+	<div id="cover" class="cover post tag-fest-reflect tag-java tag-maven tag-akka tag-junit tag-mockito">
+		<div class="background"></div>
+		<header class="wrapper">
 			<h2>
-					<a href="../../../../tag/fest-reflect/index.html">FEST-Reflect</a> 
-					<a href="../../../../tag/java/index.html">Java</a> 
-					<a href="../../../../tag/maven/index.html">Maven</a> 
-					<a href="../../../../tag/akka/index.html">AKKA</a> 
-					<a href="../../../../tag/junit/index.html">JUnit</a> 
-					<a href="../../../../tag/mockito/index.html">Mockito</a> 
+				<a href="../../../../tag/fest-reflect/">FEST-Reflect</a> 
+				<a href="../../../../tag/java/">Java</a> 
+				<a href="../../../../tag/maven/">Maven</a> 
+				<a href="../../../../tag/akka/">AKKA</a> 
+				<a href="../../../../tag/junit/">JUnit</a> 
+				<a href="../../../../tag/mockito/">Mockito</a> 
 			</h2>
-			<h1 id="posttitle"><a href="index.html#">Testing AKKA Actors With Mockito and FEST-Reflect</a></h1>
-			<span>
-				Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
-				on <i class="fa fa-clock-o"></i> <time datetime="2012-07-01">July 1st, 2012</time>.
+			<h1>Testing AKKA Actors With Mockito and FEST-Reflect</h1>
+			<span class="meta">
+				Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2012-07-01">July 1st, 2012</time>.
 			</span>
 		</header>
-		<section class="postbody">
-			<p><strong>Abstract</strong> : One of the few frameworks implementing the <a href="http://en.wikipedia.org/wiki/Actor_model">actor model</a> is AKKA. In fact <a href="http://typesafe.com/technology/akka">AKKA</a> is a lot more than just an implementation of the actor model, but within this post we are going to concentrate on combining <a href="http://code.google.com/p/mockito/">Mockito</a>, <a href="http://www.junit.org/">JUnit</a> and FEST-Reflect in order to facilitate actor testing and thus we won't need all the fancy features of AKKA.</p>
+		<i class="fa fa-chevron-down movedown"></i>
+	</div>
+
+	<section class="posts wrapper">
+		<article class="post post tag-fest-reflect tag-java tag-maven tag-akka tag-junit tag-mockito">
+
+			
+	<header>
+		<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+		<h2>
+			<a href="../../../../tag/fest-reflect/">FEST-Reflect</a> 
+			<a href="../../../../tag/java/">Java</a> 
+			<a href="../../../../tag/maven/">Maven</a> 
+			<a href="../../../../tag/akka/">AKKA</a> 
+			<a href="../../../../tag/junit/">JUnit</a> 
+			<a href="../../../../tag/mockito/">Mockito</a> 
+		</h2>
+		<h1 id="posttitle">Testing AKKA Actors With Mockito and FEST-Reflect</h1>
+		<span class="meta">
+			Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2012-07-01">July 1st, 2012</time>.
+		</span>
+	</header>
+
+			<section class="postbody">
+				<p><strong>Abstract</strong> : One of the few frameworks implementing the <a href="http://en.wikipedia.org/wiki/Actor_model">actor model</a> is AKKA. In fact <a href="http://typesafe.com/technology/akka">AKKA</a> is a lot more than just an implementation of the actor model, but within this post we are going to concentrate on combining <a href="http://code.google.com/p/mockito/">Mockito</a>, <a href="http://www.junit.org/">JUnit</a> and FEST-Reflect in order to facilitate actor testing and thus we won't need all the fancy features of AKKA.</p>
 
 <p><strong>Goal</strong> : Mocking an instance field within an AKKA actor.</p>
 
@@ -153,7 +163,7 @@
 
 <p>In order to reach our goal will need the following maven configuration. Note that you need to add the AKKA repository:  </p>
 
-<pre><code class=" xml">&lt;!-- other maven configuration --&gt;  
+<pre><code class="language-xml line-numbers">&lt;!-- other maven configuration --&gt;  
     &lt;dependencies&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;com.typesafe.akka&lt;/groupId&gt;
@@ -205,7 +215,7 @@
 
 <p>The actor which we are going to test looks like this:  </p>
 
-<pre><code class=" java">import akka.actor.UntypedActor;  
+<pre><code class="language-java line-numbers">import akka.actor.UntypedActor;  
 import com.honeysoft.business.service.IBusinessService;  
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -225,69 +235,68 @@ public class BusinessActor extends UntypedActor {
 
 <p>Our goal is quite simple, we have to mock the <em>businessService</em> within our <em>BusinessActor</em>. The difficulty comes from the fact that in a test case we are going to have an <em>ActorRef</em> reference variable to our actor and not a plain <em>Actor</em> reference. This means that our actor is actually nested within an <em>ActorRef</em> reference. As you might already guessed this brings further complications for mocking our <em>businessService</em> reference within the actor instance itself. Or in other words, our <em>businessService</em> is deeply nested and the exact path is <em>actorRef.actorCell.actor.businessService</em>. Luckily for us, since version <a href="http://honeysoft.wordpress.com/2012/06/18/nested-field-access-with-fest-reflect/">1.4 of FEST-Reflect</a> we can play with (deeply) nested fields with a single line of code (not counting the static import). Here is how:</p>
 
-<p>{% codeblock lang:java mark:43 %}
-import akka.actor.ActorRef; <br />
-import akka.actor.ActorSystem; <br />
-import akka.actor.Props; <br />
-import com.honeysoft.business.service.IBusinessService; <br />
-import com.typesafe.config.ConfigFactory; <br />
-import org.fest.reflect.core.Reflection; <br />
-import org.junit.After; <br />
-import org.junit.Before; <br />
-import org.junit.Test; <br />
-import org.junit.runner.RunWith; <br />
-import org.mockito.Mock; <br />
-import org.mockito.Mockito; <br />
-import org.mockito.runners.MockitoJUnitRunner;</p>
+<pre class="language-java line-numbers" data-line="44">  
+<code class="language-java">import akka.actor.ActorRef;  
+import akka.actor.ActorSystem;  
+import akka.actor.Props;  
+import com.honeysoft.business.service.IBusinessService;  
+import com.typesafe.config.ConfigFactory;  
+import org.fest.reflect.core.Reflection;  
+import org.junit.After;  
+import org.junit.Before;  
+import org.junit.Test;  
+import org.junit.runner.RunWith;  
+import org.mockito.Mock;  
+import org.mockito.Mockito;  
+import org.mockito.runners.MockitoJUnitRunner;
 
-<p>import static org.fest.reflect.core.Reflection.*; <br />
-import static org.mockito.Matchers.eq;</p>
+import static org.fest.reflect.core.Reflection.*;  
+import static org.mockito.Matchers.eq;
 
-<p>@RunWith(MockitoJUnitRunner.class)
-public class TestBusinessActor {</p>
+@RunWith(MockitoJUnitRunner.class)
+public class TestBusinessActor {
 
-<pre><code>static ActorSystem akkaSystem = ActorSystem.create("honeysoft-test-system", ConfigFactory.load().getConfig("honeysoft-test-system"));
+    static ActorSystem akkaSystem = ActorSystem.create("honeysoft-test-system", ConfigFactory.load().getConfig("honeysoft-test-system"));
 
-@Mock
-private IBusinessService businessServiceMock;
+    @Mock
+    private IBusinessService businessServiceMock;
 
-private ActorRef businessActor;
+    private ActorRef businessActor;
 
-@Before
-public void setup() {
-    businessActor = akkaSystem.actorOf(new Props(BusinessActor.class));
+    @Before
+    public void setup() {
+        businessActor = akkaSystem.actorOf(new Props(BusinessActor.class));
+    }
+
+    @After
+    public void clean() {
+        akkaSystem.stop(businessActor);
+    }
+
+    @Test
+    public void shouldExecuteBusinessMethod() {
+        //GIVEN
+        String businessMessage = "Some business message";
+
+        field("actorCell.actor.businessService").ofType(IBusinessService.class)//
+            .in(businessActor).set(businessServiceMock);
+
+        //WHEN
+        businessActor.tell(businessMessage);
+
+        //THEN
+        Mockito.verify(businessServiceMock, Mockito.times(1))//
+            .doBusiness(eq(businessMessage));
+    }
 }
-
-@After
-public void clean() {
-    akkaSystem.stop(businessActor);
-}
-
-@Test
-public void shouldExecuteBusinessMethod() {
-    //GIVEN
-    String businessMessage = "Some business message";
-
-    field("actorCell.actor.businessService").ofType(IBusinessService.class)//
-        .in(businessActor).set(businessServiceMock);
-
-    //WHEN
-    businessActor.tell(businessMessage);
-
-    //THEN
-    Mockito.verify(businessServiceMock, Mockito.times(1))//
-        .doBusiness(eq(businessMessage));
-}
-</code></pre>
-
-<p>}
-{% endcodeblock %}</p>
+</code>  
+</pre>
 
 <p>As you can see from the highlighted line 43 setting a deeply nested variable is as simple as specifying the path to it. Note that the exact path is <em>businessActor.actorCell.actor.businessService</em>, but the <em>businessActor</em> is already passed to the <em>.in()</em> method and thus as an argument to <em>field()</em> we have only <em>"actorCell.actor.businessService"</em>.</p>
 
 <p>To run the test you are also going to need a configuration file named <em>application.conf</em> which I have placed in my <em>src/test/resources</em> directory. The content of <em>application.conf</em> is:</p>
 
-<pre><code class=" xml">honeysoft-test-system {  
+<pre><code class="language- xml">honeysoft-test-system {  
     akka {
         mode = test
         event-handlers = ["akka.testkit.TestEventListener"]
@@ -304,29 +313,35 @@ public void shouldExecuteBusinessMethod() {
 </code></pre>
 
 <p>Well that was all for this post. Don't hesitate to leave a comment!</p>
-		</section>
-		<footer>
-			<ul class="share left">
-				<li><a href="http://twitter.com/share?text=Testing%20AKKA%20Actors%20With%20Mockito%20and%20FEST-Reflect&url=http://ingini.org/2012/07/01/test-akka-actor-mockito-fest-reflect/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
-				<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2012/07/01/test-akka-actor-mockito-fest-reflect/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
-			</ul>
-			<ul class="tags right">
-				<a href="../../../../tag/fest-reflect/index.html" class="smallbutton solidgray">FEST-Reflect</a>
-				<a href="../../../../tag/java/index.html" class="smallbutton solidgray">Java</a>
-				<a href="../../../../tag/maven/index.html" class="smallbutton solidgray">Maven</a>
-				<a href="../../../../tag/akka/index.html" class="smallbutton solidgray">AKKA</a>
-				<a href="../../../../tag/junit/index.html" class="smallbutton solidgray">JUnit</a>
-				<a href="../../../../tag/mockito/index.html" class="smallbutton solidgray">Mockito</a>
-			</ul>
-		</footer>
-		<div class="postprofile">
-			<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="user">
-			<div class="info">
-				<h4>Ivan Hristov</h4>
-				<a href="http://ingini.org">http://ingini.org</a>
-				<p></p>
-				
-        <ul class="social">
+			</section>
+
+			
+	<footer>
+		<ul class="share left">
+			<li><a href="http://twitter.com/share?text=Testing%20AKKA%20Actors%20With%20Mockito%20and%20FEST-Reflect&amp;url=http://ingini.org/2012/07/01/test-akka-actor-mockito-fest-reflect/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
+			<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2012/07/01/test-akka-actor-mockito-fest-reflect/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
+			<li><a href="https://plus.google.com/share?url=http://ingini.org/2012/07/01/test-akka-actor-mockito-fest-reflect/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" class="smallbutton lightgray"><i class="fa fa-google-plus"></i>Google+</a></li>
+		</ul>
+		<ul class="tags right">
+			<a href="../../../../tag/fest-reflect/" class="smallbutton solidgray">FEST-Reflect</a>
+			<a href="../../../../tag/java/" class="smallbutton solidgray">Java</a>
+			<a href="../../../../tag/maven/" class="smallbutton solidgray">Maven</a>
+			<a href="../../../../tag/akka/" class="smallbutton solidgray">AKKA</a>
+			<a href="../../../../tag/junit/" class="smallbutton solidgray">JUnit</a>
+			<a href="../../../../tag/mockito/" class="smallbutton solidgray">Mockito</a>
+		</ul>
+	</footer>
+
+			
+	<div class="postprofile">
+		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="Ivan Hristov">
+		<div class="info">
+			<h4>Ivan Hristov</h4>
+			<a href="http://ingini.org">http://ingini.org</a>
+			<p></p>
+			
+
+        	<ul class="social">
             <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
             <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
             <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
@@ -337,45 +352,48 @@ public void shouldExecuteBusinessMethod() {
             <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
             <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
             <!--<li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        </ul>
+        	</ul>
+		
 
 
+
+		</div>
+	</div>
+
+			<div class="comments">
+				<span class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</span>
+				<div id="disqus_thread"></div>
+				<div id="g-comments"></div>
 			</div>
-		</div>
-		<div class="comments">
-			<a href="javascript:;" class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</a>
-			<div id="disqus_thread"></div>
-			<div id="g-comments"></div>
-		</div>
 
-	</article>
+		</article>
 
-</section>
+	</section>
 
 
 
+	
 	<footer class="wrapper">
 		<div class="inlinemenu">
 			<div class="graybar">
 				<div class="left"><i class="fa fa-bars"></i>Navigation</div>
 				<div class="right"><i class="fa fa-chevron-down"></i></div>
 			</div>
-			<ul class="menu">
-				<a id="top"></a>
-<div class="navwrap">
-	<ul class="menu">
-	</ul>
-	<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
-</div>			</ul>
+			<div class="menu">
+				
+			</div>
 		</div>
-		<div>
-			Copyright &copy; <a href="http://ingini.org/">Ingini</a>. 2015 &bull; All rights reserved.
+		<div class="copyright">
+			Copyright © <a href="http://ingini.org/">Ingini</a>. 2016 • All rights reserved.
 			<span class="ghost">Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a>.</span>
+			<span class="ecko"><a href="http://ecko.me/themes/ghost/astro/" target="_blank">Astro Ghost Theme</a> by <a href="http://ecko.me/" target="_blank">EckoThemes</a>.</span>
 		</div>
 	</footer>
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=a9a8db849d"></script>
+	<!-- You can safely delete this line if your theme does not require jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=70b6e1da2b"></script>
 
 </body>
-</html>

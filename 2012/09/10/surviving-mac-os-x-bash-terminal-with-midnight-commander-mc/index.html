@@ -1,43 +1,42 @@
-<!DOCTYPE html>
-<html>
+
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<title>Surviving Mac OS X Bash Terminal With Midnight Commander (MC)</title>
-	<meta name="description" content="" />
+	<meta name="description" content="">
 
-	<meta name="HandheldFriendly" content="True" />
-	<meta name="MobileOptimized" content="320" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!--link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/"-->
+	<link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/">
 	<link rel="shortcut icon" href="../../../../favicon.ico">
 	<link rel="prefetch" href="http://ingini.org">
 
-    <link rel="stylesheet" type="text/css" href="../../../../assets/css/prettify.css?v=a9a8db849d" />
-	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=a9a8db849d" />
-	<link href='http://fonts.googleapis.com/css?family=Domine:700|Open+Sans:400,600|Source+Code+Pro:500' rel='stylesheet' type='text/css'>
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=70b6e1da2b">
+	<link href="https://fonts.googleapis.com/css?family=Domine:700%7COpen+Sans:400,600%7CSource+Code+Pro:500" rel="stylesheet" type="text/css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
-	<link rel="canonical" href="http://ingini.org/2012/09/10/surviving-mac-os-x-bash-terminal-with-midnight-commander-mc/" />
+	<link rel="canonical" href="http://ingini.org/2012/09/10/surviving-mac-os-x-bash-terminal-with-midnight-commander-mc/">
+    <meta name="referrer" content="origin">
     
-    <meta property="og:site_name" content="Ingini" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Surviving Mac OS X Bash Terminal With Midnight Commander (MC)" />
-    <meta property="og:description" content="Abstract : Midnight Commander (MC) is one of the few tools I&#x27;m still using since I&#x27;ve been inducted into software engineering more than 10 years ago (for comparison I&#x27;ve changed 5 integrated development environments (IDE) ). MC is classified as &quot;a visual..." />
-    <meta property="og:url" content="http://ingini.org/2012/09/10/surviving-mac-os-x-bash-terminal-with-midnight-commander-mc/" />
-    <meta property="article:published_time" content="2012-09-10T12:10:00.000Z" />
-    <meta property="article:modified_time" content="2014-05-28T13:59:10.989Z" />
-    <meta property="article:tag" content="Mac OS X" />
-    <meta property="article:tag" content="Midnight Commander" />
-    <meta property="article:tag" content="bash" />
-    <meta property="article:tag" content="homebrew" />
+    <meta property="og:site_name" content="Ingini">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Surviving Mac OS X Bash Terminal With Midnight Commander (MC)">
+    <meta property="og:description" content="Abstract : Midnight Commander (MC) is one of the few tools I'm still using since I've been inducted into software engineering more than 10 years ago (for comparison I've changed 5 integrated development environments (IDE) ). MC is classified as &quot;a visual...">
+    <meta property="og:url" content="http://ingini.org/2012/09/10/surviving-mac-os-x-bash-terminal-with-midnight-commander-mc/">
+    <meta property="article:published_time" content="2012-09-10T12:10:00.000Z">
+    <meta property="article:modified_time" content="2016-01-24T16:43:24.777Z">
+    <meta property="article:tag" content="Mac OS X">
+    <meta property="article:tag" content="Midnight Commander">
+    <meta property="article:tag" content="bash">
+    <meta property="article:tag" content="homebrew">
     
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Surviving Mac OS X Bash Terminal With Midnight Commander (MC)" />
-    <meta name="twitter:description" content="Abstract : Midnight Commander (MC) is one of the few tools I&#x27;m still using since I&#x27;ve been inducted into software engineering more than 10 years ago (for comparison I&#x27;ve changed 5 integrated development environments (IDE) ). MC is classified as &quot;a visual..." />
-    <meta name="twitter:url" content="http://ingini.org/2012/09/10/surviving-mac-os-x-bash-terminal-with-midnight-commander-mc/" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Surviving Mac OS X Bash Terminal With Midnight Commander (MC)">
+    <meta name="twitter:description" content="Abstract : Midnight Commander (MC) is one of the few tools I'm still using since I've been inducted into software engineering more than 10 years ago (for comparison I've changed 5 integrated development environments (IDE) ). MC is classified as &quot;a visual...">
+    <meta name="twitter:url" content="http://ingini.org/2012/09/10/surviving-mac-os-x-bash-terminal-with-midnight-commander-mc/">
     
     <script type="application/ld+json">
 {
@@ -55,17 +54,20 @@
     "headline": "Surviving Mac OS X Bash Terminal With Midnight Commander (MC)",
     "url": "http://ingini.org/2012/09/10/surviving-mac-os-x-bash-terminal-with-midnight-commander-mc/",
     "datePublished": "2012-09-10T12:10:00.000Z",
-    "dateModified": "2014-05-28T13:59:10.989Z",
+    "dateModified": "2016-01-24T16:43:24.777Z",
     "keywords": "Mac OS X, Midnight Commander, bash, homebrew",
     "description": "Abstract : Midnight Commander (MC) is one of the few tools I&#x27;m still using since I&#x27;ve been inducted into software engineering more than 10 years ago (for comparison I&#x27;ve changed 5 integrated development environments (IDE) ). MC is classified as &quot;a visual..."
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.6" />
-    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/" />
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/">
+    <link href="../../../../assets/css/prism.css" rel="stylesheet">
+<script type="text/javascript" src="../../../../assets/js/prism.js"></script>
 </head>
 <body class="post-template tag-mac-os-x tag-midnight-commander tag-bash tag-homebrew blogcover">
 
+	
 	<header class="title">
 		<a href="http://ingini.org"><i class="fa fa-bookmark-o fa-lg"></i><span>Ingini</span></a>
 	</header>
@@ -76,67 +78,75 @@
 
 	
 
-<div class="index">
-	<div class="wrapper">
-		<h1 class="right">Surviving Mac OS X Bash Terminal With Midnight Commander (MC)</h1>
-		<h2 class="left">Introduction</h2>
-	</div>
-</div>
-
-<div class="profile post tag-mac-os-x tag-midnight-commander tag-bash tag-homebrew">
-	<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="user">
-	<h4>Ivan Hristov</h4>
 	
-        <ul class="socialside">
-            <li><a href="https://twitter.com/iv_hristov" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <!--<li><a href="http://facebook.com" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
-            <li><a href="https://github.com/ihr" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
-	    <!--<li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
-            <!--<li><a href="htt://instagram.com/" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
-            <!--<li><a href="http://ingini.org/rss/" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        </ul>
+	<div class="flowbar">
+		<div class="wrapper">
+			<h1 class="right">Surviving Mac OS X Bash Terminal With Midnight Commander (MC)</h1>
+			<h2 class="left">Introduction</h2>
+		</div>
+	</div>
+
+	
+	<div class="profile post tag-mac-os-x tag-midnight-commander tag-bash tag-homebrew">
+		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="Ivan Hristov">
+		<h4>Ivan Hristov</h4>
+		
+	        <ul class="socialside">
+            	<li><a href="https://twitter.com/iv_hristov" class="smallsocial twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <!--<li><a href="http://facebook.com" class="smallsocial facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+            	<li><a href="https://github.com/ihr" class="smallsocial github" target="_blank"><i class="fa fa-github"></i></a></li>
+		<li><a href="http://plus.google.com/" class="smallsocial googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+		<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            <!--<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
+            <!--<li><a href="htt://instagram.com/" class="smallsocial instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+            <!--<li><a href="http://ingini.org/rss/" class="smallsocial rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
+        	</ul>
 
 
-	<p></p>
-	<hr>
-</div>
 
-<div id="cover" class="cover post tag-mac-os-x tag-midnight-commander tag-bash tag-homebrew">
-	<div class="background" ></div>
-	<header class="wrapper">
-		<h2>
-				<a href="../../../../tag/mac-os-x/index.html">Mac OS X</a> 
-				<a href="../../../../tag/midnight-commander/index.html">Midnight Commander</a> 
-				<a href="../../../../tag/bash/index.html">bash</a> 
-				<a href="../../../../tag/homebrew/index.html">homebrew</a> 
-		</h2>
-		<h1><a href="index.html#">Surviving Mac OS X Bash Terminal With Midnight Commander (MC)</a></h1>
-		<span>
-			Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
-				on <i class="fa fa-clock-o"></i> <time datetime="2012-09-10">September 10th, 2012</time>.
-		</span>
-	</header>
-	<i class="fa fa-chevron-down movedown"></i>
-</div>
 
-<section class="posts wrapper">
-	<article class="post post tag-mac-os-x tag-midnight-commander tag-bash tag-homebrew">
-		<header>
-			<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+		<p></p>
+		<hr>
+	</div>
+
+	
+	<div id="cover" class="cover post tag-mac-os-x tag-midnight-commander tag-bash tag-homebrew">
+		<div class="background"></div>
+		<header class="wrapper">
 			<h2>
-					<a href="../../../../tag/mac-os-x/index.html">Mac OS X</a> 
-					<a href="../../../../tag/midnight-commander/index.html">Midnight Commander</a> 
-					<a href="../../../../tag/bash/index.html">bash</a> 
-					<a href="../../../../tag/homebrew/index.html">homebrew</a> 
+				<a href="../../../../tag/mac-os-x/">Mac OS X</a> 
+				<a href="../../../../tag/midnight-commander/">Midnight Commander</a> 
+				<a href="../../../../tag/bash/">bash</a> 
+				<a href="../../../../tag/homebrew/">homebrew</a> 
 			</h2>
-			<h1 id="posttitle"><a href="index.html#">Surviving Mac OS X Bash Terminal With Midnight Commander (MC)</a></h1>
-			<span>
-				Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
-				on <i class="fa fa-clock-o"></i> <time datetime="2012-09-10">September 10th, 2012</time>.
+			<h1>Surviving Mac OS X Bash Terminal With Midnight Commander (MC)</h1>
+			<span class="meta">
+				Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2012-09-10">September 10th, 2012</time>.
 			</span>
 		</header>
-		<section class="postbody">
-			<p><strong>Abstract</strong> : <a href="https://www.midnight-commander.org/">Midnight Commander (MC)</a> is one of the few tools I'm still using since I've been inducted into software engineering more than 10 years ago (for comparison I've changed 5 integrated development environments (IDE) ). MC is classified as "a visual file manager" but for me is something much more, it's an engineering booster. In fact it's my fist IDE (MCedit supports color highlighting for various programming languages). In short, MC is one of those few things that changes your world. That's why I'm going to show you how you can painlessly integrate MC with Mac OS X bash terminal. </p>
+		<i class="fa fa-chevron-down movedown"></i>
+	</div>
+
+	<section class="posts wrapper">
+		<article class="post post tag-mac-os-x tag-midnight-commander tag-bash tag-homebrew">
+
+			
+	<header>
+		<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+		<h2>
+			<a href="../../../../tag/mac-os-x/">Mac OS X</a> 
+			<a href="../../../../tag/midnight-commander/">Midnight Commander</a> 
+			<a href="../../../../tag/bash/">bash</a> 
+			<a href="../../../../tag/homebrew/">homebrew</a> 
+		</h2>
+		<h1 id="posttitle">Surviving Mac OS X Bash Terminal With Midnight Commander (MC)</h1>
+		<span class="meta">
+			Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2012-09-10">September 10th, 2012</time>.
+		</span>
+	</header>
+
+			<section class="postbody">
+				<p><strong>Abstract</strong> : <a href="https://www.midnight-commander.org/">Midnight Commander (MC)</a> is one of the few tools I'm still using since I've been inducted into software engineering more than 10 years ago (for comparison I've changed 5 integrated development environments (IDE) ). MC is classified as "a visual file manager" but for me is something much more, it's an engineering booster. In fact it's my fist IDE (MCedit supports color highlighting for various programming languages). In short, MC is one of those few things that changes your world. That's why I'm going to show you how you can painlessly integrate MC with Mac OS X bash terminal. </p>
 
 <p><strong>Goal</strong> : Configuring Midnight Commander under Mac OS X bash terminal</p>
 
@@ -149,29 +159,29 @@
 
 <p><strong>Installation:</strong> I'm a huge fan of <a href="http://mxcl.github.com/homebrew/">homebrew</a> (thanks <a href="https://twitter.com/maximenowak">Max</a>!) and I advise you to install it and work with it. In short, Homebrew is "the missing package manager for OS X". Installing Homebrew is as easy as running the following command in the terminal prompt:</p>
 
-<pre><code class=" bash">ruby &lt;(curl -fsSkL raw.github.com/mxcl/homebrew/go)  
+<pre><code class="language-bash command-line">ruby &lt;(curl -fsSkL raw.github.com/mxcl/homebrew/go)  
 </code></pre>
 
 <p>Once you have Homebrew, installing MC is exactly three words:</p>
 
-<pre><code class=" bash">brew install mc  
+<pre><code class="language-bash command-line">brew install mc  
 </code></pre>
 
 <p><em>Side note:</em> You may wish to install <em>bash-completion</em> and take advantage of the <em>Tab</em> key on the terminal prompt. If so, do the following:</p>
 
-<pre><code class=" bash">brew install bash-completion  
+<pre><code class="language-bash command-line">brew install bash-completion  
 </code></pre>
 
 <p>... and ensure that your <em>.bash</em>profile_ has the following content inside:</p>
 
-<pre><code class=" bash">if [ -f `brew --prefix`/etc/bash_completion ]; then  
+<pre><code class="language-bash">if [ -f `brew --prefix`/etc/bash_completion ]; then  
     . `brew --prefix`/etc/bash_completion
 fi  
 </code></pre>
 
 <p>Note that you have to perform:  </p>
 
-<pre><code class=" bash">source .bash_profile  
+<pre><code class="language-bash command-line">source .bash_profile  
 </code></pre>
 
 <p>or re-open your terminal for the changes to take effect.</p>
@@ -248,38 +258,44 @@ F10: exit MC
 
 <p><strong>Keeping working directory after exiting MC:</strong> Now, I find this MC feature really cool but of course it's up to you to decide if you want to enabled it or not. In case you want, make sure you have the following (or similar, depending on the midnight commander version) line in your <em>.bash</em>profile_:</p>
 
-<pre><code class=" bash">alias mc=". /usr/local/Cellar/midnight-commander/4.8.4/libexec/mc/mc-wrapper.sh"  
+<pre><code class="language-bash">alias mc=". /usr/local/Cellar/midnight-commander/4.8.4/libexec/mc/mc-wrapper.sh"  
 </code></pre>
 
 <p><strong>IMPORTANT:</strong> As you can see from the line above, it includes the midnight commander version, so please modify accordingly to match your installed version.</p>
 
 <p>Note that you have to perform:  </p>
 
-<pre><code class=" bash">source .bash_profile  
+<pre><code class="language-bash command-line">source .bash_profile  
 </code></pre>
 
 <p>or re-open your terminal for the changes to take effect.</p>
-		</section>
-		<footer>
-			<ul class="share left">
-				<li><a href="http://twitter.com/share?text=Surviving%20Mac%20OS%20X%20Bash%20Terminal%20With%20Midnight%20Commander%20(MC)&url=http://ingini.org/2012/09/10/surviving-mac-os-x-bash-terminal-with-midnight-commander-mc/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
-				<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2012/09/10/surviving-mac-os-x-bash-terminal-with-midnight-commander-mc/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
-			</ul>
-			<ul class="tags right">
-				<a href="../../../../tag/mac-os-x/index.html" class="smallbutton solidgray">Mac OS X</a>
-				<a href="../../../../tag/midnight-commander/index.html" class="smallbutton solidgray">Midnight Commander</a>
-				<a href="../../../../tag/bash/index.html" class="smallbutton solidgray">bash</a>
-				<a href="../../../../tag/homebrew/index.html" class="smallbutton solidgray">homebrew</a>
-			</ul>
-		</footer>
-		<div class="postprofile">
-			<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="user">
-			<div class="info">
-				<h4>Ivan Hristov</h4>
-				<a href="http://ingini.org">http://ingini.org</a>
-				<p></p>
-				
-        <ul class="social">
+			</section>
+
+			
+	<footer>
+		<ul class="share left">
+			<li><a href="http://twitter.com/share?text=Surviving%20Mac%20OS%20X%20Bash%20Terminal%20With%20Midnight%20Commander%20(MC)&amp;url=http://ingini.org/2012/09/10/surviving-mac-os-x-bash-terminal-with-midnight-commander-mc/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
+			<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2012/09/10/surviving-mac-os-x-bash-terminal-with-midnight-commander-mc/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
+			<li><a href="https://plus.google.com/share?url=http://ingini.org/2012/09/10/surviving-mac-os-x-bash-terminal-with-midnight-commander-mc/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" class="smallbutton lightgray"><i class="fa fa-google-plus"></i>Google+</a></li>
+		</ul>
+		<ul class="tags right">
+			<a href="../../../../tag/mac-os-x/" class="smallbutton solidgray">Mac OS X</a>
+			<a href="../../../../tag/midnight-commander/" class="smallbutton solidgray">Midnight Commander</a>
+			<a href="../../../../tag/bash/" class="smallbutton solidgray">bash</a>
+			<a href="../../../../tag/homebrew/" class="smallbutton solidgray">homebrew</a>
+		</ul>
+	</footer>
+
+			
+	<div class="postprofile">
+		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="Ivan Hristov">
+		<div class="info">
+			<h4>Ivan Hristov</h4>
+			<a href="http://ingini.org">http://ingini.org</a>
+			<p></p>
+			
+
+        	<ul class="social">
             <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
             <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
             <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
@@ -290,45 +306,48 @@ F10: exit MC
             <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
             <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
             <!--<li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        </ul>
+        	</ul>
+		
 
 
+
+		</div>
+	</div>
+
+			<div class="comments">
+				<span class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</span>
+				<div id="disqus_thread"></div>
+				<div id="g-comments"></div>
 			</div>
-		</div>
-		<div class="comments">
-			<a href="javascript:;" class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</a>
-			<div id="disqus_thread"></div>
-			<div id="g-comments"></div>
-		</div>
 
-	</article>
+		</article>
 
-</section>
+	</section>
 
 
 
+	
 	<footer class="wrapper">
 		<div class="inlinemenu">
 			<div class="graybar">
 				<div class="left"><i class="fa fa-bars"></i>Navigation</div>
 				<div class="right"><i class="fa fa-chevron-down"></i></div>
 			</div>
-			<ul class="menu">
-				<a id="top"></a>
-<div class="navwrap">
-	<ul class="menu">
-	</ul>
-	<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
-</div>			</ul>
+			<div class="menu">
+				
+			</div>
 		</div>
-		<div>
-			Copyright &copy; <a href="http://ingini.org/">Ingini</a>. 2015 &bull; All rights reserved.
+		<div class="copyright">
+			Copyright © <a href="http://ingini.org/">Ingini</a>. 2016 • All rights reserved.
 			<span class="ghost">Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a>.</span>
+			<span class="ecko"><a href="http://ecko.me/themes/ghost/astro/" target="_blank">Astro Ghost Theme</a> by <a href="http://ecko.me/" target="_blank">EckoThemes</a>.</span>
 		</div>
 	</footer>
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=a9a8db849d"></script>
+	<!-- You can safely delete this line if your theme does not require jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=70b6e1da2b"></script>
 
 </body>
-</html>

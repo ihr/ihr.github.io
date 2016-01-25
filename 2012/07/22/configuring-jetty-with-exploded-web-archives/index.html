@@ -1,41 +1,40 @@
-<!DOCTYPE html>
-<html>
+
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<title>Configuring Jetty With Exploded Web Archives</title>
-	<meta name="description" content="" />
+	<meta name="description" content="">
 
-	<meta name="HandheldFriendly" content="True" />
-	<meta name="MobileOptimized" content="320" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!--link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/"-->
+	<link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/">
 	<link rel="shortcut icon" href="../../../../favicon.ico">
 	<link rel="prefetch" href="http://ingini.org">
 
-    <link rel="stylesheet" type="text/css" href="../../../../assets/css/prettify.css?v=a9a8db849d" />
-	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=a9a8db849d" />
-	<link href='http://fonts.googleapis.com/css?family=Domine:700|Open+Sans:400,600|Source+Code+Pro:500' rel='stylesheet' type='text/css'>
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=70b6e1da2b">
+	<link href="https://fonts.googleapis.com/css?family=Domine:700%7COpen+Sans:400,600%7CSource+Code+Pro:500" rel="stylesheet" type="text/css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
-	<link rel="canonical" href="http://ingini.org/2012/07/22/configuring-jetty-with-exploded-web-archives/" />
+	<link rel="canonical" href="http://ingini.org/2012/07/22/configuring-jetty-with-exploded-web-archives/">
+    <meta name="referrer" content="origin">
     
-    <meta property="og:site_name" content="Ingini" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Configuring Jetty With Exploded Web Archives" />
-    <meta property="og:description" content="Abstract : Having a great number of useful features, Jetty is one of the most popular servlet containers around. In this post we are going to prepare our test-bed with Jetty using exploded web archives (WAR) without any integrated development environment..." />
-    <meta property="og:url" content="http://ingini.org/2012/07/22/configuring-jetty-with-exploded-web-archives/" />
-    <meta property="article:published_time" content="2012-07-22T12:07:00.000Z" />
-    <meta property="article:modified_time" content="2014-05-28T13:44:06.135Z" />
-    <meta property="article:tag" content="Jetty" />
-    <meta property="article:tag" content="WAR" />
+    <meta property="og:site_name" content="Ingini">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Configuring Jetty With Exploded Web Archives">
+    <meta property="og:description" content="Abstract : Having a great number of useful features, Jetty is one of the most popular servlet containers around. In this post we are going to prepare our test-bed with Jetty using exploded web archives (WAR) without any integrated development environment...">
+    <meta property="og:url" content="http://ingini.org/2012/07/22/configuring-jetty-with-exploded-web-archives/">
+    <meta property="article:published_time" content="2012-07-22T12:07:00.000Z">
+    <meta property="article:modified_time" content="2016-01-24T16:47:42.316Z">
+    <meta property="article:tag" content="Jetty">
+    <meta property="article:tag" content="WAR">
     
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Configuring Jetty With Exploded Web Archives" />
-    <meta name="twitter:description" content="Abstract : Having a great number of useful features, Jetty is one of the most popular servlet containers around. In this post we are going to prepare our test-bed with Jetty using exploded web archives (WAR) without any integrated development environment..." />
-    <meta name="twitter:url" content="http://ingini.org/2012/07/22/configuring-jetty-with-exploded-web-archives/" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Configuring Jetty With Exploded Web Archives">
+    <meta name="twitter:description" content="Abstract : Having a great number of useful features, Jetty is one of the most popular servlet containers around. In this post we are going to prepare our test-bed with Jetty using exploded web archives (WAR) without any integrated development environment...">
+    <meta name="twitter:url" content="http://ingini.org/2012/07/22/configuring-jetty-with-exploded-web-archives/">
     
     <script type="application/ld+json">
 {
@@ -53,17 +52,20 @@
     "headline": "Configuring Jetty With Exploded Web Archives",
     "url": "http://ingini.org/2012/07/22/configuring-jetty-with-exploded-web-archives/",
     "datePublished": "2012-07-22T12:07:00.000Z",
-    "dateModified": "2014-05-28T13:44:06.135Z",
+    "dateModified": "2016-01-24T16:47:42.316Z",
     "keywords": "Jetty, WAR",
     "description": "Abstract : Having a great number of useful features, Jetty is one of the most popular servlet containers around. In this post we are going to prepare our test-bed with Jetty using exploded web archives (WAR) without any integrated development environment..."
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.6" />
-    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/" />
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/">
+    <link href="../../../../assets/css/prism.css" rel="stylesheet">
+<script type="text/javascript" src="../../../../assets/js/prism.js"></script>
 </head>
 <body class="post-template tag-jetty tag-war blogcover">
 
+	
 	<header class="title">
 		<a href="http://ingini.org"><i class="fa fa-bookmark-o fa-lg"></i><span>Ingini</span></a>
 	</header>
@@ -74,63 +76,71 @@
 
 	
 
-<div class="index">
-	<div class="wrapper">
-		<h1 class="right">Configuring Jetty With Exploded Web Archives</h1>
-		<h2 class="left">Introduction</h2>
-	</div>
-</div>
-
-<div class="profile post tag-jetty tag-war">
-	<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="user">
-	<h4>Ivan Hristov</h4>
 	
-        <ul class="socialside">
-            <li><a href="https://twitter.com/iv_hristov" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <!--<li><a href="http://facebook.com" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
-            <li><a href="https://github.com/ihr" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
-	    <!--<li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
-            <!--<li><a href="htt://instagram.com/" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
-            <!--<li><a href="http://ingini.org/rss/" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        </ul>
+	<div class="flowbar">
+		<div class="wrapper">
+			<h1 class="right">Configuring Jetty With Exploded Web Archives</h1>
+			<h2 class="left">Introduction</h2>
+		</div>
+	</div>
+
+	
+	<div class="profile post tag-jetty tag-war">
+		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="Ivan Hristov">
+		<h4>Ivan Hristov</h4>
+		
+	        <ul class="socialside">
+            	<li><a href="https://twitter.com/iv_hristov" class="smallsocial twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <!--<li><a href="http://facebook.com" class="smallsocial facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+            	<li><a href="https://github.com/ihr" class="smallsocial github" target="_blank"><i class="fa fa-github"></i></a></li>
+		<li><a href="http://plus.google.com/" class="smallsocial googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+		<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            <!--<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
+            <!--<li><a href="htt://instagram.com/" class="smallsocial instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+            <!--<li><a href="http://ingini.org/rss/" class="smallsocial rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
+        	</ul>
 
 
-	<p></p>
-	<hr>
-</div>
 
-<div id="cover" class="cover post tag-jetty tag-war">
-	<div class="background" ></div>
-	<header class="wrapper">
-		<h2>
-				<a href="../../../../tag/jetty/index.html">Jetty</a> 
-				<a href="../../../../tag/war/index.html">WAR</a> 
-		</h2>
-		<h1><a href="index.html#">Configuring Jetty With Exploded Web Archives</a></h1>
-		<span>
-			Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
-				on <i class="fa fa-clock-o"></i> <time datetime="2012-07-22">July 22nd, 2012</time>.
-		</span>
-	</header>
-	<i class="fa fa-chevron-down movedown"></i>
-</div>
 
-<section class="posts wrapper">
-	<article class="post post tag-jetty tag-war">
-		<header>
-			<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+		<p></p>
+		<hr>
+	</div>
+
+	
+	<div id="cover" class="cover post tag-jetty tag-war">
+		<div class="background"></div>
+		<header class="wrapper">
 			<h2>
-					<a href="../../../../tag/jetty/index.html">Jetty</a> 
-					<a href="../../../../tag/war/index.html">WAR</a> 
+				<a href="../../../../tag/jetty/">Jetty</a> 
+				<a href="../../../../tag/war/">WAR</a> 
 			</h2>
-			<h1 id="posttitle"><a href="index.html#">Configuring Jetty With Exploded Web Archives</a></h1>
-			<span>
-				Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
-				on <i class="fa fa-clock-o"></i> <time datetime="2012-07-22">July 22nd, 2012</time>.
+			<h1>Configuring Jetty With Exploded Web Archives</h1>
+			<span class="meta">
+				Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2012-07-22">July 22nd, 2012</time>.
 			</span>
 		</header>
-		<section class="postbody">
-			<p><strong>Abstract</strong> : Having a great number of useful features, <a href="http://www.eclipse.org/jetty/">Jetty</a> is one of the most popular servlet containers around. In this post we are going to prepare our test-bed with Jetty using exploded web archives (WAR) without any <strong>i</strong>ntegrated <strong>d</strong>evelopment <strong>e</strong>nvironment (IDE) plugins (such as IntelliJ Jetty integration plug-in or Eclipse Jetty Plugin).</p>
+		<i class="fa fa-chevron-down movedown"></i>
+	</div>
+
+	<section class="posts wrapper">
+		<article class="post post tag-jetty tag-war">
+
+			
+	<header>
+		<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+		<h2>
+			<a href="../../../../tag/jetty/">Jetty</a> 
+			<a href="../../../../tag/war/">WAR</a> 
+		</h2>
+		<h1 id="posttitle">Configuring Jetty With Exploded Web Archives</h1>
+		<span class="meta">
+			Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2012-07-22">July 22nd, 2012</time>.
+		</span>
+	</header>
+
+			<section class="postbody">
+				<p><strong>Abstract</strong> : Having a great number of useful features, <a href="http://www.eclipse.org/jetty/">Jetty</a> is one of the most popular servlet containers around. In this post we are going to prepare our test-bed with Jetty using exploded web archives (WAR) without any <strong>i</strong>ntegrated <strong>d</strong>evelopment <strong>e</strong>nvironment (IDE) plugins (such as IntelliJ Jetty integration plug-in or Eclipse Jetty Plugin).</p>
 
 <p><strong>Goal</strong> : Prepare a Jetty-enabled test-bed using exploded WAR content</p>
 
@@ -148,7 +158,7 @@
 
 <p><strong>Step 4</strong> : Add the following few lines to <em>jetty-exploded-web.xml</em> just before the closing __ tag:</p>
 
-<pre><code class=" xml">    &lt;!-- =========================================================== --&gt;
+<pre><code class="language- xml line-numbers">    &lt;!-- =========================================================== --&gt;
     &lt;!-- exloded web archives options                                --&gt;
     &lt;!-- =========================================================== --&gt;
     &lt;Call name="addLifeCycle"&gt;
@@ -166,7 +176,7 @@
 
 <p><strong>Step 5</strong> : Say we have two web apps: <em>web-app-1</em> and <em>web-app-2</em>. We are going to put the web context files of these web applications in the <em>jetty</em>home/exploded-context-deploy_ directory. Both context files are quite similar except for the web app names, thus I'll post the content of <em>web-app-1.xml</em> only:</p>
 
-<pre><code class=" xml">&lt;?xml version="1.0"  encoding="UTF-8"?&gt;  
+<pre><code class="language- xml line-numbers">&lt;?xml version="1.0"  encoding="UTF-8"?&gt;  
 &lt;!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd"&gt;  
 &lt;Configure class="org.eclipse.jetty.webapp.WebAppContext"&gt;  
     &lt;Set name="contextPath"&gt;/web-app-1&lt;/Set&gt;
@@ -205,7 +215,8 @@ etc/jetty-testrealm.xml
 
 <p><strong>Step 7</strong> : In order to run Jetty on port 8090 you have to execute the following from <em>jetty</em>home_:</p>
 
-<p>java -Djetty.port=8090 -jar start.jar</p>
+<pre><code class="language-bash command-line">java -Djetty.port=8090 -jar start.jar  
+</code></pre>
 
 <p>Note that if you don't provide the <em>-Djetty.port=8090</em>, Jetty will run on port 8080 by default.</p>
 
@@ -213,35 +224,42 @@ etc/jetty-testrealm.xml
 
 <p><strong>Remote debugging</strong> : If you want to attach a debugger (i.e. when using Eclipse, IntelliJ, etc.) to Jetty on port 8008 you have to run Jetty as follows:</p>
 
-<p>java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8008 -jar start.jar</p>
+<pre><code class="language-bash command-line">java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8008 -jar start.jar  
+</code></pre>
 
 <p><strong>Extra classpaths</strong> : You can specify extra class paths for your web application by indicating this in the web context file, as follows:</p>
 
-<pre><code class=" xml">&lt;Configure class="org.eclipse.jetty.webapp.WebAppContext"&gt;  
+<pre><code class="language- xml">&lt;Configure class="org.eclipse.jetty.webapp.WebAppContext"&gt;  
  ...
  &lt;Set name="extraClasspath"&gt;/extra/classes,/extra/extra.jar&lt;/Set&gt;
  ...
 &lt;/Configure&gt;  
 </code></pre>
-		</section>
-		<footer>
-			<ul class="share left">
-				<li><a href="http://twitter.com/share?text=Configuring%20Jetty%20With%20Exploded%20Web%20Archives&url=http://ingini.org/2012/07/22/configuring-jetty-with-exploded-web-archives/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
-				<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2012/07/22/configuring-jetty-with-exploded-web-archives/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
-			</ul>
-			<ul class="tags right">
-				<a href="../../../../tag/jetty/index.html" class="smallbutton solidgray">Jetty</a>
-				<a href="../../../../tag/war/index.html" class="smallbutton solidgray">WAR</a>
-			</ul>
-		</footer>
-		<div class="postprofile">
-			<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="user">
-			<div class="info">
-				<h4>Ivan Hristov</h4>
-				<a href="http://ingini.org">http://ingini.org</a>
-				<p></p>
-				
-        <ul class="social">
+			</section>
+
+			
+	<footer>
+		<ul class="share left">
+			<li><a href="http://twitter.com/share?text=Configuring%20Jetty%20With%20Exploded%20Web%20Archives&amp;url=http://ingini.org/2012/07/22/configuring-jetty-with-exploded-web-archives/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
+			<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2012/07/22/configuring-jetty-with-exploded-web-archives/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
+			<li><a href="https://plus.google.com/share?url=http://ingini.org/2012/07/22/configuring-jetty-with-exploded-web-archives/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" class="smallbutton lightgray"><i class="fa fa-google-plus"></i>Google+</a></li>
+		</ul>
+		<ul class="tags right">
+			<a href="../../../../tag/jetty/" class="smallbutton solidgray">Jetty</a>
+			<a href="../../../../tag/war/" class="smallbutton solidgray">WAR</a>
+		</ul>
+	</footer>
+
+			
+	<div class="postprofile">
+		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="Ivan Hristov">
+		<div class="info">
+			<h4>Ivan Hristov</h4>
+			<a href="http://ingini.org">http://ingini.org</a>
+			<p></p>
+			
+
+        	<ul class="social">
             <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
             <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
             <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
@@ -252,45 +270,48 @@ etc/jetty-testrealm.xml
             <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
             <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
             <!--<li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        </ul>
+        	</ul>
+		
 
 
+
+		</div>
+	</div>
+
+			<div class="comments">
+				<span class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</span>
+				<div id="disqus_thread"></div>
+				<div id="g-comments"></div>
 			</div>
-		</div>
-		<div class="comments">
-			<a href="javascript:;" class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</a>
-			<div id="disqus_thread"></div>
-			<div id="g-comments"></div>
-		</div>
 
-	</article>
+		</article>
 
-</section>
+	</section>
 
 
 
+	
 	<footer class="wrapper">
 		<div class="inlinemenu">
 			<div class="graybar">
 				<div class="left"><i class="fa fa-bars"></i>Navigation</div>
 				<div class="right"><i class="fa fa-chevron-down"></i></div>
 			</div>
-			<ul class="menu">
-				<a id="top"></a>
-<div class="navwrap">
-	<ul class="menu">
-	</ul>
-	<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
-</div>			</ul>
+			<div class="menu">
+				
+			</div>
 		</div>
-		<div>
-			Copyright &copy; <a href="http://ingini.org/">Ingini</a>. 2015 &bull; All rights reserved.
+		<div class="copyright">
+			Copyright © <a href="http://ingini.org/">Ingini</a>. 2016 • All rights reserved.
 			<span class="ghost">Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a>.</span>
+			<span class="ecko"><a href="http://ecko.me/themes/ghost/astro/" target="_blank">Astro Ghost Theme</a> by <a href="http://ecko.me/" target="_blank">EckoThemes</a>.</span>
 		</div>
 	</footer>
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=a9a8db849d"></script>
+	<!-- You can safely delete this line if your theme does not require jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=70b6e1da2b"></script>
 
 </body>
-</html>

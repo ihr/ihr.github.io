@@ -1,43 +1,42 @@
-<!DOCTYPE html>
-<html>
+
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<title>MongoDB With Jongo - Sleeves Up!</title>
-	<meta name="description" content="" />
+	<meta name="description" content="">
 
-	<meta name="HandheldFriendly" content="True" />
-	<meta name="MobileOptimized" content="320" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!--link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/"-->
+	<link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/">
 	<link rel="shortcut icon" href="../../../../favicon.ico">
 	<link rel="prefetch" href="http://ingini.org">
 
-    <link rel="stylesheet" type="text/css" href="../../../../assets/css/prettify.css?v=a9a8db849d" />
-	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=a9a8db849d" />
-	<link href='http://fonts.googleapis.com/css?family=Domine:700|Open+Sans:400,600|Source+Code+Pro:500' rel='stylesheet' type='text/css'>
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=70b6e1da2b">
+	<link href="https://fonts.googleapis.com/css?family=Domine:700%7COpen+Sans:400,600%7CSource+Code+Pro:500" rel="stylesheet" type="text/css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
-	<link rel="canonical" href="http://ingini.org/2013/04/03/mongodb-with-jongo-sleeves-up/" />
+	<link rel="canonical" href="http://ingini.org/2013/04/03/mongodb-with-jongo-sleeves-up/">
+    <meta name="referrer" content="origin">
     
-    <meta property="og:site_name" content="Ingini" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="MongoDB With Jongo - Sleeves Up!" />
-    <meta property="og:description" content="Abstract : In this post you will find a brief introduction to Jongo - a fast, easy-to-use, Java-based querying library for MongoDB. There are plenty of articles discussing MongoDB around the Internet and it’s documentation is quite good. Thus, here..." />
-    <meta property="og:url" content="http://ingini.org/2013/04/03/mongodb-with-jongo-sleeves-up/" />
-    <meta property="article:published_time" content="2013-04-03T08:00:00.000Z" />
-    <meta property="article:modified_time" content="2015-03-22T21:03:49.900Z" />
-    <meta property="article:tag" content="Java" />
-    <meta property="article:tag" content="Jongo" />
-    <meta property="article:tag" content="MongoDB" />
-    <meta property="article:tag" content="NoSQL" />
+    <meta property="og:site_name" content="Ingini">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="MongoDB With Jongo - Sleeves Up!">
+    <meta property="og:description" content="Abstract : In this post you will find a brief introduction to Jongo - a fast, easy-to-use, Java-based querying library for MongoDB. There are plenty of articles discussing MongoDB around the Internet and it’s documentation is quite good. Thus, here...">
+    <meta property="og:url" content="http://ingini.org/2013/04/03/mongodb-with-jongo-sleeves-up/">
+    <meta property="article:published_time" content="2013-04-03T08:00:00.000Z">
+    <meta property="article:modified_time" content="2016-01-24T16:27:24.730Z">
+    <meta property="article:tag" content="Java">
+    <meta property="article:tag" content="Jongo">
+    <meta property="article:tag" content="MongoDB">
+    <meta property="article:tag" content="NoSQL">
     
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="MongoDB With Jongo - Sleeves Up!" />
-    <meta name="twitter:description" content="Abstract : In this post you will find a brief introduction to Jongo - a fast, easy-to-use, Java-based querying library for MongoDB. There are plenty of articles discussing MongoDB around the Internet and it’s documentation is quite good. Thus, here..." />
-    <meta name="twitter:url" content="http://ingini.org/2013/04/03/mongodb-with-jongo-sleeves-up/" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="MongoDB With Jongo - Sleeves Up!">
+    <meta name="twitter:description" content="Abstract : In this post you will find a brief introduction to Jongo - a fast, easy-to-use, Java-based querying library for MongoDB. There are plenty of articles discussing MongoDB around the Internet and it’s documentation is quite good. Thus, here...">
+    <meta name="twitter:url" content="http://ingini.org/2013/04/03/mongodb-with-jongo-sleeves-up/">
     
     <script type="application/ld+json">
 {
@@ -55,17 +54,20 @@
     "headline": "MongoDB With Jongo - Sleeves Up!",
     "url": "http://ingini.org/2013/04/03/mongodb-with-jongo-sleeves-up/",
     "datePublished": "2013-04-03T08:00:00.000Z",
-    "dateModified": "2015-03-22T21:03:49.900Z",
+    "dateModified": "2016-01-24T16:27:24.730Z",
     "keywords": "Java, Jongo, MongoDB, NoSQL",
     "description": "Abstract : In this post you will find a brief introduction to Jongo - a fast, easy-to-use, Java-based querying library for MongoDB. There are plenty of articles discussing MongoDB around the Internet and it’s documentation is quite good. Thus, here..."
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.6" />
-    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/" />
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/">
+    <link href="../../../../assets/css/prism.css" rel="stylesheet">
+<script type="text/javascript" src="../../../../assets/js/prism.js"></script>
 </head>
 <body class="post-template tag-java tag-jongo tag-mongodb tag-nosql blogcover">
 
+	
 	<header class="title">
 		<a href="http://ingini.org"><i class="fa fa-bookmark-o fa-lg"></i><span>Ingini</span></a>
 	</header>
@@ -76,67 +78,75 @@
 
 	
 
-<div class="index">
-	<div class="wrapper">
-		<h1 class="right">MongoDB With Jongo - Sleeves Up!</h1>
-		<h2 class="left">Introduction</h2>
-	</div>
-</div>
-
-<div class="profile post tag-java tag-jongo tag-mongodb tag-nosql">
-	<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="user">
-	<h4>Ivan Hristov</h4>
 	
-        <ul class="socialside">
-            <li><a href="https://twitter.com/iv_hristov" class="smallsocialbutton twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <!--<li><a href="http://facebook.com" class="smallsocialbutton facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
-            <li><a href="https://github.com/ihr" class="smallsocialbutton github" target="_blank"><i class="fa fa-github"></i></a></li>
-	    <!--<li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
-            <!--<li><a href="htt://instagram.com/" class="smallsocialbutton instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
-            <!--<li><a href="http://ingini.org/rss/" class="smallsocialbutton rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        </ul>
+	<div class="flowbar">
+		<div class="wrapper">
+			<h1 class="right">MongoDB With Jongo - Sleeves Up!</h1>
+			<h2 class="left">Introduction</h2>
+		</div>
+	</div>
+
+	
+	<div class="profile post tag-java tag-jongo tag-mongodb tag-nosql">
+		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="Ivan Hristov">
+		<h4>Ivan Hristov</h4>
+		
+	        <ul class="socialside">
+            	<li><a href="https://twitter.com/iv_hristov" class="smallsocial twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <!--<li><a href="http://facebook.com" class="smallsocial facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
+            	<li><a href="https://github.com/ihr" class="smallsocial github" target="_blank"><i class="fa fa-github"></i></a></li>
+		<li><a href="http://plus.google.com/" class="smallsocial googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+		<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            <!--<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
+            <!--<li><a href="htt://instagram.com/" class="smallsocial instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
+            <!--<li><a href="http://ingini.org/rss/" class="smallsocial rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
+        	</ul>
 
 
-	<p></p>
-	<hr>
-</div>
 
-<div id="cover" class="cover post tag-java tag-jongo tag-mongodb tag-nosql">
-	<div class="background" ></div>
-	<header class="wrapper">
-		<h2>
-				<a href="../../../../tag/java/index.html">Java</a> 
-				<a href="../../../../tag/jongo/index.html">Jongo</a> 
-				<a href="../../../../tag/mongodb/index.html">MongoDB</a> 
-				<a href="../../../../tag/nosql/index.html">NoSQL</a> 
-		</h2>
-		<h1><a href="index.html#">MongoDB With Jongo - Sleeves Up!</a></h1>
-		<span>
-			Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
-				on <i class="fa fa-clock-o"></i> <time datetime="2013-04-03">April 3rd, 2013</time>.
-		</span>
-	</header>
-	<i class="fa fa-chevron-down movedown"></i>
-</div>
 
-<section class="posts wrapper">
-	<article class="post post tag-java tag-jongo tag-mongodb tag-nosql">
-		<header>
-			<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+		<p></p>
+		<hr>
+	</div>
+
+	
+	<div id="cover" class="cover post tag-java tag-jongo tag-mongodb tag-nosql">
+		<div class="background"></div>
+		<header class="wrapper">
 			<h2>
-					<a href="../../../../tag/java/index.html">Java</a> 
-					<a href="../../../../tag/jongo/index.html">Jongo</a> 
-					<a href="../../../../tag/mongodb/index.html">MongoDB</a> 
-					<a href="../../../../tag/nosql/index.html">NoSQL</a> 
+				<a href="../../../../tag/java/">Java</a> 
+				<a href="../../../../tag/jongo/">Jongo</a> 
+				<a href="../../../../tag/mongodb/">MongoDB</a> 
+				<a href="../../../../tag/nosql/">NoSQL</a> 
 			</h2>
-			<h1 id="posttitle"><a href="index.html#">MongoDB With Jongo - Sleeves Up!</a></h1>
-			<span>
-				Posted by <a href="../../../../author/ivan-hristov/index.html">Ivan Hristov</a>
-				on <i class="fa fa-clock-o"></i> <time datetime="2013-04-03">April 3rd, 2013</time>.
+			<h1>MongoDB With Jongo - Sleeves Up!</h1>
+			<span class="meta">
+				Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2013-04-03">April 3rd, 2013</time>.
 			</span>
 		</header>
-		<section class="postbody">
-			<p><strong>Abstract</strong> : In this post you will find a brief introduction to <a href="http://jongo.org/">Jongo</a> - a fast, easy-to-use, Java-based querying library for <a href="http://www.mongodb.org/">MongoDB</a>. There are plenty of articles discussing MongoDB around the Internet and <a href="http://docs.mongodb.org/manual/">it’s documentation</a> is quite good. Thus, here you won’t find any introduction to MongoDB nor am I going to convince you to use it or not. In this article I’m going to show you that querying MongoDB from Java can be easy. Don’t be afraid from the size of the post, most of it is simple code and data samples.</p>
+		<i class="fa fa-chevron-down movedown"></i>
+	</div>
+
+	<section class="posts wrapper">
+		<article class="post post tag-java tag-jongo tag-mongodb tag-nosql">
+
+			
+	<header>
+		<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
+		<h2>
+			<a href="../../../../tag/java/">Java</a> 
+			<a href="../../../../tag/jongo/">Jongo</a> 
+			<a href="../../../../tag/mongodb/">MongoDB</a> 
+			<a href="../../../../tag/nosql/">NoSQL</a> 
+		</h2>
+		<h1 id="posttitle">MongoDB With Jongo - Sleeves Up!</h1>
+		<span class="meta">
+			Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2013-04-03">April 3rd, 2013</time>.
+		</span>
+	</header>
+
+			<section class="postbody">
+				<p><strong>Abstract</strong> : In this post you will find a brief introduction to <a href="http://jongo.org/">Jongo</a> - a fast, easy-to-use, Java-based querying library for <a href="http://www.mongodb.org/">MongoDB</a>. There are plenty of articles discussing MongoDB around the Internet and <a href="http://docs.mongodb.org/manual/">it’s documentation</a> is quite good. Thus, here you won’t find any introduction to MongoDB nor am I going to convince you to use it or not. In this article I’m going to show you that querying MongoDB from Java can be easy. Don’t be afraid from the size of the post, most of it is simple code and data samples.</p>
 
 <p><strong>Goal</strong> : Basic use of Jongo for querying MongoDB.</p>
 
@@ -242,7 +252,7 @@ public abstract class Human {
 
 <p>For simplicity, we are going to consider that a human can be of a female or male gender:</p>
 
-<pre><code>package org.ingini.jongo.example.model;
+<pre><code class="language-java line-numbers">package org.ingini.jongo.example.model;
 
 import static org.ingini.jongo.example.model.Gender.Constants.*;
 
@@ -262,7 +272,7 @@ public enum Gender {
 
 <p>Thus we can have a human hierarchy based on gender:  </p>
 
-<pre><code>package org.ingini.jongo.example.model;
+<pre><code class="language-java line-numbers">package org.ingini.jongo.example.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;  
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;  
@@ -291,7 +301,7 @@ public class Hero extends Human {
 
 <p>… and a heroine:</p>
 
-<pre><code>package org.ingini.jongo.example.model;
+<pre><code class="language-java line-numbers">package org.ingini.jongo.example.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;  
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;  
@@ -320,7 +330,7 @@ public class Heroine extends Human {
 
 <p>As you can see from our Human class, every human has an address:  </p>
 
-<pre><code>package org.ingini.jongo.example.model;
+<pre><code class="language-java line-numbers">package org.ingini.jongo.example.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;  
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;  
@@ -385,7 +395,7 @@ public class Address {
 
 <p>The one thing left is the realm’s regions. In case you still don’t know what the realm’s regions are : go back to the novels (or TV series) or just click <a href="http://gameofthrones.wikia.com/wiki/Category:Regions">here</a>. I’ve used an enum to represent the regions but I’ve put only some of them:</p>
 
-<pre><code>package org.ingini.jongo.example.model;
+<pre><code class="language-java line-numbers">package org.ingini.jongo.example.model;
 
 public enum Region {  
     WESTEROS, ESSOS, DORNE, IRON_ISLANDS, THE_CROWNLANDS, THE_RIVERLANDS, THE_VALE_OF_ARRYN, THE_NORTH, THE_REACH
@@ -398,7 +408,7 @@ public enum Region {
 
 <p>Let’s start by creating a very important heroine called Arya Stark:  </p>
 
-<pre><code>Jongo jongo = new Jongo(mongoDB);
+<pre><code class="language-java line-numbers">Jongo jongo = new Jongo(mongoDB);
 
 MongoCollection heroes = jongo.getCollection("heroes");
 
@@ -410,7 +420,7 @@ heroes.insert(aryaStark);
 
 <p>… and here is the MongoDB document:</p>
 
-<pre><code>{
+<pre><code class="language-json line-numbers">{
   "_id" : ObjectId("51865d8c21622e48542ea6ac"),
   "gender" : "FEMALE",
   "first_name" : "Arya",
@@ -426,7 +436,7 @@ heroes.insert(aryaStark);
 
 <p>Let’s also create and insert the father of Arya Stark - <a href="http://gameofthrones.wikia.com/wiki/Eddard_Stark">Eddard Stark</a>:</p>
 
-<pre><code>Jongo jongo = new Jongo(mongoDB);
+<pre><code class="language-java line-numbers">Jongo jongo = new Jongo(mongoDB);
 
 MongoCollection heroes = jongo.getCollection("heroes");
 
@@ -447,7 +457,7 @@ heroes.insert(eddardStark);
 
 <p>What I’ve done is a good example of a composite, tree structure. I have a main node document (Eddard Stark) and his children/leaves (Robb, Sansa, Arya, Bran, Rickon, Jon). For those of you who are new to the world of MongoDB, I hope you can easily see the power you’ve been given:  </p>
 
-<pre><code>{
+<pre><code class="language-json line-numbers">{
         "_id": "5186a0da21622e48542ea6af",
         "gender": "MALE",
         "first_name": "Eddard",
@@ -531,7 +541,7 @@ heroes.insert(eddardStark);
 
 <p>Note that up to now I’ve used the automatically generated <em>_id</em> by MongoDB which are ‘most likely unique’ (according to the docs <a href="http://docs.mongodb.org/manual/reference/object-id/">ObjectId</a>). I invite you to take a look at the docs and see for yourself if you are happy with the ‘most likely unique’ statement (personally, I’m satisfied). Of course, in certain scenarios you may have a natural unique identifier or you might want to generate the <em>_id</em> manually. Either way, Jongo is here for you and gives you the means to do it. In order to show you how, I will create a new collection called weapons which will hold different weapons belonging to the heroes and heroines in <em>Game of Thrones</em>. Here is our sword class:  </p>
 
-<pre><code>package org.ingini.jongo.example.model.weapons;
+<pre><code class="language-java line-numbers">package org.ingini.jongo.example.model.weapons;
 
 import com.fasterxml.jackson.annotation.JsonCreator;  
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;  
@@ -568,7 +578,7 @@ public class Sword {
 
 <p>… and here is how you can create and insert one such document:</p>
 
-<pre><code>Jongo jongo = new Jongo(mongoDB);
+<pre><code class="language-java line-numbers">Jongo jongo = new Jongo(mongoDB);
 
 MongoCollection weapons = jongo.getCollection("weapons");
 
@@ -579,7 +589,7 @@ weapons.save(lightbringer);
 
 <p>… and here is what the MongoDB document looks like after being inserted:</p>
 
-<pre><code>{ "_id" : "Lightbringer" }
+<pre><code class="language-json">{ "_id" : "Lightbringer" }
 </code></pre>
 
 <p>Note however, that I’ve used the .save() operation instead of .insert() that’s because there is a <a href="https://github.com/bguerout/jongo/issues/134">bug in the version 0.4 of Jongo</a> which will be fixed in version 0.5.</p>
@@ -588,19 +598,19 @@ weapons.save(lightbringer);
 
 <p>Now let’s do some reading. Just as in the mongo shell, Jongo gives you the ability to read in two ways with <em>find()</em> and <em>findOne()</em>. Let’s do some reading of our Human’s hierarchy:  </p>
 
-<pre><code>Hero hero = heroes.findOne("{_id : {$oid: #}}", "5186a0da21622e48542ea6af").as(Hero.class);  
+<pre><code class="language-java line-numbers">Hero hero = heroes.findOne("{_id : {$oid: #}}", "5186a0da21622e48542ea6af").as(Hero.class);  
 </code></pre>
 
 <p>In the preceding query, I know that the target _id (“5186a0da21622e48542ea6af”) belongs to a male hero (Eddard Stark). Thus I can take a full advantage of Jongo and use .as(<em>Hero</em>.class). Note, that I’ve used the $oid operator. Instead, however, I can use an <em>ObjectId</em> (org.bson.types.ObjectId):  </p>
 
-<pre><code>Hero hero = heroes.findOne(new ObjectId("5186a0da21622e48542ea6af")).as(Hero.class);  
+<pre><code class="language-java line-numbers">Hero hero = heroes.findOne(new ObjectId("5186a0da21622e48542ea6af")).as(Hero.class);  
 </code></pre>
 
 <p>Of course, when you are not sure what is the exact type of the result you can always back-off to the parent class. In our case that would be using .as(<em>Human</em>.class) instead of .as(<em>Hero</em>.class), since the <em>Human</em>.class is the parent of both <em>Hero</em> and <em>Heroine</em> classes.</p>
 
 <p>You can query using multiple parameters:  </p>
 
-<pre><code>Heroine heroine = heroes.findOne("{" + Human.GENDER + ": #, " + Human.FIRST_NAME + ": #}",  
+<pre><code class="language-java line-numbers">Heroine heroine = heroes.findOne("{" + Human.GENDER + ": #, " + Human.FIRST_NAME + ": #}",  
                Gender.FEMALE, "Arya").as(Heroine.class);
 </code></pre>
 
@@ -608,7 +618,7 @@ weapons.save(lightbringer);
 
 <p>Now, let’s have somewhat more complex querying example. What if I want to get only one child of Eddard Stark (that is one element of the <em>children</em> array), say <a href="http://gameofthrones.wikia.com/wiki/Sansa_Stark">Sansa Stark</a>. Here is how we can do that:  </p>
 
-<pre><code>Heroine heroine = heroes.findOne("{_id : {$oid: #}}", "5186a0da21622e48542ea6af")  
+<pre><code class="language-java line-numbers">Heroine heroine = heroes.findOne("{_id : {$oid: #}}", "5186a0da21622e48542ea6af")  
        .projection("{children: {$elemMatch: {" + Human.FIRST_NAME + ": #, " +
                     Human.LAST_NAME + ": #}}}", "Sansa", "Stark")
        .map(new ResultHandler&lt;Heroine&gt;() {
@@ -631,7 +641,7 @@ weapons.save(lightbringer);
 
 <p>Finding documents based on a regular expression is also supported. Let’s assume we have the following documents in the <em>weapons</em> collection:  </p>
 
-<pre><code>{ "_id" : "Lightbringer" }
+<pre><code class="language-json line-numbers">{ "_id" : "Lightbringer" }
 { "_id" : "Longclaw", "material" : "Valyrian steel" }
 { "_id" : "Dark Sister", "material" : "Valyrian steel" }
 { "_id" : "Ice", "material" : "Valyrian steel" }
@@ -639,12 +649,12 @@ weapons.save(lightbringer);
 
 <p>If you want to find all swords made of steel, you have two options. You can either use the <em>$regex</em> operator, like this:  </p>
 
-<pre><code>weapons.find("{" + Sword.MATERIAL + ": {$regex: #}}", "steel.*").as(Sword.class)  
+<pre><code class="language-java line-numbers">weapons.find("{" + Sword.MATERIAL + ": {$regex: #}}", "steel.*").as(Sword.class)  
 </code></pre>
 
 <p>… or you can go for <em>Pattern.compile(…)</em> :</p>
 
-<pre><code>weapons.find("{" + Sword.MATERIAL + ": #}", Pattern.compile("steel.*")).as(Sword.class)  
+<pre><code class="language-java line-numbers">weapons.find("{" + Sword.MATERIAL + ": #}", Pattern.compile("steel.*")).as(Sword.class)  
 </code></pre>
 
 <p>Personally, I like using the # sing to keep the query logic separated from the actual data state of the query parameters. This adds to the readability of your code and makes refactoring easier.</p>
@@ -653,7 +663,7 @@ weapons.save(lightbringer);
 
 <p>Shall we update something then? How about adding a details field to the Lightbringer document which, as you might already guessed, will hold some <em>details</em> about the <em>Lightbringer</em> sword. The details will be represented by the following <em>WeaponDetails</em> class:  </p>
 
-<pre><code>package org.ingini.jongo.example.model.weapons;
+<pre><code class="language-java line-numbers">package org.ingini.jongo.example.model.weapons;
 
 import com.fasterxml.jackson.annotation.JsonCreator;  
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;  
@@ -698,28 +708,28 @@ public class WeaponDetails {
 
 <p>… and here is how you do it:</p>
 
-<pre><code>WeaponDetails details = new WeaponDetails("The one who pulls out this sword from fire will be named Lord's Chosen ...", "Azor Ahai");
+<pre><code class="language-java line-numbers">WeaponDetails details = new WeaponDetails("The one who pulls out this sword from fire will be named Lord's Chosen ...", "Azor Ahai");
 
 weapons.update("{_id: #}", "Lightbringer").with("{$set: {details: #}}", details);  
 </code></pre>
 
 <p>Now the Lightbringer MongoDB document looks like this:  </p>
 
-<pre><code>{ "_id" : "Lightbringer", "details" : { "prophecy" : "The one who pulls out this sword from fire will be named Lord's Chosen ...", "creator" : "Azor Ahai" } }
+<pre><code class="language-json line-numbers">{ "_id" : "Lightbringer", "details" : { "prophecy" : "The one who pulls out this sword from fire will be named Lord's Chosen ...", "creator" : "Azor Ahai" } }
 </code></pre>
 
 <p>Right, everything looks fine. Or does it? I’ve updated the MongoDB document, but I haven’t change the <em>Sword</em>.java. Meaning that if I do:  </p>
 
-<pre><code>Sword lightbringer = weapons.findOne("{_id: 'Lightbringer'}").as(Sword.class);  
+<pre><code class="language-java line-numbers">Sword lightbringer = weapons.findOne("{_id: 'Lightbringer'}").as(Sword.class);  
 </code></pre>
 
 <p>I will have the <em>lightbringer</em> sword alright but it won’t have the <em>details</em> property. Nevertheless, adding a property to a MongoDB didn’t result in some exception. This shows two things:</p>
 
-<p>If you do forget to change your Java classes, well, you won’t be able to get what you have in the database but this won’t cause your application to crash <br />
-You can implement multiple views/representations (i.e. by having multiple Java classes) over the same MongoDB document. A really nice description of what you can do with these multiple views/representations is given by <a href="http://martinfowler.com/">Martin Fowler</a> in his bliki about <a href="http://martinfowler.com/bliki/CQRS.html">Command Query Responsibility Segregation Pattern</a> <br />
+<p>If you do forget to change your Java classes, well, you won’t be able to get what you have in the database but this won’t cause your application to crash <br>
+You can implement multiple views/representations (i.e. by having multiple Java classes) over the same MongoDB document. A really nice description of what you can do with these multiple views/representations is given by <a href="http://martinfowler.com/">Martin Fowler</a> in his bliki about <a href="http://martinfowler.com/bliki/CQRS.html">Command Query Responsibility Segregation Pattern</a> <br>
 As for our <em>Sword</em>.java we can change it to this:  </p>
 
-<pre><code>package org.ingini.jongo.example.model.weapons;
+<pre><code class="language-java line-numbers">package org.ingini.jongo.example.model.weapons;
 
 import com.fasterxml.jackson.annotation.JsonCreator;  
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;  
@@ -768,7 +778,7 @@ public class Sword {
 
 <p>Let’s see how we can tackle the problem of adding a field to a Java class and updating the MongoDB document. As I mentioned earlier, there are some non-human heroes. The most famous ones are the six orphaned dire wolf cubs found in the Wolfswood which were adopted by the children of House of Stark and the three dragons of <a href="http://gameofthrones.wikia.com/wiki/Daenerys_Targaryen">Daenerys Targaryen</a>. For the moment we will take a closer look at the dire wolves. But what’s common between the dire wolves and the dragons is that they are beasts. Thus, let’s start with the <em>Beast</em> class:  </p>
 
-<pre><code>package org.ingini.jongo.example.model.beasts;
+<pre><code class="language-java line-numbers">package org.ingini.jongo.example.model.beasts;
 
 import com.fasterxml.jackson.annotation.JsonProperty;  
 import com.fasterxml.jackson.annotation.JsonSubTypes;  
@@ -832,7 +842,7 @@ public abstract class Beast {
 
 <p>Each beast has its kind:  </p>
 
-<pre><code>package org.ingini.jongo.example.model.beasts;
+<pre><code class="language-java line-numbers">package org.ingini.jongo.example.model.beasts;
 
 public enum Kind {  
     DIRE_WOLF(Constants.DIRE_WOLF), DRAGON(Constants.DRAGON);
@@ -849,7 +859,7 @@ public enum Kind {
 
 <p>Now let’s create our <em>DireWolf</em>:  </p>
 
-<pre><code>package org.ingini.jongo.example.model.beasts;
+<pre><code class="language-java line-numbers">package org.ingini.jongo.example.model.beasts;
 
 import com.fasterxml.jackson.annotation.JsonCreator;  
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;  
@@ -865,9 +875,9 @@ public class DireWolf extends Beast {
 }
 </code></pre>
 
-<p>So far so good, what’s left is to add a beasts property of type <em>Set<? extends Beast></em> in the <em>Human</em> Java class. I’m not going to list the entire <em>Human</em>.class but you can find the code on <a href="https://github.com/ihr/jongo-by-example">GitHub</a>. Here is what I did to add a dire wolf to each of the Eddard Stark’s children:  </p>
+<p>So far so good, what’s left is to add a beasts property of type <em>Set extends Beast&gt;</em> in the <em>Human</em> Java class. I’m not going to list the entire <em>Human</em>.class but you can find the code on <a href="https://github.com/ihr/jongo-by-example">GitHub</a>. Here is what I did to add a dire wolf to each of the Eddard Stark’s children:  </p>
 
-<pre><code>Hero eddardStark = heroes.findOne(new ObjectId("5186a0da21622e48542ea6af")).as(Hero.class);  
+<pre><code class="language-java line-numbers">Hero eddardStark = heroes.findOne(new ObjectId("5186a0da21622e48542ea6af")).as(Hero.class);  
 Set&lt;Human&gt; updatedChildren = // here goes some code to update each child  
 Hero updatedEddardStark = Hero.updateChildren(eddardStark, updatedChildren);  
 heroes.save(updatedEddardStark);  
@@ -875,7 +885,7 @@ heroes.save(updatedEddardStark);
 
 <p>The most interesting part is the highlighted line 4. Now, make sure the updated object instance (in our case that’s <em>updatedEddardStark</em>) contains the <em>_id</em> property of the original document otherwise a new MongoDB document will be inserted. In the code above, I’ve used a <em>updateChildren</em> factory method which looks like this:  </p>
 
-<pre><code>public static Hero updateChildren(Hero hero, Set&lt;? extends Human&gt; children) {  
+<pre><code class="language-java line-numbers">public static Hero updateChildren(Hero hero, Set&lt;? extends Human&gt; children) {  
         return new Hero(hero.getId(), hero.getFirstName(), hero.getLastName(),
             hero.getAddress(), children, hero.getBeasts());
 }
@@ -889,14 +899,14 @@ heroes.save(updatedEddardStark);
 
 <p>If you want to delete a single document of which you know the identifier, you can do it like this:  </p>
 
-<pre><code>heroes.remove(new ObjectId("5186a0da21622e48542ea6af"));  
+<pre><code class="language-java line-numbers">heroes.remove(new ObjectId("5186a0da21622e48542ea6af"));  
 </code></pre>
 
 <p>What if you want to remove a field from a document? Well, that’s actually unset-ting it, here is how:</p>
 
 <p>First, let’s say we have the document:  </p>
 
-<pre><code>{
+<pre><code class="language-json line-numbers">{
         "_id": "5186a8a221622e48542ea6b0",
         "gender": "FEMALE",
         "first_name": "Arya",
@@ -911,7 +921,7 @@ heroes.save(updatedEddardStark);
 
 <p>Just to make it a bit more interesting we are going to delete the nested address field castle (highlighted on line 7) by doing the following:  </p>
 
-<pre><code>heroes.update(new ObjectId("5186a8a221622e48542ea6b0")).with("{$unset: {" + Human.ADDRESS + "." + Address.CASTLE + ": 1}}");  
+<pre><code class="language-java line-numbers">heroes.update(new ObjectId("5186a8a221622e48542ea6b0")).with("{$unset: {" + Human.ADDRESS + "." + Address.CASTLE + ": 1}}");  
 </code></pre>
 
 <h1 id="finalnote">Final note</h1>
@@ -919,27 +929,33 @@ heroes.save(updatedEddardStark);
 <p>Jongo and MongoDB are really great tools to solve some of our every day problems and my only hope is that this post brought some light on how you can do that. In conclusion to everything already said, I would like to add that although Jongo is young it has a great potential of becoming a very popular tool. That’s mainly because it is easy to solve problems with it. And when I say “it is easy”, I mean that you can write more understandable / readable code and create elegant solutions avoiding unnecessary complexity.</p>
 
 <p>If you want to learn more about Jongo then go to its home page <a href="http://jongo.org/">http://jongo.org/</a>. The documentation is great and both <a href="https://twitter.com/bguerout">Benoit</a> and <a href="https://twitter.com/amsellemyves">Yves</a> are open to discussions and new ideas, so don’t hesitate to give Jongo a try and share your opinion. If you want to learn even more - write me a comment explaining what you are interested in and I promise to write another post about Jongo and your problem.</p>
-		</section>
-		<footer>
-			<ul class="share left">
-				<li><a href="http://twitter.com/share?text=MongoDB%20With%20Jongo%20-%20Sleeves%20Up!&url=http://ingini.org/2013/04/03/mongodb-with-jongo-sleeves-up/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
-				<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2013/04/03/mongodb-with-jongo-sleeves-up/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
-			</ul>
-			<ul class="tags right">
-				<a href="../../../../tag/java/index.html" class="smallbutton solidgray">Java</a>
-				<a href="../../../../tag/jongo/index.html" class="smallbutton solidgray">Jongo</a>
-				<a href="../../../../tag/mongodb/index.html" class="smallbutton solidgray">MongoDB</a>
-				<a href="../../../../tag/nosql/index.html" class="smallbutton solidgray">NoSQL</a>
-			</ul>
-		</footer>
-		<div class="postprofile">
-			<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="user">
-			<div class="info">
-				<h4>Ivan Hristov</h4>
-				<a href="http://ingini.org">http://ingini.org</a>
-				<p></p>
-				
-        <ul class="social">
+			</section>
+
+			
+	<footer>
+		<ul class="share left">
+			<li><a href="http://twitter.com/share?text=MongoDB%20With%20Jongo%20-%20Sleeves%20Up!&amp;url=http://ingini.org/2013/04/03/mongodb-with-jongo-sleeves-up/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
+			<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2013/04/03/mongodb-with-jongo-sleeves-up/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
+			<li><a href="https://plus.google.com/share?url=http://ingini.org/2013/04/03/mongodb-with-jongo-sleeves-up/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" class="smallbutton lightgray"><i class="fa fa-google-plus"></i>Google+</a></li>
+		</ul>
+		<ul class="tags right">
+			<a href="../../../../tag/java/" class="smallbutton solidgray">Java</a>
+			<a href="../../../../tag/jongo/" class="smallbutton solidgray">Jongo</a>
+			<a href="../../../../tag/mongodb/" class="smallbutton solidgray">MongoDB</a>
+			<a href="../../../../tag/nosql/" class="smallbutton solidgray">NoSQL</a>
+		</ul>
+	</footer>
+
+			
+	<div class="postprofile">
+		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="Ivan Hristov">
+		<div class="info">
+			<h4>Ivan Hristov</h4>
+			<a href="http://ingini.org">http://ingini.org</a>
+			<p></p>
+			
+
+        	<ul class="social">
             <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
             <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
             <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
@@ -950,45 +966,48 @@ heroes.save(updatedEddardStark);
             <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
             <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
             <!--<li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        </ul>
+        	</ul>
+		
 
 
+
+		</div>
+	</div>
+
+			<div class="comments">
+				<span class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</span>
+				<div id="disqus_thread"></div>
+				<div id="g-comments"></div>
 			</div>
-		</div>
-		<div class="comments">
-			<a href="javascript:;" class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</a>
-			<div id="disqus_thread"></div>
-			<div id="g-comments"></div>
-		</div>
 
-	</article>
+		</article>
 
-</section>
+	</section>
 
 
 
+	
 	<footer class="wrapper">
 		<div class="inlinemenu">
 			<div class="graybar">
 				<div class="left"><i class="fa fa-bars"></i>Navigation</div>
 				<div class="right"><i class="fa fa-chevron-down"></i></div>
 			</div>
-			<ul class="menu">
-				<a id="top"></a>
-<div class="navwrap">
-	<ul class="menu">
-	</ul>
-	<div class="toggle"><a href="index.html#"><i class="fa fa-bars"></i></a></div>
-</div>			</ul>
+			<div class="menu">
+				
+			</div>
 		</div>
-		<div>
-			Copyright &copy; <a href="http://ingini.org/">Ingini</a>. 2015 &bull; All rights reserved.
+		<div class="copyright">
+			Copyright © <a href="http://ingini.org/">Ingini</a>. 2016 • All rights reserved.
 			<span class="ghost">Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a>.</span>
+			<span class="ecko"><a href="http://ecko.me/themes/ghost/astro/" target="_blank">Astro Ghost Theme</a> by <a href="http://ecko.me/" target="_blank">EckoThemes</a>.</span>
 		</div>
 	</footer>
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=a9a8db849d"></script>
+	<!-- You can safely delete this line if your theme does not require jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=70b6e1da2b"></script>
 
 </body>
-</html>
