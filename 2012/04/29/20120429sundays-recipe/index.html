@@ -1,150 +1,144 @@
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>JPA 2.0, Hibernate, HSQLDB, and Google Guice</title>
-	<meta name="description" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<meta name="HandheldFriendly" content="True">
-	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JPA 2.0, Hibernate, HSQLDB, and Google Guice</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/">
-	<link rel="shortcut icon" href="../../../../favicon.ico">
-	<link rel="prefetch" href="http://ingini.org">
+    <link rel="stylesheet" type="text/css" href="../../../../assets/built/screen.css?v=7b3a341396">
+    <link rel="stylesheet" type="text/css" href="../../../../assets/css/prism.css?v=7b3a341396">
 
-	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=70b6e1da2b">
-	<link href="https://fonts.googleapis.com/css?family=Domine:700%7COpen+Sans:400,600%7CSource+Code+Pro:500" rel="stylesheet" type="text/css">
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-
-	<link rel="canonical" href="http://ingini.org/2012/04/29/20120429sundays-recipe/">
-    <meta name="referrer" content="origin">
+    <link rel="shortcut icon" href="../../../../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="http://localhost:2368/2012/04/29/20120429sundays-recipe/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="http://localhost:2368/2012/04/29/20120429sundays-recipe/amp/">
     
-    <meta property="og:site_name" content="Ingini">
+    <meta property="og:site_name" content="ingini">
     <meta property="og:type" content="article">
     <meta property="og:title" content="JPA 2.0, Hibernate, HSQLDB, and Google Guice">
-    <meta property="og:description" content="Today's software recipe includes the following main ingredients (as Maven artifacts) Guice, Hibernate, JPA, HSQLDB, FEST-Assert, Apache Commons Lang, JUnit which we are going to put and mix in Eclipse 3.7.2 pot. Our goal would be a simple...">
-    <meta property="og:url" content="http://ingini.org/2012/04/29/20120429sundays-recipe/">
+    <meta property="og:description" content="Today's software recipe includes the following main ingredients (as Maven artifacts) Guice, Hibernate, JPA, HSQLDB, FEST-Assert, Apache Commons Lang, JUnit which we are going to put and mix in Eclipse 3.7.2 pot. Our goal would be a simple one: persist something in HSQLDB using JPA and Hibernate as">
+    <meta property="og:url" content="http://localhost:2368/2012/04/29/20120429sundays-recipe/">
     <meta property="article:published_time" content="2012-04-29T11:59:00.000Z">
-    <meta property="article:modified_time" content="2016-01-24T20:45:06.586Z">
+    <meta property="article:modified_time" content="2016-01-24T20:45:06.000Z">
     <meta property="article:tag" content="JPA 2.0">
     <meta property="article:tag" content="Maven">
     
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="JPA 2.0, Hibernate, HSQLDB, and Google Guice">
-    <meta name="twitter:description" content="Today's software recipe includes the following main ingredients (as Maven artifacts) Guice, Hibernate, JPA, HSQLDB, FEST-Assert, Apache Commons Lang, JUnit which we are going to put and mix in Eclipse 3.7.2 pot. Our goal would be a simple...">
-    <meta name="twitter:url" content="http://ingini.org/2012/04/29/20120429sundays-recipe/">
+    <meta name="twitter:description" content="Today's software recipe includes the following main ingredients (as Maven artifacts) Guice, Hibernate, JPA, HSQLDB, FEST-Assert, Apache Commons Lang, JUnit which we are going to put and mix in Eclipse 3.7.2 pot. Our goal would be a simple one: persist something in HSQLDB using JPA and Hibernate as">
+    <meta name="twitter:url" content="http://localhost:2368/2012/04/29/20120429sundays-recipe/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Ivan Hristov">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="JPA 2.0, Maven">
+    <meta name="twitter:creator" content="@iv_hristov">
     
     <script type="application/ld+json">
 {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": "Article",
-    "publisher": "Ingini",
+    "publisher": {
+        "@type": "Organization",
+        "name": "ingini",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
     "author": {
         "@type": "Person",
         "name": "Ivan Hristov",
-        "image": "http://ingini.org/content/images/2014/Jun/wolf_small.jpg",
-        "url": "http://ingini.org/author/ivan-hristov",
-        "sameAs": "http://ingini.org",
-        "description": null
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/content/images/2018/02/ivan_hristov.png",
+            "width": 763,
+            "height": 763
+        },
+        "url": "http://localhost:2368/author/ivan/",
+        "sameAs": [
+            "https://twitter.com/iv_hristov"
+        ]
     },
     "headline": "JPA 2.0, Hibernate, HSQLDB, and Google Guice",
-    "url": "http://ingini.org/2012/04/29/20120429sundays-recipe/",
+    "url": "http://localhost:2368/2012/04/29/20120429sundays-recipe/",
     "datePublished": "2012-04-29T11:59:00.000Z",
-    "dateModified": "2016-01-24T20:45:06.586Z",
+    "dateModified": "2016-01-24T20:45:06.000Z",
     "keywords": "JPA 2.0, Maven",
-    "description": "Today&#x27;s software recipe includes the following main ingredients (as Maven artifacts) Guice, Hibernate, JPA, HSQLDB, FEST-Assert, Apache Commons Lang, JUnit which we are going to put and mix in Eclipse 3.7.2 pot. Our goal would be a simple..."
+    "description": "Today&#x27;s software recipe includes the following main ingredients (as Maven artifacts) Guice, Hibernate, JPA, HSQLDB, FEST-Assert, Apache Commons Lang, JUnit which we are going to put and mix in Eclipse 3.7.2 pot. Our goal would be a simple one: persist something in HSQLDB using JPA and Hibernate as",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.7">
-    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/">
+    <script type="text/javascript" src="../../../../public/ghost-sdk.js?v=7b3a341396"></script>
+<script type="text/javascript">
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "83aadd2aedf2"
+});
+</script>
+    <meta name="generator" content="Ghost 1.21">
+    <link rel="alternate" type="application/rss+xml" title="ingini" href="http://localhost:2368/rss/">
     <link href="../../../../assets/css/prism.css" rel="stylesheet">
 <script type="text/javascript" src="../../../../assets/js/prism.js"></script>
+<script>
+var ga_id = 'UA-35925613-1';
+var disqus_shortname = 'ihristov'
+var social_link = {
+    'linkedin': 'http://ch.linkedin.com/in/ivhristov',
+    'github': 'https://github.com/ihr',
+    'twitter': 'https://twitter.com/iv_hristov'
+}
+</script>
+
 </head>
-<body class="post-template tag-jpa-2-0 tag-maven blogcover">
+<body class="post-template tag-jpa-2-0 tag-maven">
 
-	
-	<header class="title">
-		<a href="http://ingini.org"><i class="fa fa-bookmark-o fa-lg"></i><span>Ingini</span></a>
-	</header>
+    <div class="site-wrapper">
 
-	<nav class="mainnav post tag-jpa-2-0 tag-maven">
-		
-	</nav>
+        
 
-	
-
-	
-	<div class="flowbar">
-		<div class="wrapper">
-			<h1 class="right">JPA 2.0, Hibernate, HSQLDB, and Google Guice</h1>
-			<h2 class="left">Introduction</h2>
-		</div>
-	</div>
-
-	
-	<div class="profile post tag-jpa-2-0 tag-maven">
-		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="Ivan Hristov">
-		<h4>Ivan Hristov</h4>
-		
-	        <ul class="socialside">
-            	<li><a href="https://twitter.com/iv_hristov" class="smallsocial twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <!--<li><a href="http://facebook.com" class="smallsocial facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
-            	<li><a href="https://github.com/ihr" class="smallsocial github" target="_blank"><i class="fa fa-github"></i></a></li>
-		<li><a href="http://plus.google.com/" class="smallsocial googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-		<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-            <!--<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
-            <!--<li><a href="htt://instagram.com/" class="smallsocial instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
-            <!--<li><a href="http://ingini.org/rss/" class="smallsocial rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        	</ul>
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="http://localhost:2368">ingini</a>
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+        </div>
+            <a class="subscribe-button" href="index.html#subscribe">Subscribe</a>
+    </div>
+</nav>
+    </div>
+</header>
 
 
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-jpa-2-0 tag-maven no-image">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2012-04-29">29 April 2012</time>
+                        <span class="date-divider">/</span> <a href="../../../../tag/jpa-2-0/">JPA 2.0</a>
+                </section>
+                <h1 class="post-full-title">JPA 2.0, Hibernate, HSQLDB, and Google Guice</h1>
+            </header>
 
 
-		<p></p>
-		<hr>
-	</div>
-
-	
-	<div id="cover" class="cover post tag-jpa-2-0 tag-maven">
-		<div class="background"></div>
-		<header class="wrapper">
-			<h2>
-				<a href="../../../../tag/jpa-2-0/">JPA 2.0</a> 
-				<a href="../../../../tag/maven/">Maven</a> 
-			</h2>
-			<h1>JPA 2.0, Hibernate, HSQLDB, and Google Guice</h1>
-			<span class="meta">
-				Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2012-04-29">April 29th, 2012</time>.
-			</span>
-		</header>
-		<i class="fa fa-chevron-down movedown"></i>
-	</div>
-
-	<section class="posts wrapper">
-		<article class="post post tag-jpa-2-0 tag-maven">
-
-			
-	<header>
-		<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
-		<h2>
-			<a href="../../../../tag/jpa-2-0/">JPA 2.0</a> 
-			<a href="../../../../tag/maven/">Maven</a> 
-		</h2>
-		<h1 id="posttitle">JPA 2.0, Hibernate, HSQLDB, and Google Guice</h1>
-		<span class="meta">
-			Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2012-04-29">April 29th, 2012</time>.
-		</span>
-	</header>
-
-			<section class="postbody">
-				<p>Today's software recipe includes the following main ingredients (as <a href="http://maven.apache.org/">Maven</a> artifacts) <a href="http://code.google.com/p/google-guice/">Guice</a>, <a href="http://www.hibernate.org/">Hibernate</a>, <a href="http://docs.oracle.com/javaee/6/tutorial/doc/bnbpy.html">JPA</a>, <a href="http://hsqldb.org/">HSQLDB</a>, <a href="http://fest.easytesting.org/">FEST-Assert</a>, <a href="http://commons.apache.org/lang/">Apache Commons Lang</a>, <a href="http://www.junit.org/">JUnit</a> which we are going to put and mix in <a href="http://www.eclipse.org/">Eclipse</a> 3.7.2 pot. Our goal would be a simple one: persist something in HSQLDB using JPA and Hibernate as underlying implementation; take advantage of Guice for <strong>C</strong>ontext and <strong>D</strong>ependency <strong>I</strong>njection (CDI) and test what we've done with JUnit, FEST-Assert and HSQLDB Manager. For a start here is the <em>pom.xml</em> relevant portion which you may want to include:</p>
-
+            <section class="post-full-content">
+                <div class="kg-card-markdown"><p>Today's software recipe includes the following main ingredients (as <a href="http://maven.apache.org/">Maven</a> artifacts) <a href="http://code.google.com/p/google-guice/">Guice</a>, <a href="http://www.hibernate.org/">Hibernate</a>, <a href="http://docs.oracle.com/javaee/6/tutorial/doc/bnbpy.html">JPA</a>, <a href="http://hsqldb.org/">HSQLDB</a>, <a href="http://fest.easytesting.org/">FEST-Assert</a>, <a href="http://commons.apache.org/lang/">Apache Commons Lang</a>, <a href="http://www.junit.org/">JUnit</a> which we are going to put and mix in <a href="http://www.eclipse.org/">Eclipse</a> 3.7.2 pot. Our goal would be a simple one: persist something in HSQLDB using JPA and Hibernate as underlying implementation; take advantage of Guice for <strong>C</strong>ontext and <strong>D</strong>ependency <strong>I</strong>njection (CDI) and test what we've done with JUnit, FEST-Assert and HSQLDB Manager. For a start here is the <em>pom.xml</em> relevant portion which you may want to include:</p>
 <!-- more -->
-
-<pre><code class="language-xml line-numbers">&lt;dependencies&gt;  
+<pre><code class="language-xml">&lt;dependencies&gt;
  &lt;dependency&gt;
   &lt;groupId&gt;com.google.inject&lt;/groupId&gt;
   &lt;artifactId&gt;guice&lt;/artifactId&gt;
@@ -182,18 +176,16 @@
   &lt;version&gt;1.4&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
  &lt;/dependency&gt;
-&lt;/dependencies&gt;  
+&lt;/dependencies&gt;
 </code></pre>
-
 <p>Since we need something to persist in our database let's create a very simple <em>Project</em> entity having only an identifier and a name fields. Here is how it looks like:</p>
+<pre><code class="language-java">package org.honeysoft.hsqldbtest.entity;
 
-<pre><code class="language-java line-numbers">package org.honeysoft.hsqldbtest.entity;
-
-import javax.persistence.Column;  
-import javax.persistence.Entity;  
-import javax.persistence.GeneratedValue;  
-import javax.persistence.Id;  
-import javax.persistence.NamedQuery;  
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import org.apache.commons.lang.builder.EqualsBuilder;
 
 @Entity(name = "project")
@@ -202,70 +194,66 @@ public class Project {
     @Id
     @GeneratedValue
     private Long id;
-
+    
     @Column(name="name")
     private String name;
 
     public Project() {
-    // JPA needs empty constructor
+	// JPA needs empty constructor
     }
-
+    
     public Project(String projectName) {
-    this.name = projectName;
+	this.name = projectName;
     }
 
     public Long getId() {
-    return id;
+	return id;
     }
 
     public void setId(Long id) {
-    this.id = id;
+	this.id = id;
     }
 
     public String getName() {
-    return name;
+	return name;
     }
 
     public void setName(String name) {
-    this.name = name;
+	this.name = name;
     }
     @Override
     public boolean equals(Object obj) {
-    if (obj == this) {
-        return true;
-    }
+	if (obj == this) {
+	    return true;
+	}
 
-    if (!(obj instanceof Project)) {
-        return false;
-    }
-    Project theOtherObject = (Project) obj;
-    EqualsBuilder equalsBuilder = new EqualsBuilder();
-    equalsBuilder.append(theOtherObject.name, this.name);
+	if (!(obj instanceof Project)) {
+	    return false;
+	}
+	Project theOtherObject = (Project) obj;
+	EqualsBuilder equalsBuilder = new EqualsBuilder();
+	equalsBuilder.append(theOtherObject.name, this.name);
 
-    return equalsBuilder.isEquals();
+	return equalsBuilder.isEquals();
     }
 }
 </code></pre>
-
 <p>Next we need a <strong>d</strong>ata <strong>a</strong>ccess <strong>o</strong>bjet (DAO) :</p>
-
-<pre><code class="language-java line-numbers">package org.honeysoft.hsqldbtest.dao;
+<pre><code class="language-java">package org.honeysoft.hsqldbtest.dao;
 
 import org.honeysoft.hsqldbtest.entity.Project;
 
-public interface IProjectDao {  
+public interface IProjectDao {
     void save(Project project);
 }
 </code></pre>
-
 <p>... and its implementation (which we are going to keep short and simple):</p>
+<pre><code class="language-java">package org.honeysoft.hsqldbtest.service.impl;
 
-<pre><code class="language-java line-numbers">package org.honeysoft.hsqldbtest.service.impl;
-
-import javax.inject.Inject;  
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import org.honeysoft.hsqldbtest.dao.IProjectDao;  
+import org.honeysoft.hsqldbtest.dao.IProjectDao;
 import org.honeysoft.hsqldbtest.entity.Project;
 
 public class ProjectDao implements IProjectDao {
@@ -275,30 +263,26 @@ public class ProjectDao implements IProjectDao {
 
     @Override
     public void save(Project project) {
-    entityManager.getTransaction().begin();
-    entityManager.persist(project);
-    entityManager.getTransaction().commit();
+	entityManager.getTransaction().begin();
+	entityManager.persist(project);
+	entityManager.getTransaction().commit();
     }
 }
 </code></pre>
-
 <p>Here comes our service which will do the business logic:</p>
+<pre><code class="language-java">package org.honeysoft.hsqldbtest.service;
 
-<pre><code class="language-java line-numbers">package org.honeysoft.hsqldbtest.service;
-
-public interface IProjectService {  
+public interface IProjectService {
     void create(String projectName);
 }
 </code></pre>
-
 <p>... and its implementation:</p>
-
-<pre><code class="language-java line-numbers">package org.honeysoft.hsqldbtest.service.impl;
+<pre><code class="language-java">package org.honeysoft.hsqldbtest.service.impl;
 
 import javax.inject.Inject;
 
-import org.honeysoft.hsqldbtest.dao.IProjectDao;  
-import org.honeysoft.hsqldbtest.entity.Project;  
+import org.honeysoft.hsqldbtest.dao.IProjectDao;
+import org.honeysoft.hsqldbtest.entity.Project;
 import org.honeysoft.hsqldbtest.service.IProjectService;
 
 public class ProjectService implements IProjectService {
@@ -309,26 +293,24 @@ public class ProjectService implements IProjectService {
     /** @{inheritDocs */
     @Override
     public void create(String projectName) {
-    projectDao.save(new Project(projectName));
+	projectDao.save(new Project(projectName));
     }
 }
 </code></pre>
-
 <p>So far so good. We do need some plumbing though. Within the scope of our small recipe we have two dimensions of plumbing we have to consider. One of them is the CDI and since we use Guice in our example we have to create a module keeping the dependency bindings, here it goes:</p>
+<pre><code class="language-java">package org.honeysoft.hsqldbtest;
 
-<pre><code class="language-java line-numbers">package org.honeysoft.hsqldbtest;
-
-import javax.inject.Singleton;  
-import javax.persistence.EntityManager;  
-import javax.persistence.EntityManagerFactory;  
+import javax.inject.Singleton;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.honeysoft.hsqldbtest.dao.IProjectDao;  
-import org.honeysoft.hsqldbtest.dao.impl.ProjectDao;  
-import org.honeysoft.hsqldbtest.service.IProjectService;  
+import org.honeysoft.hsqldbtest.dao.IProjectDao;
+import org.honeysoft.hsqldbtest.dao.impl.ProjectDao;
+import org.honeysoft.hsqldbtest.service.IProjectService;
 import org.honeysoft.hsqldbtest.service.impl.ProjectService;
 
-import com.google.inject.AbstractModule;  
+import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 
 public class DBModule extends AbstractModule {
@@ -337,73 +319,70 @@ public class DBModule extends AbstractModule {
 
     @Override
     public void configure() {
-    bind(IProjectDao.class).to(ProjectDao.class);
-    bind(IProjectService.class).to(ProjectService.class);
+	bind(IProjectDao.class).to(ProjectDao.class);
+	bind(IProjectService.class).to(ProjectService.class);
     }
 
     @Provides
     @Singleton
     public EntityManagerFactory createEntityManagerFactory() {
-    return Persistence.createEntityManagerFactory("db-manager");
+	return Persistence.createEntityManagerFactory("db-manager");
     }
 
     @Provides
     public EntityManager createEntityManager(
-        EntityManagerFactory entityManagerFactory) {
-    EntityManager entityManager = ENTITY_MANAGER_CACHE.get();
-    if (entityManager == null) {
-        ENTITY_MANAGER_CACHE.set(entityManager = entityManagerFactory
-            .createEntityManager());
-    }
-    return entityManager;
+	    EntityManagerFactory entityManagerFactory) {
+	EntityManager entityManager = ENTITY_MANAGER_CACHE.get();
+	if (entityManager == null) {
+	    ENTITY_MANAGER_CACHE.set(entityManager = entityManagerFactory
+		    .createEntityManager());
+	}
+	return entityManager;
     }
 }
 </code></pre>
-
 <p>The second aspect of our concerns is the JPA. In order for JPA to be glued with its implementation (in our case Hibernate), we need a <em>persistence.xml</em> file located within <em>META-INF</em> directory in the classpath of our Java application. Since we use Maven, I'm going to put the <em>persistence.xml</em> file in <em>src/main/resources/META-INF/persistence.xml</em>. The actual content of the file is:</p>
+<!--{% codeblock lang:xml mark:7,12 %}-->
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0"&gt;
 
-<!--{% codeblock lang:xml mark:7,12 %}-->  
+	&lt;persistence-unit name="db-manager" transaction-type="RESOURCE_LOCAL"&gt;
+		&lt;provider&gt;org.hibernate.ejb.HibernatePersistence&lt;/provider&gt;
 
-<pre><code class="language-xml line-numbers ">&lt;?xml version="1.0" encoding="UTF-8"?&gt;  
-&lt;persistence xmlns="http://java.sun.com/xml/ns/persistence"  
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
-    version="1.0"&gt;
+		&lt;properties&gt;
+			&lt;property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" /&gt;
+			&lt;property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost/tmp/testdb" /&gt;
+			&lt;property name="javax.persistence.jdbc.user" value="sa" /&gt;
+			&lt;property name="javax.persistence.jdbc.password" value="" /&gt;
+			&lt;!-- if this is true, hibernate will print (to stdout) the SQL it executes, 
+				so you can check it to ensure it's not doing anything crazy --&gt;
 
-    &lt;persistence-unit name="db-manager" transaction-type="RESOURCE_LOCAL"&gt;
-        &lt;provider&gt;org.hibernate.ejb.HibernatePersistence&lt;/provider&gt;
-
-        &lt;properties&gt;
-            &lt;property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" /&gt;
-            &lt;property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost/tmp/testdb" /&gt;
-            &lt;property name="javax.persistence.jdbc.user" value="sa" /&gt;
-            &lt;property name="javax.persistence.jdbc.password" value="" /&gt;
-            &lt;!-- if this is true, hibernate will print (to stdout) the SQL it executes, 
-                so you can check it to ensure it's not doing anything crazy --&gt;
-
-            &lt;property name="hibernate.show_sql" value="true" /&gt;
-            &lt;!-- since most database servers have slightly different versions of the 
-                SQL, Hibernate needs you to choose a dialect so it knows the subtleties of 
-                talking to that server --&gt;
-            &lt;property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" /&gt;
-            &lt;!-- this tell Hibernate to update the DDL when it starts, very useful 
-                for development, dangerous in production --&gt;
-            &lt;property name="hibernate.hbm2ddl.auto" value="update" /&gt;
-        &lt;/properties&gt;
-    &lt;/persistence-unit&gt;
-&lt;/persistence&gt;  
+			&lt;property name="hibernate.show_sql" value="true" /&gt;
+			&lt;!-- since most database servers have slightly different versions of the 
+				SQL, Hibernate needs you to choose a dialect so it knows the subtleties of 
+				talking to that server --&gt;
+			&lt;property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" /&gt;
+			&lt;!-- this tell Hibernate to update the DDL when it starts, very useful 
+				for development, dangerous in production --&gt;
+			&lt;property name="hibernate.hbm2ddl.auto" value="update" /&gt;
+		&lt;/properties&gt;
+	&lt;/persistence-unit&gt;
+&lt;/persistence&gt;
 </code></pre>
-
 <p>Here are some important stuff:</p>
-
 <ol>
-<li><p>On line 7 we use the <em>db-manager</em> which is the same as in our <em>DBModule.createEntityManagerFactory()</em></p></li>
-<li><p>On line 12, we've specified the URL of our database : <em>jdbc:hsqldb:hsql://localhost/tmp/testdb</em> which is important since we have to actually have a HSQLDB running. I've used an Eclipse launcher to run HSQLDB with the following program arguments: <em>--database.0 file:/tmp/testdb --dbname.0 testdb</em>. In case you don't know how to create such an Eclipse launcher you can follow this <a href="http://objectgeneration.com/eclipse/11-Database.html">link</a></p></li>
+<li>
+<p>On line 7 we use the <em>db-manager</em> which is the same as in our <em>DBModule.createEntityManagerFactory()</em></p>
+</li>
+<li>
+<p>On line 12, we've specified the URL of our database : <em>jdbc:hsqldb:hsql://localhost/tmp/testdb</em> which is important since we have to actually have a HSQLDB running. I've used an Eclipse launcher to run HSQLDB with the following program arguments: <em>--database.0 file:/tmp/testdb --dbname.0 testdb</em>. In case you don't know how to create such an Eclipse launcher you can follow this <a href="http://objectgeneration.com/eclipse/11-Database.html">link</a></p>
+</li>
 </ol>
-
 <p>And last but not least our test:</p>
-
-<pre><code class="language-java line-numbers">package org.honeysoft.hsqldbtest.service.impl;
+<pre><code class="language-java">package org.honeysoft.hsqldbtest.service.impl;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -411,124 +390,325 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.honeysoft.hsqldbtest.DBModule;  
-import org.honeysoft.hsqldbtest.entity.Project;  
-import org.honeysoft.hsqldbtest.service.IProjectService;  
+import org.honeysoft.hsqldbtest.DBModule;
+import org.honeysoft.hsqldbtest.entity.Project;
+import org.honeysoft.hsqldbtest.service.IProjectService;
 import org.junit.Test;
 
-import com.google.inject.Guice;  
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 public class TestProjectService {
 
     @Test
     public void shouldPersistProject() throws Exception {
-    // GIVEN
-    Injector injector = Guice.createInjector(new DBModule());
-    IProjectService projectService = injector
-        .getInstance(IProjectService.class);
-    EntityManager entityManager = injector.getInstance(EntityManager.class);
+	// GIVEN
+	Injector injector = Guice.createInjector(new DBModule());
+	IProjectService projectService = injector
+		.getInstance(IProjectService.class);
+	EntityManager entityManager = injector.getInstance(EntityManager.class);
 
-    String projectName = "honeysoft";
+	String projectName = "honeysoft";
 
-    // WHEN
-    projectService.create(projectName);
+	// WHEN
+	projectService.create(projectName);
+	
+	// THEN
+	List&lt;Project&gt; resultList = entityManager.createNamedQuery(
+		Project.GET_ALL, Project.class).getResultList();
 
-    // THEN
-    List&lt;Project&gt; resultList = entityManager.createNamedQuery(
-        Project.GET_ALL, Project.class).getResultList();
-
-    assertThat(resultList.contains(new Project(projectName))).isTrue();
+	assertThat(resultList.contains(new Project(projectName))).isTrue();
     }
 }
 </code></pre>
-
 <p>Well, more or less that's it. If you want you can take advantage of HSQLDB Database Manager. One way to run it is via Eclipse launcher. You don't need any other dependency within you project in order to run it (except for <em>hsqldb</em>). Create a new Java Application Eclipse launcher where as a <em>Project</em> you choose the one which have the <em>hsqldb</em> as a Maven dependency and in <em>Main class</em> you provide <em>org.hsqldb.util.DatabaseManagerSwing</em>.</p>
-
 <p>Acknowledgements goes to these guys for their work and to the open-source community without which this post would not take place:</p>
-
 <ul>
-<li><p><a href="http://uaihebert.com/?p=57">JUnit with HSQLDB, JPA and Hibernate</a></p></li>
-<li><p><a href="http://www.benmccann.com/dev-blog/hibernate-with-jpa-annotations-and-guice/">Hibernate with JPA Annotations and Guice</a></p></li>
-<li><p><a href="http://www.alexecollins.com/?q=content/tutorial-hibernate-jpa-part-1">Tutorial: Hibernate, JPA - Part 1</a></p></li>
+<li>
+<p><a href="http://uaihebert.com/?p=57">JUnit with HSQLDB, JPA and Hibernate</a></p>
+</li>
+<li>
+<p><a href="http://www.benmccann.com/dev-blog/hibernate-with-jpa-annotations-and-guice/">Hibernate with JPA Annotations and Guice</a></p>
+</li>
+<li>
+<p><a href="http://www.alexecollins.com/?q=content/tutorial-hibernate-jpa-part-1">Tutorial: Hibernate, JPA - Part 1</a></p>
+</li>
 </ul>
-			</section>
+</div>
+            </section>
 
-			
-	<footer>
-		<ul class="share left">
-			<li><a href="http://twitter.com/share?text=JPA%202.0%2C%20Hibernate%2C%20HSQLDB%2C%20and%20Google%20Guice&amp;url=http://ingini.org/2012/04/29/20120429sundays-recipe/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
-			<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2012/04/29/20120429sundays-recipe/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
-			<li><a href="https://plus.google.com/share?url=http://ingini.org/2012/04/29/20120429sundays-recipe/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" class="smallbutton lightgray"><i class="fa fa-google-plus"></i>Google+</a></li>
-		</ul>
-		<ul class="tags right">
-			<a href="../../../../tag/jpa-2-0/" class="smallbutton solidgray">JPA 2.0</a>
-			<a href="../../../../tag/maven/" class="smallbutton solidgray">Maven</a>
-		</ul>
-	</footer>
+            <section class="subscribe-form">
+                <h3 class="subscribe-form-title">Subscribe to ingini</h3>
+                <p>Get the latest posts delivered right to your inbox</p>
+                <form method="post" action="http://127.0.0.1:2368/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"><input class="location" type="hidden" name="location"><input class="referrer" type="hidden" name="referrer">
 
-			
-	<div class="postprofile">
-		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="Ivan Hristov">
-		<div class="info">
-			<h4>Ivan Hristov</h4>
-			<a href="http://ingini.org">http://ingini.org</a>
-			<p></p>
-			
-
-        	<ul class="social">
-            <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
-            <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
-            <!--<li><a href="http://youtube.com/" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a></li>-->
-            <!--<li><a href="http://dribbble.com/" class="dribbble" target="_blank"><i class="fa fa-dribbble"></i></a></li>-->
-            <li><a href="http://plus.google.com/" class="googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-            <!--<li><a href="http://instagram.com/" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
-            <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
-            <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-            <!--<li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        	</ul>
-		
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email" placeholder="youremail@example.com">
+    </div>
+    <button class="" type="submit"><span>Subscribe</span></button>
+    <script type="text/javascript">(function(g,h,o,s,t){h[o]('.location')[s]=h[o]('.location')[s] || g.location.href;h[o]('.referrer')[s]=h[o]('.referrer')[s] || h.referrer;})(window,document,'querySelector','value');</script>
+</form>
 
 
+            </section>
 
-		</div>
-	</div>
+            <footer class="post-full-footer">
 
-			<div class="comments">
-				<span class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</span>
-				<div id="disqus_thread"></div>
-				<div id="g-comments"></div>
-			</div>
+                <section class="author-card">
+                        <img class="author-profile-image" src="../../../../content/images/2018/02/ivan_hristov.png" alt="Ivan Hristov">
+                    <section class="author-card-content">
+                        <h4 class="author-card-name"><a href="../../../../author/ivan/">Ivan Hristov</a></h4>
+                            <p>Read <a href="../../../../author/ivan/">more posts</a> by this author.</p>
+                    </section>
+                </section>
+                <div class="post-full-footer-right">
+                    <a class="author-card-button" href="../../../../author/ivan/">Read More</a>
+                </div>
 
-		</article>
+            </footer>
 
-	</section>
+            <section class="post-full-comments">
+                <div id="disqus_thread"></div>
+                <script>
+                    if (window.disqus_shortname) {
+                        var disqus_config = function () {
+                            this.page.url = 'http://localhost:2368/2012/04/29/20120429sundays-recipe/';
+                            this.page.identifier = 'ghost-3';
+                        };
+                        (function() {
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    }
+                </script>
+            </section>
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+
+                <article class="post-card post tag-maven tag-underscorejs tag-backbonejs tag-backbone-marionette tag-handlebars tag-trafficcop tag-jetty no-image">
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../../../06/10/skeleton-of-a-javascript-web-application/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">Maven</span>
+                <h2 class="post-card-title">Backbone.Marionette - Skeleton of a JavaScript Web Application</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>Abstract: The present article will give a brief introduction to a way of building JavaScript based web applications using RequireJS (version 2.0.1), jQuery (version 1.7.2), Underscore (version 1.3.</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+                <img class="author-profile-image" src="../../../../content/images/2018/02/ivan_hristov.png" alt="Ivan Hristov">
+            <span class="post-card-author"><a href="../../../../author/ivan/">Ivan Hristov</a></span>
+        </footer>
+    </div>
+</article>
+
+                <article class="post-card post tag-fest-reflect tag-java no-image">
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../../04/fest-reflect-1-3-2/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">FEST-Reflect</span>
+                <h2 class="post-card-title">Decoration With FEST-Reflect 1.3</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>Yesterday (3rd of April, 2012) the FEST-Reflect 1.3 (part of FEST libraries) was published on maven central. Since this fact requires a celebration, I've prepared a short tutorial of the new field</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+                <img class="author-profile-image" src="../../../../content/images/2018/02/ivan_hristov.png" alt="Ivan Hristov">
+            <span class="post-card-author"><a href="../../../../author/ivan/">Ivan Hristov</a></span>
+        </footer>
+    </div>
+</article>
+
+        </div>
+    </div>
+</aside>
+
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="http://localhost:2368">
+            <span>ingini</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">—</span>
+    <div class="floating-header-title">JPA 2.0, Hibernate, HSQLDB, and Google Guice</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=JPA%202.0%2C%20Hibernate%2C%20HSQLDB%2C%20and%20Google%20Guice&amp;url=http://localhost:2368/2012/04/29/20120429sundays-recipe/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/2012/04/29/20120429sundays-recipe/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
 
 
 
-	
-	<footer class="wrapper">
-		<div class="inlinemenu">
-			<div class="graybar">
-				<div class="left"><i class="fa fa-bars"></i>Navigation</div>
-				<div class="right"><i class="fa fa-chevron-down"></i></div>
-			</div>
-			<div class="menu">
-				
-			</div>
-		</div>
-		<div class="copyright">
-			Copyright © <a href="http://ingini.org/">Ingini</a>. 2016 • All rights reserved.
-			<span class="ghost">Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a>.</span>
-			<span class="ecko"><a href="http://ecko.me/themes/ghost/astro/" target="_blank">Astro Ghost Theme</a> by <a href="http://ecko.me/" target="_blank">EckoThemes</a>.</span>
-		</div>
-	</footer>
-	
-	<!-- You can safely delete this line if your theme does not require jQuery -->
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="http://localhost:2368">ingini</a> © 2018</section>
+                <nav class="site-footer-nav">
+                    <a href="http://localhost:2368">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <div id="subscribe" class="subscribe-overlay">
+        <a class="subscribe-overlay-close" href="index.html#"></a>
+        <div class="subscribe-overlay-content">
+            <h1 class="subscribe-overlay-title">Subscribe to ingini</h1>
+            <p class="subscribe-overlay-description">Stay up to date! Get all the latest &amp; greatest posts delivered straight to your inbox</p>
+            <form method="post" action="http://127.0.0.1:2368/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"><input class="location" type="hidden" name="location"><input class="referrer" type="hidden" name="referrer">
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email" placeholder="youremail@example.com">
+    </div>
+    <button class="" type="submit"><span>Subscribe</span></button>
+    <script type="text/javascript">(function(g,h,o,s,t){h[o]('.location')[s]=h[o]('.location')[s] || g.location.href;h[o]('.referrer')[s]=h[o]('.referrer')[s] || h.referrer;})(window,document,'querySelector','value');</script>
+</form>
+
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="../../../../assets/js/jquery.fitvids.js?v=7b3a341396"></script>
+
+    <script>
+        if (window.social_link) {
+            var url_regexp = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
+            $.each(window.social_link, function(type, url) {
+                if (typeof url === "string" && url_regexp.test(url)) {
+                    $('<a>', {
+                        class: 'social-link social-link-'+type,
+                        href: url,
+                        target: '_blank'
+                    }).appendTo('.social-links');
+                    var builtin_type = ['500px', 'facebook', 'flickr', 'github', 'gmail', 'googleplus', 'instagram', 'line', 'linkedin', 'messenger', 'microsoftoutlook', 'plurk', 'sinaweibo', 'skype', 'snapchat', 'stackoverflow', 'telegram', 'twitter', 'wechat', 'whatsapp'];
+                    var icon_path = '/assets/icons/type.svg?v=7b3a341396'
+                    if (builtin_type.indexOf(type) > -1) {
+                        icon_path = icon_path.replace('type', type);
+                    } else if (type.endsWith('-local')) {
+                        icon_path = icon_path.replace('type', type.substring(0, type.length-6));
+                    } else {
+                        icon_path = 'https://simpleicons.org/icons/'+type+'.svg';
+                    }
+                    $('.social-link-'+type).load(icon_path);
+                }
+            });
+        }
+    </script>
+
+    <script>
+        if (window.ga_id) {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+            ga('create', window.ga_id, 'auto');
+            ga('require', 'linkid', 'linkid.js');
+            ga('send', 'pageview');
+        }
+    </script>
+
+    <script type="text/javascript" src="../../../../assets/js/prism.js?v=7b3a341396"></script>
+
+
+    <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+
+    <!-- You can safely delete this line if your theme does not require jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=70b6e1da2b"></script>
 
 </body>

@@ -1,33 +1,28 @@
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>AKKA Ask Pattern: For Those Times When You Have to Block</title>
-	<meta name="description" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<meta name="HandheldFriendly" content="True">
-	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKKA Ask Pattern: For Those Times When You Have to Block</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="alternate" type="application/rss+xml" href="http://ingini.org/rss/">
-	<link rel="shortcut icon" href="../../../../favicon.ico">
-	<link rel="prefetch" href="http://ingini.org">
+    <link rel="stylesheet" type="text/css" href="../../../../assets/built/screen.css?v=7b3a341396">
+    <link rel="stylesheet" type="text/css" href="../../../../assets/css/prism.css?v=7b3a341396">
 
-	<link rel="stylesheet" type="text/css" href="../../../../assets/css/theme.min.css?v=70b6e1da2b">
-	<link href="https://fonts.googleapis.com/css?family=Domine:700%7COpen+Sans:400,600%7CSource+Code+Pro:500" rel="stylesheet" type="text/css">
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-
-	<link rel="canonical" href="http://ingini.org/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/">
-    <meta name="referrer" content="origin">
+    <link rel="shortcut icon" href="../../../../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="http://localhost:2368/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="http://localhost:2368/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/amp/">
     
-    <meta property="og:site_name" content="Ingini">
+    <meta property="og:site_name" content="ingini">
     <meta property="og:type" content="article">
     <meta property="og:title" content="AKKA Ask Pattern: For Those Times When You Have to Block">
-    <meta property="og:description" content="Abstract : Since you are here, chances are, you are in one of those situations where you have to come up with a blocking solution using AKKA. Thus I’m going to skip the actor model introduction which is necessary to...">
-    <meta property="og:url" content="http://ingini.org/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/">
+    <meta property="og:description" content="Abstract : Since you are here, chances are, you are in one of those situations where you have to come up with a blocking solution using AKKA. Thus I’m going to skip the actor model introduction which is necessary to understand how AKKA actor model implementation works (you can read">
+    <meta property="og:url" content="http://localhost:2368/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/">
     <meta property="article:published_time" content="2013-03-17T14:11:00.000Z">
-    <meta property="article:modified_time" content="2016-01-24T16:29:36.033Z">
+    <meta property="article:modified_time" content="2016-01-24T16:29:36.000Z">
     <meta property="article:tag" content="Java">
     <meta property="article:tag" content="AKKA">
     <meta property="article:tag" content="Multithreading">
@@ -36,142 +31,126 @@
     
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="AKKA Ask Pattern: For Those Times When You Have to Block">
-    <meta name="twitter:description" content="Abstract : Since you are here, chances are, you are in one of those situations where you have to come up with a blocking solution using AKKA. Thus I’m going to skip the actor model introduction which is necessary to...">
-    <meta name="twitter:url" content="http://ingini.org/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/">
+    <meta name="twitter:description" content="Abstract : Since you are here, chances are, you are in one of those situations where you have to come up with a blocking solution using AKKA. Thus I’m going to skip the actor model introduction which is necessary to understand how AKKA actor model implementation works (you can read">
+    <meta name="twitter:url" content="http://localhost:2368/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Ivan Hristov">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Java, AKKA, Multithreading, Actor Model, Concurrency">
+    <meta name="twitter:creator" content="@iv_hristov">
     
     <script type="application/ld+json">
 {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": "Article",
-    "publisher": "Ingini",
+    "publisher": {
+        "@type": "Organization",
+        "name": "ingini",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
     "author": {
         "@type": "Person",
         "name": "Ivan Hristov",
-        "image": "http://ingini.org/content/images/2014/Jun/wolf_small.jpg",
-        "url": "http://ingini.org/author/ivan-hristov",
-        "sameAs": "http://ingini.org",
-        "description": null
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/content/images/2018/02/ivan_hristov.png",
+            "width": 763,
+            "height": 763
+        },
+        "url": "http://localhost:2368/author/ivan/",
+        "sameAs": [
+            "https://twitter.com/iv_hristov"
+        ]
     },
     "headline": "AKKA Ask Pattern: For Those Times When You Have to Block",
-    "url": "http://ingini.org/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/",
+    "url": "http://localhost:2368/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/",
     "datePublished": "2013-03-17T14:11:00.000Z",
-    "dateModified": "2016-01-24T16:29:36.033Z",
+    "dateModified": "2016-01-24T16:29:36.000Z",
     "keywords": "Java, AKKA, Multithreading, Actor Model, Concurrency",
-    "description": "Abstract : Since you are here, chances are, you are in one of those situations where you have to come up with a blocking solution using AKKA. Thus I’m going to skip the actor model introduction which is necessary to..."
+    "description": "Abstract : Since you are here, chances are, you are in one of those situations where you have to come up with a blocking solution using AKKA. Thus I’m going to skip the actor model introduction which is necessary to understand how AKKA actor model implementation works (you can read",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.7">
-    <link rel="alternate" type="application/rss+xml" title="Ingini" href="http://ingini.org/rss/">
+    <script type="text/javascript" src="../../../../public/ghost-sdk.js?v=7b3a341396"></script>
+<script type="text/javascript">
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "83aadd2aedf2"
+});
+</script>
+    <meta name="generator" content="Ghost 1.21">
+    <link rel="alternate" type="application/rss+xml" title="ingini" href="http://localhost:2368/rss/">
     <link href="../../../../assets/css/prism.css" rel="stylesheet">
 <script type="text/javascript" src="../../../../assets/js/prism.js"></script>
+<script>
+var ga_id = 'UA-35925613-1';
+var disqus_shortname = 'ihristov'
+var social_link = {
+    'linkedin': 'http://ch.linkedin.com/in/ivhristov',
+    'github': 'https://github.com/ihr',
+    'twitter': 'https://twitter.com/iv_hristov'
+}
+</script>
+
 </head>
-<body class="post-template tag-java tag-akka tag-multithreading tag-actor-model tag-concurrency blogcover">
+<body class="post-template tag-java tag-akka tag-multithreading tag-actor-model tag-concurrency">
 
-	
-	<header class="title">
-		<a href="http://ingini.org"><i class="fa fa-bookmark-o fa-lg"></i><span>Ingini</span></a>
-	</header>
+    <div class="site-wrapper">
 
-	<nav class="mainnav post tag-java tag-akka tag-multithreading tag-actor-model tag-concurrency">
-		
-	</nav>
+        
 
-	
-
-	
-	<div class="flowbar">
-		<div class="wrapper">
-			<h1 class="right">AKKA Ask Pattern: For Those Times When You Have to Block</h1>
-			<h2 class="left">Introduction</h2>
-		</div>
-	</div>
-
-	
-	<div class="profile post tag-java tag-akka tag-multithreading tag-actor-model tag-concurrency">
-		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="profileimage" alt="Ivan Hristov">
-		<h4>Ivan Hristov</h4>
-		
-	        <ul class="socialside">
-            	<li><a href="https://twitter.com/iv_hristov" class="smallsocial twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <!--<li><a href="http://facebook.com" class="smallsocial facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
-            	<li><a href="https://github.com/ihr" class="smallsocial github" target="_blank"><i class="fa fa-github"></i></a></li>
-		<li><a href="http://plus.google.com/" class="smallsocial googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-		<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-            <!--<li><a href="http://ch.linkedin.com/in/ivhristov" class="smallsocial linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
-            <!--<li><a href="htt://instagram.com/" class="smallsocial instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
-            <!--<li><a href="http://ingini.org/rss/" class="smallsocial rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        	</ul>
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="http://localhost:2368">ingini</a>
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+        </div>
+            <a class="subscribe-button" href="index.html#subscribe">Subscribe</a>
+    </div>
+</nav>
+    </div>
+</header>
 
 
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-java tag-akka tag-multithreading tag-actor-model tag-concurrency no-image">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2013-03-17">17 March 2013</time>
+                        <span class="date-divider">/</span> <a href="../../../../tag/java/">Java</a>
+                </section>
+                <h1 class="post-full-title">AKKA Ask Pattern: For Those Times When You Have to Block</h1>
+            </header>
 
 
-		<p></p>
-		<hr>
-	</div>
-
-	
-	<div id="cover" class="cover post tag-java tag-akka tag-multithreading tag-actor-model tag-concurrency">
-		<div class="background"></div>
-		<header class="wrapper">
-			<h2>
-				<a href="../../../../tag/java/">Java</a> 
-				<a href="../../../../tag/akka/">AKKA</a> 
-				<a href="../../../../tag/multithreading/">Multithreading</a> 
-				<a href="../../../../tag/actor-model/">Actor Model</a> 
-				<a href="../../../../tag/concurrency/">Concurrency</a> 
-			</h2>
-			<h1>AKKA Ask Pattern: For Those Times When You Have to Block</h1>
-			<span class="meta">
-				Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2013-03-17">March 17th, 2013</time>.
-			</span>
-		</header>
-		<i class="fa fa-chevron-down movedown"></i>
-	</div>
-
-	<section class="posts wrapper">
-		<article class="post post tag-java tag-akka tag-multithreading tag-actor-model tag-concurrency">
-
-			
-	<header>
-		<div class="feature"><span>Featured</span><i class="fa fa-bookmark fa-lg"></i></div>
-		<h2>
-			<a href="../../../../tag/java/">Java</a> 
-			<a href="../../../../tag/akka/">AKKA</a> 
-			<a href="../../../../tag/multithreading/">Multithreading</a> 
-			<a href="../../../../tag/actor-model/">Actor Model</a> 
-			<a href="../../../../tag/concurrency/">Concurrency</a> 
-		</h2>
-		<h1 id="posttitle">AKKA Ask Pattern: For Those Times When You Have to Block</h1>
-		<span class="meta">
-			Posted by <a href="../../../../author/ivan-hristov/">Ivan Hristov</a> on <i class="fa fa-clock-o"></i> <time datetime="2013-03-17">March 17th, 2013</time>.
-		</span>
-	</header>
-
-			<section class="postbody">
-				<p><strong>Abstract</strong> : Since you are here, chances are, you are in one of those situations where you have to come up with a blocking solution using <a href="http://akka.io">AKKA</a>. Thus I’m going to skip the actor model introduction which is necessary to understand how AKKA actor model implementation works (you can read more about the actor model on the <a href="http://doc.akka.io/docs/akka/snapshot/index.html">AKKA docs website</a>). In this post you will find out how you can take advantage of AKKA’s ask pattern to do blocking when necessary.</p>
-
+            <section class="post-full-content">
+                <div class="kg-card-markdown"><p><strong>Abstract</strong> : Since you are here, chances are, you are in one of those situations where you have to come up with a blocking solution using <a href="http://akka.io">AKKA</a>. Thus I’m going to skip the actor model introduction which is necessary to understand how AKKA actor model implementation works (you can read more about the actor model on the <a href="http://doc.akka.io/docs/akka/snapshot/index.html">AKKA docs website</a>). In this post you will find out how you can take advantage of AKKA’s ask pattern to do blocking when necessary.</p>
 <p><strong>Goal</strong> : Develop a “fire-and-await-confirmation” system based on AKKA ask pattern</p>
-
 <p><strong>Acknowledgement</strong> : My gratitude goes to the open source community and especially to:</p>
-
 <p><a href="http://jonasboner.com/">Jonas Bonér</a> (@jboner) for the creation of AKKA</p>
-
 <p>Viktor Klang (@viktorklang) for his attention to the details</p>
-
 <p>Maxime Nowak (@maximenowak) for his eye-opening discussions and “religious” clean-coding</p>
-
 <p><strong>Code</strong> : You can download the full source of the project from <a href="https://github.com/ihr/akka-blocking">GitHub</a></p>
-
 <p><strong>Maven Dependencies</strong> : There is nothing fancy in the pom.xml. Thus I’m not going to list it here.</p>
-
 <p><strong>Step 1</strong> : The business model</p>
-
 <p>We are going to develop a system for processing business messages. What we want from our system is to confirm that all messages are processed within a given timeout. Now, I would like to emphasis one more time on within a given timeout. If you think that you need to wait forever, I would advise you to re-think very, very carefully. There is a chance you have some bad smell in your architecture. Now, back to our business model, we need two domain objects:</p>
-
 <p>1 ) a <em>BusinessMessage</em> to be processed by our <em>BusinessService</em>:</p>
-
-<pre><code class="language-java line-numbers">package org.ingini.akka.blocking.message;
+<pre><code class="language-java">package org.ingini.akka.blocking.message;
 
 import javax.annotation.concurrent.Immutable;
 
@@ -189,10 +168,8 @@ public class BusinessMessage {
     }
 }
 </code></pre>
-
 <p>2 ) an <em>AcknowledgementMessage</em> :</p>
-
-<pre><code class="language-java line-numbers">package org.ingini.akka.blocking.message;
+<pre><code class="language-java">package org.ingini.akka.blocking.message;
 
 import javax.annotation.concurrent.Immutable;
 
@@ -209,19 +186,16 @@ public class AcknowledgementMessage {
     }
 }
 </code></pre>
-
 <p>The <em>AcknowledgementMessage</em> will be sent by our <em>BusinessConfirmationActor</em>, once a <em>BusinessMessage</em> is processed.</p>
-
 <p>Next we are going to “spoil” our business domain heaven by introducing a third domain object called <em>BusinessMessages</em>. The purposes of this wrapper object are purely technical - to ensure immutability, to increase readability, and to decrease maintainability costs.</p>
+<pre><code class="language-java">package org.ingini.akka.blocking.message;
 
-<pre><code class="language-java line-numbers">package org.ingini.akka.blocking.message;
-
-import javax.annotation.concurrent.Immutable;  
-import java.util.Collections;  
+import javax.annotation.concurrent.Immutable;
+import java.util.Collections;
 import java.util.List;
 
 @Immutable
-public class BusinessMessages {  
+public class BusinessMessages {
     private final List&lt;BusinessMessage&gt; businessMessages;
 
     public BusinessMessages(List&lt;BusinessMessage&gt; businessMessages) {
@@ -233,18 +207,14 @@ public class BusinessMessages {
     }
 }
 </code></pre>
-
 <p>As you can see, <em>BusinessMessages</em> is a simple wrapper over an unmodifiable list of messages. And as you will see, a bit later, this object makes reading a bit easier when implementing the actor infrastructure.</p>
-
 <p><strong>Step 2</strong> : The business service</p>
-
 <p>For the sake of simplicity and clarity I’m going to keep our business service as simple as possible. So, here it is:</p>
+<pre><code class="language-java">package org.ingini.akka.blocking.service;
 
-<pre><code class="language-java line-numbers">package org.ingini.akka.blocking.service;
-
-import org.ingini.akka.blocking.message.BusinessMessage;  
-import org.slf4j.Logger;  
-import org.slf4j.LoggerFactory;  
+import org.ingini.akka.blocking.message.BusinessMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -257,19 +227,15 @@ public class BusinessService {
     }
 }
 </code></pre>
-
 <p>It does nothing more than pringing the message body of our business message. Now, let’s concentrate on the more important part - the infrastructural backbone provided by AKKA:</p>
-
 <p><strong>Step 3</strong> : AKKA - The infrastructural backbone</p>
-
 <p>Our most basic piece of machinery will be the <em>BusinessConfirmationActor</em>. As its name says, this actor will do some business (line 16) and when finished with the business doing it will send a confirmation (line 17):</p>
+<pre><code class="language-java">package org.ingini.akka.blocking.actor;
 
-<pre><code class="language-java line-numbers">package org.ingini.akka.blocking.actor;
-
-import akka.actor.UntypedActor;  
-import org.ingini.akka.blocking.message.AcknowledgementMessage;  
-import org.ingini.akka.blocking.message.BusinessMessage;  
-import org.ingini.akka.blocking.service.BusinessService;  
+import akka.actor.UntypedActor;
+import org.ingini.akka.blocking.message.AcknowledgementMessage;
+import org.ingini.akka.blocking.message.BusinessMessage;
+import org.ingini.akka.blocking.service.BusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class BusinessConfirmationActor extends UntypedActor {
@@ -284,22 +250,19 @@ public class BusinessConfirmationActor extends UntypedActor {
     }
 }
 </code></pre>
-
 <p>Due to the simplicity of our actor, the only bit that might appear a bit interesting is the autowiring of the <em>BusinessService</em>. The autoworing is backed-up by Spring and by a custom Spring-to-AKKA solution. You can find out more in a post I’ve already dedicated to that <a href="http://ingini.org/2012/08/05/akka-actor-dependency-injection-using-spring/">AKKA actor dependency injection using Spring</a> and of course you can examine the code directly on <a href="https://github.com/ihr/akka-blocking/tree/master/src/main/java/org/ingini/akka/di">GitHub</a>.</p>
+<p>The second piece of our AKKA infrastructure is the <em>FireAndAwaitMediatorActor</em>. An implementation of the gang of four (GoF) <a href="http://www.oodesign.com/mediator-pattern.html">Mediator Pattern</a>. It mediates the communication between a client service (which we haven’t seen yet) and the instances of <em>BusinessConfirmationActor</em>.</p>
+<pre><code class="language-java">package org.ingini.akka.blocking.actor;
 
-<p>The second piece of our AKKA infrastructure is the <em>FireAndAwaitMediatorActor</em>. An implementation of the gang of four (GoF) <a href="http://www.oodesign.com/mediator-pattern.html">Mediator Pattern</a>. It mediates the communication between a client service (which we haven’t seen yet) and the instances of <em>BusinessConfirmationActor</em>.  </p>
-
-<pre><code class="language-java line-numbers">package org.ingini.akka.blocking.actor;
-
-import akka.actor.ActorRef;  
-import akka.actor.UntypedActor;  
-import akka.routing.RoundRobinRouter;  
-import org.ingini.akka.blocking.message.AcknowledgementMessage;  
-import org.ingini.akka.blocking.message.BusinessMessages;  
-import org.ingini.akka.di.DependencyInjectionProps;  
-import org.slf4j.Logger;  
-import org.slf4j.LoggerFactory;  
-import org.springframework.beans.factory.annotation.Autowired;  
+import akka.actor.ActorRef;
+import akka.actor.UntypedActor;
+import akka.routing.RoundRobinRouter;
+import org.ingini.akka.blocking.message.AcknowledgementMessage;
+import org.ingini.akka.blocking.message.BusinessMessages;
+import org.ingini.akka.di.DependencyInjectionProps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import java.util.List;
@@ -361,38 +324,34 @@ public class FireAndAwaitMediatorActor extends UntypedActor {
     }
 }
 </code></pre>
-
 <p><em>FireAndAwaitMediatorActor</em> encapsulates routing logic provided by AKKA’s RoundRobinRouter. The router will create at maximum 5 <em>BusinessConfirmationActors</em> and give them a BusinessMessage for processing (look at line 57). Once all <em>BusinessMessage</em> are sent, we will await for the messageCounter to drop to 0 and then the <em>FireAndAwaitMediatorActor</em> will send a confirmation message back to the original sender of the BusinessMessages (line 65), and that’s our client service, so continue reading.</p>
-
 <p><strong>Step 4</strong>: The client (service)</p>
-
 <p>Having looked at the backbone infrastructure and the business logic, what’s left is to see how we can use our system. For that purpose, I have developed two tests cases. Pay attention to lines 60, 64, 84, and 88. These are the lines you need when you develop your own client service. The <em>Patterns.ask()</em> will send a message (the 2nd argument) to the actor provided as first argument and will return an <em>AKKA Future</em> which will be completed within the specified timeout duration (given as 3rd argument). Once we have the <em>AKKA Future</em> we are going to await on it for a result.</p>
+<pre><code class="language-java">package org.ingini.akka.blocking;
 
-<pre><code class="language-java line-numbers">package org.ingini.akka.blocking;
-
-import akka.actor.ActorRef;  
-import akka.dispatch.Await;  
-import akka.dispatch.Future;  
-import akka.pattern.Patterns;  
-import akka.util.Duration;  
-import akka.util.Timeout;  
-import org.ingini.akka.blocking.message.AcknowledgementMessage;  
-import org.ingini.akka.blocking.message.BusinessMessage;  
-import org.ingini.akka.blocking.message.BusinessMessages;  
-import org.ingini.akka.blocking.service.BusinessService;  
-import org.junit.Before;  
-import org.junit.Rule;  
-import org.junit.Test;  
-import org.junit.rules.ExpectedException;  
-import org.junit.runner.RunWith;  
-import org.mockito.Mock;  
-import org.mockito.MockitoAnnotations;  
-import org.springframework.beans.factory.annotation.Autowired;  
-import org.springframework.test.context.ContextConfiguration;  
+import akka.actor.ActorRef;
+import akka.dispatch.Await;
+import akka.dispatch.Future;
+import akka.pattern.Patterns;
+import akka.util.Duration;
+import akka.util.Timeout;
+import org.ingini.akka.blocking.message.AcknowledgementMessage;
+import org.ingini.akka.blocking.message.BusinessMessage;
+import org.ingini.akka.blocking.message.BusinessMessages;
+import org.ingini.akka.blocking.service.BusinessService;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;  
-import java.util.List;  
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 import static org.fest.assertions.Assertions.assertThat;
@@ -460,110 +419,314 @@ public class BusinessTest {
     }
 }
 </code></pre>
-
 <p>Within the method <em>allActorsShouldAcknowledgeWithinTime()</em>, we test that all actors (<em>BusinessConfirmationActors</em>) acknowledge their business messages within 10 sec by not expecting any (await-ing) timeout exception. The second test case, <em>failureToAcknowledgeWithinTimeout()</em>, is that the actors won’t acknowledge the processing of 100’000 messages within 1 <em>millisecond</em>, thus we will have an (await-ing) timeout exception. Having said that, I have to point out that the second test case may actually fail if you have a fast machine. In order to do it correctly, we can actually mock the <em>BusinessService</em> within a <em>BusinessConfirmationActor</em> and make it block for at least 1.1 milliseconds. I haven’t done that to keep the post shorter.</p>
-
 <p><strong>Conclusion</strong> : Before I wish you a farewell my dear reader, I would like to draw your attention on three things:</p>
-
 <p>Blocking is almost never a good idea, so try to avoid it.</p>
-
 <p>Using AKKA is not so difficult and you should not be afraid to use it. Once you understand the actor model and how it’s implemented in AKKA it’s really a fun to work with it.</p>
-
-<p>Do NOT sacrifice the quality of your code. In our example, I’ve introduced the <em>BusinessMessages</em> wrapper object which has no direct business value. Or does it? How would you like to see:  </p>
-
-<pre><code class="language-java line-numbers">if( message instanceof List ) {  
+<p>Do NOT sacrifice the quality of your code. In our example, I’ve introduced the <em>BusinessMessages</em> wrapper object which has no direct business value. Or does it? How would you like to see:</p>
+<pre><code class="language-java">if( message instanceof List ) {
 ...
 }
 </code></pre>
-
 <p>rather than</p>
-
-<pre><code class="language-java line-numbers">if( message instanceof BusinessMessages ) {  
+<pre><code class="language-java">if( message instanceof BusinessMessages ) {
 ...
 }
 </code></pre>
-
 <p>or even better: apply the GoF <a href="http://www.oodesign.com/strategy-pattern.html">Strategy</a> pattern and remove all <em>if</em>s! Farewell for now and don’t forget to leave a comment!</p>
-			</section>
+</div>
+            </section>
 
-			
-	<footer>
-		<ul class="share left">
-			<li><a href="http://twitter.com/share?text=AKKA%20Ask%20Pattern%3A%20For%20Those%20Times%20When%20You%20Have%20to%20Block&amp;url=http://ingini.org/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="smallbutton lightgray"><i class="fa fa-twitter"></i>Twitter</a></li>
-			<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://ingini.org/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="smallbutton lightgray"><i class="fa fa-facebook"></i>Facebook</a></li>
-			<li><a href="https://plus.google.com/share?url=http://ingini.org/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" class="smallbutton lightgray"><i class="fa fa-google-plus"></i>Google+</a></li>
-		</ul>
-		<ul class="tags right">
-			<a href="../../../../tag/java/" class="smallbutton solidgray">Java</a>
-			<a href="../../../../tag/akka/" class="smallbutton solidgray">AKKA</a>
-			<a href="../../../../tag/multithreading/" class="smallbutton solidgray">Multithreading</a>
-			<a href="../../../../tag/actor-model/" class="smallbutton solidgray">Actor Model</a>
-			<a href="../../../../tag/concurrency/" class="smallbutton solidgray">Concurrency</a>
-		</ul>
-	</footer>
+            <section class="subscribe-form">
+                <h3 class="subscribe-form-title">Subscribe to ingini</h3>
+                <p>Get the latest posts delivered right to your inbox</p>
+                <form method="post" action="http://127.0.0.1:2368/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"><input class="location" type="hidden" name="location"><input class="referrer" type="hidden" name="referrer">
 
-			
-	<div class="postprofile">
-		<img src="../../../../content/images/2014/Jun/wolf_small.jpg" class="author" alt="Ivan Hristov">
-		<div class="info">
-			<h4>Ivan Hristov</h4>
-			<a href="http://ingini.org">http://ingini.org</a>
-			<p></p>
-			
-
-        	<ul class="social">
-            <li><a href="https://twitter.com/iv_hristov" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <!--<li><a href="http://facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>-->
-            <li><a href="https://github.com/ihr" class="github" target="_blank"><i class="fa fa-github-alt"></i></a></li>
-            <!--<li><a href="http://youtube.com/" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a></li>-->
-            <!--<li><a href="http://dribbble.com/" class="dribbble" target="_blank"><i class="fa fa-dribbble"></i></a></li>-->
-            <li><a href="http://plus.google.com/" class="googleplus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-            <!--<li><a href="http://instagram.com/" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>-->
-            <!--<li><a href="http://pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>-->
-            <li><a href="http://ch.linkedin.com/in/ivhristov" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-            <!--<li><a href="http://ingini.org/rss/" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>-->
-        	</ul>
-		
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email" placeholder="youremail@example.com">
+    </div>
+    <button class="" type="submit"><span>Subscribe</span></button>
+    <script type="text/javascript">(function(g,h,o,s,t){h[o]('.location')[s]=h[o]('.location')[s] || g.location.href;h[o]('.referrer')[s]=h[o]('.referrer')[s] || h.referrer;})(window,document,'querySelector','value');</script>
+</form>
 
 
+            </section>
 
-		</div>
-	</div>
+            <footer class="post-full-footer">
 
-			<div class="comments">
-				<span class="readmore smallbutton blue"><i class="fa fa-comments"></i>View Comments...</span>
-				<div id="disqus_thread"></div>
-				<div id="g-comments"></div>
-			</div>
+                <section class="author-card">
+                        <img class="author-profile-image" src="../../../../content/images/2018/02/ivan_hristov.png" alt="Ivan Hristov">
+                    <section class="author-card-content">
+                        <h4 class="author-card-name"><a href="../../../../author/ivan/">Ivan Hristov</a></h4>
+                            <p>Read <a href="../../../../author/ivan/">more posts</a> by this author.</p>
+                    </section>
+                </section>
+                <div class="post-full-footer-right">
+                    <a class="author-card-button" href="../../../../author/ivan/">Read More</a>
+                </div>
 
-		</article>
+            </footer>
 
-	</section>
+            <section class="post-full-comments">
+                <div id="disqus_thread"></div>
+                <script>
+                    if (window.disqus_shortname) {
+                        var disqus_config = function () {
+                            this.page.url = 'http://localhost:2368/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/';
+                            this.page.identifier = 'ghost-12';
+                        };
+                        (function() {
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    }
+                </script>
+            </section>
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+                <article class="read-next-card" style="background-image: url(../../../../content/images/2018/02/pexels-photo-860379-1.jpeg)">
+                    <header class="read-next-card-header">
+                        <small class="read-next-card-header-sitetitle">— ingini —</small>
+                        <h3 class="read-next-card-header-title"><a href="../../../../tag/java/">Java</a></h3>
+                    </header>
+                    <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"></path></svg>
+</div>
+                    <div class="read-next-card-content">
+                        <ul>
+                            <li><a href="../../../../2015/03/26/authentication-authorization-schema-design-with-mongodb/">Authentication &amp; authorization with Spring Boot &amp; MongoDB</a></li>
+                            <li><a href="../../../../2014/06/17/docker-mongodb-java-yes-it-easy/">Bringing together Docker, Grunt, Maven, EmberJS &amp; MongoDB</a></li>
+                            <li><a href="../../../04/03/mongodb-with-jongo-sleeves-up/">MongoDB With Jongo - Sleeves Up!</a></li>
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer">
+                        <a href="../../../../tag/java/">See all 8 posts →</a>
+                    </footer>
+                </article>
+
+                <article class="post-card post tag-java tag-jongo tag-mongodb tag-nosql no-image">
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../../../04/03/mongodb-with-jongo-sleeves-up/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">Java</span>
+                <h2 class="post-card-title">MongoDB With Jongo - Sleeves Up!</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>Abstract : In this post you will find a brief introduction to Jongo - a fast, easy-to-use, Java-based querying library for MongoDB. There are plenty of articles discussing MongoDB around the Internet and it’</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+                <img class="author-profile-image" src="../../../../content/images/2018/02/ivan_hristov.png" alt="Ivan Hristov">
+            <span class="post-card-author"><a href="../../../../author/ivan/">Ivan Hristov</a></span>
+        </footer>
+    </div>
+</article>
+
+                <article class="post-card post tag-java tag-actor-model tag-concurrency no-image">
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../../../../2012/11/11/chatting-through-jactor/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">Java</span>
+                <h2 class="post-card-title">Chatting Through JActor</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>Abstract : Nearly 40 years ago Carl Hewitt, Peter Bishop and Richard Steiger introduced the actor model. Since then it has been built in some languages (such as Scala, Erlang, etc.) and has been</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+                <img class="author-profile-image" src="../../../../content/images/2018/02/ivan_hristov.png" alt="Ivan Hristov">
+            <span class="post-card-author"><a href="../../../../author/ivan/">Ivan Hristov</a></span>
+        </footer>
+    </div>
+</article>
+
+        </div>
+    </div>
+</aside>
+
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="http://localhost:2368">
+            <span>ingini</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">—</span>
+    <div class="floating-header-title">AKKA Ask Pattern: For Those Times When You Have to Block</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=AKKA%20Ask%20Pattern%3A%20For%20Those%20Times%20When%20You%20Have%20to%20Block&amp;url=http://localhost:2368/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/2013/03/17/akka-patterns-for-those-times-when-you-have-to-block/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
 
 
 
-	
-	<footer class="wrapper">
-		<div class="inlinemenu">
-			<div class="graybar">
-				<div class="left"><i class="fa fa-bars"></i>Navigation</div>
-				<div class="right"><i class="fa fa-chevron-down"></i></div>
-			</div>
-			<div class="menu">
-				
-			</div>
-		</div>
-		<div class="copyright">
-			Copyright © <a href="http://ingini.org/">Ingini</a>. 2016 • All rights reserved.
-			<span class="ghost">Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a>.</span>
-			<span class="ecko"><a href="http://ecko.me/themes/ghost/astro/" target="_blank">Astro Ghost Theme</a> by <a href="http://ecko.me/" target="_blank">EckoThemes</a>.</span>
-		</div>
-	</footer>
-	
-	<!-- You can safely delete this line if your theme does not require jQuery -->
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="http://localhost:2368">ingini</a> © 2018</section>
+                <nav class="site-footer-nav">
+                    <a href="http://localhost:2368">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <div id="subscribe" class="subscribe-overlay">
+        <a class="subscribe-overlay-close" href="index.html#"></a>
+        <div class="subscribe-overlay-content">
+            <h1 class="subscribe-overlay-title">Subscribe to ingini</h1>
+            <p class="subscribe-overlay-description">Stay up to date! Get all the latest &amp; greatest posts delivered straight to your inbox</p>
+            <form method="post" action="http://127.0.0.1:2368/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"><input class="location" type="hidden" name="location"><input class="referrer" type="hidden" name="referrer">
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email" placeholder="youremail@example.com">
+    </div>
+    <button class="" type="submit"><span>Subscribe</span></button>
+    <script type="text/javascript">(function(g,h,o,s,t){h[o]('.location')[s]=h[o]('.location')[s] || g.location.href;h[o]('.referrer')[s]=h[o]('.referrer')[s] || h.referrer;})(window,document,'querySelector','value');</script>
+</form>
+
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="../../../../assets/js/jquery.fitvids.js?v=7b3a341396"></script>
+
+    <script>
+        if (window.social_link) {
+            var url_regexp = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
+            $.each(window.social_link, function(type, url) {
+                if (typeof url === "string" && url_regexp.test(url)) {
+                    $('<a>', {
+                        class: 'social-link social-link-'+type,
+                        href: url,
+                        target: '_blank'
+                    }).appendTo('.social-links');
+                    var builtin_type = ['500px', 'facebook', 'flickr', 'github', 'gmail', 'googleplus', 'instagram', 'line', 'linkedin', 'messenger', 'microsoftoutlook', 'plurk', 'sinaweibo', 'skype', 'snapchat', 'stackoverflow', 'telegram', 'twitter', 'wechat', 'whatsapp'];
+                    var icon_path = '/assets/icons/type.svg?v=7b3a341396'
+                    if (builtin_type.indexOf(type) > -1) {
+                        icon_path = icon_path.replace('type', type);
+                    } else if (type.endsWith('-local')) {
+                        icon_path = icon_path.replace('type', type.substring(0, type.length-6));
+                    } else {
+                        icon_path = 'https://simpleicons.org/icons/'+type+'.svg';
+                    }
+                    $('.social-link-'+type).load(icon_path);
+                }
+            });
+        }
+    </script>
+
+    <script>
+        if (window.ga_id) {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+            ga('create', window.ga_id, 'auto');
+            ga('require', 'linkid', 'linkid.js');
+            ga('send', 'pageview');
+        }
+    </script>
+
+    <script type="text/javascript" src="../../../../assets/js/prism.js?v=7b3a341396"></script>
+
+
+    <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+
+    <!-- You can safely delete this line if your theme does not require jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script async type="text/javascript" src="../../../../assets/js/theme.min.js?v=70b6e1da2b"></script>
 
 </body>
