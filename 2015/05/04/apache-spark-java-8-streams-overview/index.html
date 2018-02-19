@@ -93,7 +93,7 @@ ghost.init({
 <script type="text/javascript" src="../../../../assets/js/prism.js"></script>
 <script>
 var ga_id = 'UA-35925613-1';
-var disqus_shortname = 'ihristov'
+var disqus_shortname = 'ingini'
 var social_link = {
     'linkedin': 'http://ch.linkedin.com/in/ivhristov',
     'github': 'https://github.com/ihr',
@@ -113,10 +113,6 @@ var social_link = {
         <nav class="site-nav">
     <div class="site-nav-left">
                 <a class="site-nav-logo" href="http://localhost:2368">ingini</a>
-            <ul class="nav" role="menu">
-    <li class="nav-nav" role="menuitem"><a href="https://ingini.org">nav</a></li>
-</ul>
-
     </div>
     <div class="site-nav-right">
         <div class="social-links">
@@ -306,11 +302,11 @@ public class WordsCounterSpark implements Serializable {
             </footer>
 
             <section class="post-full-comments">
-                <div id="disqus_thread"></div>
-                <script>
-                    if (window.disqus_shortname) {
+<div id="disqus_thread"></div>
+<script>
+if (window.disqus_shortname) {
                         var disqus_config = function () {
-                            this.page.url = 'https://ingini.org';
+                            this.page.url = 'http://localhost:2368/2015/05/04/apache-spark-java-8-streams-overview/'.replace('http://localhost:2368/', 'https://ingini.org/');
                             this.page.identifier = 'ghost-20';
                         };
                         (function() {
@@ -320,7 +316,8 @@ public class WordsCounterSpark implements Serializable {
                             (d.head || d.body).appendChild(s);
                         })();
                     }
-                </script>
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
             </section>
 
 
