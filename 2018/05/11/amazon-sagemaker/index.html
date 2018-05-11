@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Decoration With FEST-Reflect 1.3</title>
+    <title>3 things to know when working &amp; debugging  Amazon SageMaker</title>
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,28 +12,23 @@
     <link rel="stylesheet" type="text/css" href="../../../../assets/css/prism.css?v=b5f113346c">
 
     <link rel="shortcut icon" href="../../../../favicon.png" type="image/png">
-    <link rel="canonical" href="http://localhost:2368/2012/04/04/fest-reflect-1-3-2/">
+    <link rel="canonical" href="http://localhost:2368/2018/05/11/amazon-sagemaker/">
     <meta name="referrer" content="no-referrer-when-downgrade">
-    <link rel="amphtml" href="http://localhost:2368/2012/04/04/fest-reflect-1-3-2/amp/">
+    <link rel="amphtml" href="http://localhost:2368/2018/05/11/amazon-sagemaker/amp/">
     
     <meta property="og:site_name" content="ingini">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Decoration With FEST-Reflect 1.3">
-    <meta property="og:description" content="Yesterday (3rd of April, 2012) the FEST-Reflect 1.3 (part of FEST libraries) was published on maven central. Since this fact requires a celebration, I've prepared a short tutorial of the new field decorator functionality. Add the following dependency in your pom.xml to take advantage of FEST-Reflect. &amp;lt;dependency&amp;">
-    <meta property="og:url" content="http://localhost:2368/2012/04/04/fest-reflect-1-3-2/">
-    <meta property="article:published_time" content="2012-04-04T11:54:00.000Z">
-    <meta property="article:modified_time" content="2016-01-24T20:48:08.000Z">
-    <meta property="article:tag" content="FEST-Reflect">
-    <meta property="article:tag" content="Java">
-    
+    <meta property="og:title" content="3 things to know when working &amp; debugging  Amazon SageMaker">
+    <meta property="og:description" content="The case of training &amp;amp; deploying an MXNet-based deep learning network via Jupyter Notebook Recently I had the chance to use Amazon SageMaker and so it happened that I needed to debug a call request from my Jupyter Notebook to the SageMaker API Endpoint. In this short post, I'm going">
+    <meta property="og:url" content="http://localhost:2368/2018/05/11/amazon-sagemaker/">
+    <meta property="article:published_time" content="2018-05-11T14:09:43.000Z">
+    <meta property="article:modified_time" content="2018-05-11T14:09:43.000Z">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Decoration With FEST-Reflect 1.3">
-    <meta name="twitter:description" content="Yesterday (3rd of April, 2012) the FEST-Reflect 1.3 (part of FEST libraries) was published on maven central. Since this fact requires a celebration, I've prepared a short tutorial of the new field decorator functionality. Add the following dependency in your pom.xml to take advantage of FEST-Reflect. &amp;lt;dependency&amp;">
-    <meta name="twitter:url" content="http://localhost:2368/2012/04/04/fest-reflect-1-3-2/">
+    <meta name="twitter:title" content="3 things to know when working &amp; debugging  Amazon SageMaker">
+    <meta name="twitter:description" content="The case of training &amp;amp; deploying an MXNet-based deep learning network via Jupyter Notebook Recently I had the chance to use Amazon SageMaker and so it happened that I needed to debug a call request from my Jupyter Notebook to the SageMaker API Endpoint. In this short post, I'm going">
+    <meta name="twitter:url" content="http://localhost:2368/2018/05/11/amazon-sagemaker/">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="Ivan Hristov">
-    <meta name="twitter:label2" content="Filed under">
-    <meta name="twitter:data2" content="FEST-Reflect, Java">
     <meta name="twitter:creator" content="@iv_hristov">
     
     <script type="application/ld+json">
@@ -64,12 +59,11 @@
             "https://twitter.com/iv_hristov"
         ]
     },
-    "headline": "Decoration With FEST-Reflect 1.3",
-    "url": "http://localhost:2368/2012/04/04/fest-reflect-1-3-2/",
-    "datePublished": "2012-04-04T11:54:00.000Z",
-    "dateModified": "2016-01-24T20:48:08.000Z",
-    "keywords": "FEST-Reflect, Java",
-    "description": "Yesterday (3rd of April, 2012) the FEST-Reflect 1.3 (part of FEST libraries) was published on maven central. Since this fact requires a celebration, I&#x27;ve prepared a short tutorial of the new field decorator functionality. Add the following dependency in your pom.xml to take advantage of FEST-Reflect. &amp;lt;dependency&amp;",
+    "headline": "3 things to know when working &amp; debugging  Amazon SageMaker",
+    "url": "http://localhost:2368/2018/05/11/amazon-sagemaker/",
+    "datePublished": "2018-05-11T14:09:43.000Z",
+    "dateModified": "2018-05-11T14:09:43.000Z",
+    "description": "The case of training &amp;amp; deploying an MXNet-based deep learning network via Jupyter Notebook Recently I had the chance to use Amazon SageMaker and so it happened that I needed to debug a call request from my Jupyter Notebook to the SageMaker API Endpoint. In this short post, I&#x27;m going",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "http://localhost:2368/"
@@ -100,7 +94,7 @@ var social_link = {
 <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a8dd70b9dc706ed"></script>
 
 </head>
-<body class="post-template tag-fest-reflect tag-java">
+<body class="post-template">
 
     <div class="site-wrapper">
 
@@ -128,173 +122,58 @@ var social_link = {
 <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
 
-        <article class="post-full post tag-fest-reflect tag-java no-image">
+        <article class="post-full post no-image">
 
             <header class="post-full-header">
                 <section class="post-full-meta">
-                    <time class="post-full-meta-date" datetime="2012-04-04">4 April 2012</time>
-                        <span class="date-divider">/</span> <a href="../../../../tag/fest-reflect/">FEST-Reflect</a>
+                    <time class="post-full-meta-date" datetime="2018-05-11">11 May 2018</time>
                 </section>
-                <h1 class="post-full-title">Decoration With FEST-Reflect 1.3</h1>
+                <h1 class="post-full-title">3 things to know when working &amp; debugging  Amazon SageMaker</h1>
             </header>
 
 
             <section class="post-full-content">
-                <div class="kg-card-markdown"><p>Yesterday (3rd of April, 2012) the FEST-Reflect 1.3 (part of <a href="http://code.google.com/p/fest/">FEST</a> libraries) was published on maven central. Since this fact requires a celebration, I've prepared a short tutorial of the new field decorator functionality.</p>
-<p>Add the following dependency in your pom.xml to take advantage of FEST-Reflect.</p>
-<pre><code class="language-xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.easytesting&lt;/groupId&gt;
-    &lt;artifactId&gt;fest-reflect&lt;/artifactId&gt;
-    &lt;version&gt;1.3&lt;/version&gt;
-&lt;/dependency&gt;
+                <div class="kg-card-markdown"><h4 id="thecaseoftrainingdeployinganmxnetbaseddeeplearningnetworkviajupyternotebook">The case of training &amp; deploying an MXNet-based deep learning network via Jupyter Notebook</h4>
+<p>Recently I had the chance to use <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html">Amazon SageMaker</a> and so it happened that I needed to debug a call request from my Jupyter Notebook to the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html">SageMaker API Endpoint</a>. In this short post, I'm going to show you 3 things that might come handy if you find yourself in a similar situation.</p>
+<h3 id="1awscli">1. AWS CLI</h3>
+<p>I did that using the <a href="https://aws.amazon.com/cli/">AWS command line interface</a> from my terminal. There are few things you should make sure you provide, so I'm going to highlight them quickly before showing the command itself.</p>
+<ol>
+<li>Provide the region name</li>
+<li>Provide the name of your SageMaker API endpoint</li>
+<li>Provide the body (which in this case is a pixelized matrix representing handwritten number 4); Note the body depends on the model you are using. I used the AWS example of training and deploying a deep learning network using <a href="https://mxnet.incubator.apache.org/">MXNet</a>, if you would like to follow the example you can do it on this link [Using Apache MXNet].(<a href="https://docs.aws.amazon.com/sagemaker/latest/dg/mxnet-example1-prepare.html">https://docs.aws.amazon.com/sagemaker/latest/dg/mxnet-example1-prepare.html</a>)</li>
+<li>Tell the endpoint what type of content are you sending (via the --content-type attribute); You can learn more about the possible content types <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/cdf-inference.html">Common Data Formats - Inference</a></li>
+<li>Tell the endpoint what type of content you are expecting (via the --accept attribute)</li>
+<li>Should you need to debug the cli command then add the --debug attribute</li>
+</ol>
+<pre><code class="language-bash">aws sagemaker-runtime --debug --region &lt;region-name&gt; 
+invoke-endpoint --endpoint-name &lt;sagemaker-endpoint-name&gt; 
+--body "[[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]]" 
+--content-type "application/json" --accept "application/json" output.json
 </code></pre>
-<!-- more -->
-<p>Example 1: Using FEST-Reflect decorator for testing logging functionality</p>
-<p>Let's say we have a simple business service:</p>
-<pre><code class="language-java">package org.honey.service.impl;
-
-import org.honey.service.IBusinessService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-public class BusinessService implements IBusinessService {
-
-  private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void doBusiness() {
-    logger.info("Hi! This is a business service ...");
-  }
-}
+<h3 id="2jupyternotebook">2. Jupyter Notebook</h3>
+<p>One great thing about <a href="http://jupyter.org/">Jupyter notebook</a> is that you can add inline code easily. So if you need to increase the verbosity of logging, say for debugging purposes, you can quickly do that via the following 2 lines:</p>
+<pre><code class="language-python">try:
+    import http.client as http_client
+except ImportError:
+    # Python 2
+    import httplib as http_client
+http_client.HTTPConnection.debuglevel = 1
 </code></pre>
-<p>Our goal would be to test that the <code>logger</code> field is called and still be able to see the printed message on our screen. With the help of FEST-Reflect we can pre-decorate or post-decorate the <code>logger</code> with another object implementing the <code>org.slf4j.Logger</code> (I'm going to use a mock object via <a href="https://code.google.com/p/mockito/">Mockito</a>). Here is the test:</p>
-<pre class="language-java line-numbers" data-line="23">
-<code class="language-java">package org.honey.service.impl;
-
-import static org.fest.reflect.core.Reflection.field;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
-import org.honey.service.IBusinessService;
-import org.junit.Test;
-import org.slf4j.Logger;
-
-public class TestBusinessService {
-
-  @Test
-  public void shouldCallLogger() {
-    //GIVEN
-    Logger loggerMock = mock(Logger.class);
-
-    IBusinessService service = new BusinessService();
-
-    field("logger").ofType(Logger.class).in(service).preDecorateWith(loggerMock);
-
-    //WHEN
-    service.doBusiness();
-
-    //THEN
-    verify(loggerMock, times(1)).info(eq("Hi! This is a business service ..."));
-  }
-}
-</code>
-</pre>
-<p>With the above code, our <code>loggerMock</code> is going to be called first and then the actual <code>logger</code>. We can also post-decorate the targeted field (in which case the <code>logger</code> will be called first and then the <code>loggerMock</code>):</p>
-<pre><code class="language-java">field("logger").ofType(Logger.class).in(service).postDecorateWith(loggerMock);
+<h3 id="3costcontrol">3. Cost Control</h3>
+<p>Once you finished with the work on SageMaker, make sure that you stop the notebook or else you will pay hosting fees as per the <a href="https://aws.amazon.com/sagemaker/pricing/">Amazon SageMaker pricing</a>. If you don't need the Endpoint, then you should delete it or else you will pay for hosting it. Note, that you can re-create the endpoint when you need it, as soon as you don't delete the model (and the endpoint configuration).</p>
+<h3 id="gotchas">Gotchas</h3>
+<p>Note that if you get the following error:</p>
+<pre><code class="language-bash">botocore.errorfactory.ModelError: An error occurred (ModelError) 
+when calling the InvokeEndpoint operation: Received client error (406) 
+from model with message ""Requested unsupported ContentType in Accept: */*"". 
+See https://&lt;region-name&gt;.console.aws.amazon.com/cloudwatch/home?
+region=&lt;region-name&gt;#logEventViewer:group=/aws/sagemaker/Endpoints/&lt;endpoint-name&gt;
+in account &lt;account-name&gt; for more information.
 </code></pre>
-<p>In fact we can have both pre-decoration and post-decoration:</p>
-<pre><code class="language-java">field("logger").ofType(Logger.class).in(service)//
-.preDecorateWith(loggerMock).postDecorateWith(loggerMock);
+<p>... and all you have in the CloudWatch log file is:</p>
+<pre><code class="language-bash">10.32.0.2 - - [24/Apr/2018:14:27:25 +0000] "POST /invocations HTTP/1.1" 406 50 "-" "AHC/2.0"
 </code></pre>
-<p>However, don't forget to change the verification step (for the test to work) to:</p>
-<pre><code class="language-java">verify(loggerMock, times(2)).info(eq("Hi! This is a business service ..."));
-</code></pre>
-<p>Example 2: Complex decoration</p>
-<p>Now let's take a look at what kind of arsenal we have for tackling some more complex scenarios:</p>
-<p>Let's upgrade our <code>BusinessService</code> implementation:</p>
-<pre><code class="language-java">public class BusinessService implements IBusinessService {
-
-  private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-  private final INotificationService notificationService;
-
-  public BusinessService() {
-    this.notificationService = new INotificationService() {
-
-      @Override
-      public boolean notify(String recipient) {
-        // some logic
-        return false;
-      }
-    };
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void doBusiness() {
-
-    String recipient = "some@one.com";
-
-    if (notificationService.notify(recipient)) {
-      logger.info("Successfully notified {}", recipient);
-    } else {
-      logger.error("Could not notifiy {}", recipient);
-    }
-
-  }
-
-}
-</code></pre>
-<p>So what happened? I've added an <code>INotificationService</code> interface and a simple implementation in the constructor of our <code>BusinessService</code>. As we can see the implementation of <code>INotificationService.notify()</code> always returns false, so we can expect that the <code>else</code> branch in the <code>doBusiness()</code> method is always taken. What if we want to change this behaviour but without changing the actual <code>INotificationService.notify()</code> implementation? Here is a test that does exactly that:</p>
-<pre><code class="language-java">public class TestBusinessService {
-
-  @Test
-  public void shouldCallInfoLogger() {
-    //GIVEN
-    Logger loggerMock = mock(Logger.class);
-
-    INotificationService notificationServiceMock = mock(INotificationService.class);
-    when(notificationServiceMock.sendNotification(anyString())).thenReturn(true);
-
-    IBusinessService service = new BusinessService();
-
-    field("logger").ofType(Logger.class).in(service).postDecorateWith(loggerMock);
-
-    field("notificationService").ofType(INotificationService.class) //
-          .in(service).postDecorateWith(notificationServiceMock)//
-          .returningDecoratorResult();
-
-    //WHEN
-    service.doBusiness();
-
-    //THEN
-    verify(loggerMock, times(1)).info(eq("Successfully notified {}"), eq("some@one.com"));
-  }
-}
-</code></pre>
-<p>Again, we can pre-decorate instead of post-decorate, or we can pre- and post-decorate. Here is how:</p>
-<pre><code class="language-java">field("notificationService").ofType(INotificationService.class) //
-.in(service).preDecorateWith(notificationServiceMock1)//
-.returningDecoratorResult()// taking the result from notificationServiceMock1
-.postDecorateWith(notificationServiceMock2);
-</code></pre>
-<p>Ok, but what if our <code>notificationServiceMock</code> throws an exception? Well, we can silence any <code>RuntimeException</code> like this:</p>
-<pre><code class="language-java">field("notificationService").ofType(INotificationService.class) //
-.in(service).postDecorateWith(notificationServiceMock).returningDecoratorResult()//
-.ignoringDecoratorExceptions(); // ignores any RuntimeException
-</code></pre>
-<p>Or a specific exception like this:</p>
-<pre><code class="language-java">field("notificationService").ofType(INotificationService.class) //
-.in(service).postDecorateWith(notificationServiceMock).returningDecoratorResult()//
-.ignoringDecoratorExceptionsOfType(MyCoolException.class); // ignores only MyCoolException
-</code></pre>
+<p>then add the --accept attribute to the cli (e.g. --accept "application/json")</p>
 </div>
             </section>
 
@@ -319,8 +198,8 @@ public class TestBusinessService {
 <script>
 if (window.disqus_shortname) {
                         var disqus_config = function () {
-                            this.page.url = 'http://localhost:2368/2012/04/04/fest-reflect-1-3-2/'.replace('http://localhost:2368/', 'https://ingini.org/');
-                            this.page.identifier = 'ghost-2';
+                            this.page.url = 'http://localhost:2368/2018/05/11/amazon-sagemaker/'.replace('http://localhost:2368/', 'https://ingini.org/');
+                            this.page.identifier = 'ghost-5ae04ab09de7ba72aa049ca1';
                         };
                         (function() {
                             var d = document, s = d.createElement('script');
@@ -342,34 +221,17 @@ if (window.disqus_shortname) {
 <aside class="read-next outer">
     <div class="inner">
         <div class="read-next-feed">
-                <article class="read-next-card" style="background-image: url(../../../../content/images/2018/02/cup_coffee-1.jpeg)">
-                    <header class="read-next-card-header">
-                        <small class="read-next-card-header-sitetitle">— ingini —</small>
-                        <h3 class="read-next-card-header-title"><a href="../../../../tag/fest-reflect/">FEST-Reflect</a></h3>
-                    </header>
-                    <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"></path></svg>
-</div>
-                    <div class="read-next-card-content">
-                        <ul>
-                            <li><a href="../../../09/16/chasing-heisenbugs-from-akka-actor-integration-test-with-awaitility/">Integration Test - AKKA Actor With Awaitility</a></li>
-                            <li><a href="../../../08/05/akka-actor-dependency-injection-using-spring/">AKKA Actor Dependency Injection Using Spring</a></li>
-                            <li><a href="../../../07/01/test-akka-actor-mockito-fest-reflect/">Testing AKKA Actors With Mockito and FEST-Reflect</a></li>
-                        </ul>
-                    </div>
-                    <footer class="read-next-card-footer">
-                        <a href="../../../../tag/fest-reflect/">See all 4 posts →</a>
-                    </footer>
-                </article>
 
-                <article class="post-card post tag-jpa-2-0 tag-maven no-image">
+
+                <article class="post-card post tag-java-8 tag-streams-api tag-apache-spark tag-resilient-distributed-dataset featured no-image">
     <div class="post-card-content">
-        <a class="post-card-content-link" href="../../29/20120429sundays-recipe/">
+        <a class="post-card-content-link" href="../../../../2015/05/04/apache-spark-java-8-streams-overview/">
             <header class="post-card-header">
-                    <span class="post-card-tags">JPA 2.0</span>
-                <h2 class="post-card-title">JPA 2.0, Hibernate, HSQLDB, and Google Guice</h2>
+                    <span class="post-card-tags">java 8</span>
+                <h2 class="post-card-title">An overview of Apache Spark RDD &amp; Java 8 Streams</h2>
             </header>
             <section class="post-card-excerpt">
-                <p>Today's software recipe includes the following main ingredients (as Maven artifacts) Guice, Hibernate, JPA, HSQLDB, FEST-Assert, Apache Commons Lang, JUnit which we are going to put and mix in Eclipse 3.7.2</p>
+                <p>Abstract: Everyday we make conscious or subconscious decisions based on information we receive from different sources. We analyse data in our own way without necessarily being a certified data analyst. Broadly speaking, data</p>
             </section>
         </a>
         <footer class="post-card-meta">
@@ -378,7 +240,6 @@ if (window.disqus_shortname) {
         </footer>
     </div>
 </article>
-
 
         </div>
     </div>
@@ -392,16 +253,16 @@ if (window.disqus_shortname) {
         </a>
     </div>
     <span class="floating-header-divider">—</span>
-    <div class="floating-header-title">Decoration With FEST-Reflect 1.3</div>
+    <div class="floating-header-title">3 things to know when working &amp; debugging  Amazon SageMaker</div>
     <div class="floating-header-share">
         <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
     <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
 </svg>
 </div>
-        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Decoration%20With%20FEST-Reflect%201.3&amp;url=http://localhost:2368/2012/04/04/fest-reflect-1-3-2/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=3%20things%20to%20know%20when%20working%20%26%20debugging%20%20Amazon%20SageMaker&amp;url=http://localhost:2368/2018/05/11/amazon-sagemaker/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
         </a>
-        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/2012/04/04/fest-reflect-1-3-2/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/2018/05/11/amazon-sagemaker/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
         </a>
     </div>
